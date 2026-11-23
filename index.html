@@ -30,10 +30,12 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 .thumb{height:96px;display:flex;align-items:center;justify-content:center;background:var(--cream);border:2px dashed var(--ink);border-radius:var(--sk);cursor:pointer;padding:6px}
 .thumb img{max-width:100%;max-height:100%;object-fit:contain}.thumb.sel{background:var(--mint);border-style:solid}
 /* S3 */
-#scene3{overflow:hidden;background:#3f95de}
-#world{position:absolute;left:0;top:0;width:2600px;height:100%;background:url(images/sky.jpg) 0 0/auto 82% repeat-x}
-#ground{position:absolute;left:0;right:0;bottom:0;height:19%;background:#b9d98a;border-top:4px solid var(--ink)}
-#ground::after{content:'';position:absolute;left:0;right:0;bottom:12%;height:30%;background:#f6e3d2;border-top:3px dashed var(--ink);border-bottom:3px solid var(--ink)}
+#scene3{overflow:hidden;background:#9be3de url(images/env/sky-clean.jpg) center top/cover no-repeat}
+#world{position:absolute;left:0;top:0;width:2600px;height:100%}
+#ground{position:absolute;left:0;right:0;bottom:0;height:22%;background:url(images/env/ground-tile.jpg) 0 0/auto 100% repeat-x;-webkit-mask-image:linear-gradient(transparent,#000 16%);mask-image:linear-gradient(transparent,#000 16%)}
+#ground{z-index:0}.bld,#stairs{z-index:1}#pc{z-index:2}
+#clouds{position:absolute;inset:0;overflow:hidden;pointer-events:none}#clouds img{position:absolute;left:0;top:0;max-width:none;will-change:transform;pointer-events:none}
+#hills{position:absolute;left:0;bottom:12%;height:44%;width:calc(100% + 1000px);background:url(images/env/hills-tile.webp) 0 100%/auto 100% repeat-x;will-change:transform;pointer-events:none}
 .bld{position:absolute;bottom:17%;height:clamp(200px,44vh,400px);width:auto}
 #stairs{position:absolute;bottom:17%;left:2330px;width:200px;height:200px;background:linear-gradient(135deg,transparent 50%,#e6c79a 50%);border-bottom:4px solid var(--ink)}
 #stairs b{position:absolute;right:0;bottom:0;width:40px;height:100%;background:#d8b98a;border:3px solid var(--ink)}
@@ -109,6 +111,10 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 #rc{position:absolute;left:3%;bottom:14%;height:min(44vh,360px);width:min(190px,34vw);z-index:6;opacity:0;transition:opacity 1.4s ease}#rc.show{opacity:1}
 @media(max-width:700px){#rc{height:27vh;left:-3%;width:30vw}:root{--dollH:min(36vh,300px)}#scene2.active{flex-direction:column;flex-wrap:nowrap;gap:6px;justify-content:flex-start}#wardrobe{flex:none}#items{max-height:30vh}#hint{display:none}.card{padding:12px}}
 @media(max-height:480px){:root{--dollH:62vh}#scene2.active{flex-direction:row;flex-wrap:nowrap}#items{max-height:46vh}}
+
+.shelf{max-height:44vh;overflow:auto}.pcard{transition:transform .25s ease,background .25s ease}.pcard.sel{transform:translateY(-3px) scale(1.05);box-shadow:0 0 0 3px #fff,0 0 0 6px var(--ink)}
+.plt .pa{height:72%;max-width:62%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 3px 2px rgba(107,74,69,.28));animation:pd2 .75s cubic-bezier(.2,.8,.3,1)}
+@keyframes pd2{from{transform:translate(-50%,-34px) scale(.88);opacity:0}to{transform:translate(-50%,0) scale(1);opacity:1}}
 </style></head><body>
 <button id="snd">Sound: on</button>
 <div id="scene1" class="scene active"><div id="bubble" class="sketch">Tap the door to knock.</div>
@@ -116,6 +122,7 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 <div id="scene2" class="scene"><div class="stage" id="prev"></div>
 <div id="wardrobe" class="sketch"><h2>Get Ready With Me</h2><div id="tabs"></div><div id="items"></div><div class="credit">Character art by 上官凝儿 XTing</div><div class="row"><button id="go">Let's Go! &#10140;</button></div></div></div>
 <div id="scene3" class="scene"><button id="orderBtn" class="sketch" style="display:none">My birthday order</button><div id="hint" class="sketch">Walk with arrow keys or buttons</div>
+<div id="clouds"></div><div id="hills"></div>
 <div id="world"><img class="bld" id="b-home" src="images/shannon-house.png" style="left:80px" alt="">
 <img class="bld" id="b-beauty" src="images/beauty-bar.png" style="left:700px" alt="">
 <img class="bld" id="b-matcha" src="images/matcha-shop.png" style="left:1300px" alt="">
@@ -193,9 +200,19 @@ function loop(){if(!$("#scene3").classList.contains("active")){run=0;return}
  var mo=!!$(".modal.open");if(!mo){if(held.l){px-=5;dir=-1}if(held.r){px+=5;dir=1}px=Math.max(0,Math.min(2502,px))}
  var mv=!mo&&(held.l||held.r);if(mv&&++fr%14===0)sfx("step");
  var pc=$("#pc");pc.style.left=px+"px";pc.style.transform="translateY("+(mv?Math.sin(px/8)*-4:0)+"px) scaleX("+dir*FLIPN+")";
- var vw=innerWidth,cam=Math.max(0,Math.min(2600-vw,px+49-vw/2));$("#world").style.transform="translateX("+-cam+"px)";
+ var vw=innerWidth,cam=Math.max(0,Math.min(2600-vw,px+49-vw/2));$("#world").style.transform="translateX("+-cam+"px)";window.CAMX=cam;$("#hills").style.transform="translate3d("+(-cam*.35)+"px,0,0)";
  near=null;STOPS.forEach(function(s){var e=document.getElementById(s.id),c=px+49;if(!near&&c>e.offsetLeft-20&&c<e.offsetLeft+e.offsetWidth+20)near=s});
  var b=$("#interact");if(near&&!mo){b.style.display="block";b.textContent=near.t;b.style.left=px+49+"px"}else b.style.display="none";requestAnimationFrame(loop)}
+/* drifting watercolor clouds: own rAF loop, transform-only, parallax with camera */
+(function(){var host=$("#clouds"),sc=$("#scene3"),mq=matchMedia("(prefers-reduced-motion: reduce)"),T=0,last=0,on=0,vw=0,vh=0,base=1,
+ D=[["01",200,.04,0],["04",155,.19,.1],["10",230,.07,.2],["05",270,.28,.3],["06",306,.16,.4],["07",336,.23,.5],["03",377,.31,.6],["08",392,.10,.7],["09",451,.33,.8],["11",325,.20,.9],["02",647,.12,1]],
+ C=D.map(function(d,i){var e=new Image();e.src="images/env/cloud-"+d[0]+".png";e.alt="";e.decoding="async";e.draggable=false;e.style.opacity=.8+.2*d[3];host.appendChild(e);
+  return {e:e,w:0,sw:d[1],y:0,top:d[2],d:d[3],sp:4+9*d[3]*(.9+.2*((i*37)%10)/10),cf:.02+.08*d[3],x0:((i*.382+.13)%1)}});
+ function size(){vw=innerWidth;vh=innerHeight;base=Math.max(vw,vh*1.1)/1998*.8;C.forEach(function(c){c.w=c.sw*base*(.9+.3*c.d);c.e.style.width=c.w+"px";c.y=vh*c.top})}
+ function draw(){var cam=window.CAMX||0,k=Math.max(.6,Math.min(1.6,vw/1000));C.forEach(function(c){var span=vw+c.w+60,pos=c.x0*span-T*c.sp*k-cam*c.cf,x=((pos+c.w)%span+span)%span-c.w;c.e.style.transform="translate3d("+x.toFixed(1)+"px,"+c.y.toFixed(1)+"px,0)"})}
+ function tick(t){if(!on)return;var dt=Math.min((t-last)/1000,.1);last=t;if(!mq.matches)T+=dt;draw();requestAnimationFrame(tick)}
+ function sync(){var w=sc.classList.contains("active")&&!document.hidden;if(w&&!on){on=1;last=performance.now();requestAnimationFrame(tick)}else if(!w)on=0}
+ size();draw();addEventListener("resize",function(){size();draw()});document.addEventListener("visibilitychange",sync);new MutationObserver(sync).observe(sc,{attributes:true,attributeFilter:["class"]});sync()})();
 function enter(){if(!near)return;if(near.m==="roof")return rooftop();$(near.m).classList.add("open");sfx("pop")}
 addEventListener("keydown",function(e){if(e.key==="ArrowLeft"){held.l=1;e.preventDefault()}if(e.key==="ArrowRight"){held.r=1;e.preventDefault()}if(e.key==="Enter"&&$("#scene3").classList.contains("active")&&!$(".modal.open"))enter()});
 addEventListener("keyup",function(e){if(e.key==="ArrowLeft")held.l=0;if(e.key==="ArrowRight")held.r=0});
@@ -207,7 +224,7 @@ var V={"Glowy Queen":"Shannon, you are literally glowing. Another year older and
 Object.keys(V).forEach(function(k){var b=document.createElement("button");b.textContent=k;b.onclick=function(){$$("#vibes button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");$("#vm").textContent=V[k];anim($("#vm"),"pop");sfx("spark");burst(14)};$("#vibes").appendChild(b)});
 /* ===== Shannon's Birthday Matcha Lab ===== */
 var MSTEP=["Matcha","Drink","Pastry","Prepare","Order"],mstep=-1,M={sc:0,sifted:0,poured:0,whisk:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0},mt=[],said={},order=null;
-var SWEET=["No sugar","A little sweet","Perfectly sweet","Extra sweet"],MILK=[["Oat milk","#e8d6b2"],["Fresh milk","#fbfaf2"],["Almond milk","#efe3cc"],["Coconut milk","#fffbea"]],STY=["Iced matcha latte","Hot matcha latte","Strawberry matcha"],PAS=[["Croissant","croissant"],["Cinnamon roll","cinnamon-roll"],["Matcha cookie","matcha-cookie"],["Strawberry danish","strawberry-danish"],["Butter toast","butter-toast"]];
+var SWEET=["No sugar","A little sweet","Perfectly sweet","Extra sweet"],MILK=[["Oat milk","#e8d6b2"],["Fresh milk","#fbfaf2"],["Almond milk","#efe3cc"],["Coconut milk","#fffbea"]],STY=["Iced matcha latte","Hot matcha latte","Strawberry matcha"],PAS=[["Croissant","pastry-croissant"],["Cinnamon swirl bun","pastry-cinnamon-swirl"],["Almond brioche","pastry-almond-brioche"],["Sesame round bun","pastry-sesame-round-bun"],["Star bread","pastry-star-bread"],["Smiley toast","pastry-toast-bread"],["Herb roll","pastry-herb-roll"],["Ciabatta","pastry-ciabatta"],["Dark baguette","pastry-baguette-dark"],["Baguette in newsprint","pastry-baguette-newsprint"],["Seeded bun in a bag","pastry-seeded-bun-bag"],["Chocolate scored loaf","pastry-scored-loaf"],["Strawberry cake","pastry-strawberry-cake"],["Joyeux Noël cake","pastry-joyeux-noel-cake"],["Knit hat cream cake","pastry-knit-hat-cake"],["Yule log","pastry-yule-log"],["Holly kugelhopf","pastry-kugelhopf"]];
 function mi(n,c){return '<img'+(c?' class="'+c+'"':'')+' src="images/m/'+n+'.png" alt="">'}
 function say(t){var e=$("#mtalk");e.textContent=t;anim(e,"pop")}
 function clearT(){mt.forEach(clearTimeout);mt=[]}
@@ -216,7 +233,7 @@ function mnav(){var ok=[M.whisk>=100,M.sweet>=0&&M.milk>=0&&M.style>=0,M.pastry>
  $("#mback").style.display=mstep<0||mstep===4?"none":"inline-block";var n=$("#mnext");n.style.display=mstep===4?"none":"inline-block";n.disabled=!ok&&mstep>=0;n.style.opacity=n.disabled?.45:1;
  n.textContent=mstep<0?"Ready, matcha girl!":mstep===3?"See my order":"Next"}
 function mgo(n){clearT();mstep=n;mnav();var s=$("#mstage");
- if(n<0){say("Welcome to Shannon's Matcha & Bread! Since it's your birthday, you get to make your very own birthday special. Ready, matcha girl?");s.innerHTML='<div class="lab">'+mi("tin")+mi("whisk")+mi("croissant")+'</div>'}
+ if(n<0){say("Welcome to Shannon's Matcha & Bread! Since it's your birthday, you get to make your very own birthday special. Ready, matcha girl?");s.innerHTML='<div class="lab">'+mi("tin")+mi("whisk")+mi("pastry-croissant")+'</div>'}
  else if(n===0)st0();else if(n===1)st1();else if(n===2)st2();else if(n===3)st3();else st4()}
 function st0(){var s=$("#mstage");say(M.whisk>=100?"Smooth as silk. Matcha master!":"Pick how many scoops of matcha powder you want.");
  s.innerHTML='<div class="lab"><div class="tinw">'+mi("tin")+'<div class="row" id="scoops"></div></div><div class="bowlw"><div class="pow" id="pow"></div><div class="liq" id="liq"><div class="foam" id="foam"></div></div>'+mi("bowl-top","bowl")+'</div><div class="tools"><button class="tool" id="tS">'+mi("sieve")+'<span>Sift</span></button><button class="tool" id="tK">'+mi("kettle")+'<span>Pour</span></button><div class="tool" id="tW">'+mi("whisk")+'<span>Whisk</span></div></div></div><div id="wbar"><i id="wfill"></i></div>';
@@ -250,7 +267,7 @@ function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'
  T(5200,function(){say("Here comes your pastry...");$("#plt2").style.opacity=1;$("#plt2").classList.add("slide");sfx("pop")});
  T(6600,function(){say("Your order is ready on the counter!");M.prepared=1;sfx("spark");burst(14,1);mnav()})}
 function omsg(){var a=["Bold and unbothered, just like you.","Your birthday drink is as sweet as you are.","Your birthday drink is as sweet as you are.","Extra sweet, because you deserve every bit of it."][M.sweet];var b=M.style===2?" Pink, dreamy and a little bit extra.":M.style===1?" Warm, cozy and just right.":" Cool, calm and main-character ready.";return a+b+" Here's to another year of main-character moments!"}
-function st4(){var s=$("#mstage");M.done=1;order={style:STY[M.style],sweet:SWEET[M.sweet],milk:MILK[M.milk][0],pastry:PAS[M.pastry][0]};try{localStorage.setItem("shannonOrder",JSON.stringify(order))}catch(e){}
+function st4(){var s=$("#mstage");M.done=1;order={style:STY[M.style],sweet:SWEET[M.sweet],milk:MILK[M.milk][0],pastry:PAS[M.pastry][0],file:PAS[M.pastry][1]};try{localStorage.setItem("shannonOrder",JSON.stringify(order))}catch(e){}
  $("#orderBtn").style.display="block";say("Order up!");
  s.innerHTML='<div class="ocard sketch"><h3>Shannon\u2019s Birthday Special</h3><div class="row" style="align-items:flex-end">'+drinkHTML()+'<div class="plt" style="width:150px;height:76px">'+mi("plate","pl")+mi(PAS[M.pastry][1],"pa")+'</div></div><p><b>Matcha style:</b> '+order.style+'</p><p><b>Sweetness:</b> '+order.sweet+'</p><p><b>Milk:</b> '+order.milk+'</p><p><b>Pastry:</b> '+order.pastry+'</p><p>'+omsg()+'</p><div class="row"><button id="yum">Yummm! Let\u2019s Continue &#10140;</button><button id="remake">Make a new one</button></div></div>';
  setDrink($(".gl"),curDrink());$("#yum").onclick=function(){burst(24,1);sfx("spark");closeM()};$("#remake").onclick=function(){M={sc:0,sifted:0,poured:0,whisk:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0};said={};mgo(-1)}}
@@ -307,7 +324,8 @@ function wrap(c,t,x,y,w,lh){var ws=t.split(" "),l="";ws.forEach(function(wd){var
 function card(kind){var cv=document.createElement("canvas");cv.width=1080;cv.height=1350;var c=cv.getContext("2d");c.fillStyle="#fffdf6";c.fillRect(0,0,1080,1350);c.strokeStyle="#6b4a45";c.lineWidth=8;c.strokeRect(36,36,1008,1278);c.textAlign="center";c.fillStyle="#6b4a45";c.font="86px 'Patrick Hand','Comic Sans MS',cursive";
  if(kind==="c"){c.fillText("Happy Birthday Shannon!",540,150);var p=poseFor(G.outfit,"picnic");return img(SH+p.file).then(function(im){var H=1020,W=im.width*H/im.height;if(W>900){W=900;H=im.height*W/im.width}c.save();if(p.face==="l"){c.translate(1080,0);c.scale(-1,1)}c.drawImage(im,540-W/2,230+(1020-H),W,H);c.restore();c.font="40px 'Patrick Hand',cursive";c.fillText("with love, Fonda",540,1290);c.font="24px 'Patrick Hand',cursive";c.fillText("Illustration by XTing",540,1330);return cv})}
  c.fillText("Birthday Wishes",540,150);c.font="42px 'Patrick Hand','Comic Sans MS',cursive";c.textAlign="left";var y=250;LTXT.forEach(function(t){y=t?wrap(c,t,110,y,860,58):y+30});
- var w=$("#wish").value.trim();c.fillStyle="#9b3d56";if(order){y=wrap(c,"Birthday order: "+order.style+" and "+order.pastry.toLowerCase(),110,y+20,860,58)}if(w){wrap(c,"Shannon's wish: "+w,110,y+20,860,58)}return Promise.resolve(cv)}
+ var w=$("#wish").value.trim();c.fillStyle="#9b3d56";if(order){y=wrap(c,"Birthday order: "+order.style+" and "+order.pastry.toLowerCase(),110,y+20,860,58)}if(w){y=wrap(c,"Shannon's wish: "+w,110,y+20,860,58)}
+ var room=1280-(y+30);if(order&&order.file&&room>=90){return img("images/m/"+order.file+".png").then(function(im){var h=Math.min(230,room),sc=Math.min(h/im.height,420/im.width);c.drawImage(im,540-im.width*sc/2,y+30+(h-im.height*sc),im.width*sc,im.height*sc);return cv},function(){return cv})}return Promise.resolve(cv)}
 function share(kind){$("#msg").textContent="Making your image...";card(kind).then(function(cv){cv.toBlob(function(b){if(!b){$("#msg").textContent="Please open this game from its web link to save images.";return}
  var f=new File([b],"shannon-birthday.png",{type:"image/png"});
  if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:"Happy Birthday Shannon"}).then(function(){$("#msg").textContent="Pick Instagram in the share sheet."},function(){$("#msg").textContent="Share cancelled."});
