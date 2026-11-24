@@ -30,16 +30,16 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 .thumb{height:96px;display:flex;align-items:center;justify-content:center;background:var(--cream);border:2px dashed var(--ink);border-radius:var(--sk);cursor:pointer;padding:6px}
 .thumb img{max-width:100%;max-height:100%;object-fit:contain}.thumb.sel{background:var(--mint);border-style:solid}
 /* S3 */
-#scene3{overflow:hidden;background:#a8f1ed url(images/env/sky-top.jpg) center top/100% auto no-repeat}
-#world{position:absolute;left:0;top:0;width:2600px;height:100%}
-#ground{position:absolute;left:0;right:0;bottom:0;height:22%;background:url(images/env/ground-tile.jpg) 0 0/auto 100% repeat-x;-webkit-mask-image:linear-gradient(transparent,#000 16%);mask-image:linear-gradient(transparent,#000 16%)}
-#ground{z-index:0}.bld,#stairs{z-index:1}#pc{z-index:2}
-#clouds{position:absolute;inset:0;overflow:hidden;pointer-events:none}#clouds img{position:absolute;left:0;top:0;max-width:none;will-change:transform;pointer-events:none}
-#hills{position:absolute;left:0;bottom:12%;height:44%;width:calc(100% + 1000px);background:url(images/env/hills-tile.webp) 0 100%/auto 100% repeat-x;will-change:transform;pointer-events:none}
+#scene3{overflow:hidden;background:#3f95de}
+#world{position:absolute;left:0;top:0;width:2600px;height:100%;background:url(images/sky.jpg) 0 0/auto 82% repeat-x}
+#ground{position:absolute;left:0;right:0;bottom:0;height:19%;background:#b9d98a;border-top:4px solid var(--ink)}
+#ground::after{content:'';position:absolute;left:0;right:0;bottom:12%;height:30%;background:#f6e3d2;border-top:3px dashed var(--ink);border-bottom:3px solid var(--ink)}
 .bld{position:absolute;bottom:17%;height:clamp(200px,44vh,400px);width:auto}
-#stairs{position:absolute;bottom:13%;right:30px;height:clamp(230px,52vh,430px);width:auto;max-width:none}
+#stairs{position:absolute;bottom:17%;left:2330px;width:200px;height:200px;background:linear-gradient(135deg,transparent 50%,#e6c79a 50%);border-bottom:4px solid var(--ink)}
+#stairs b{position:absolute;right:0;bottom:0;width:40px;height:100%;background:#d8b98a;border:3px solid var(--ink)}
+#stairs span{position:absolute;left:6px;top:20px;font-size:18px}
 #pc{position:absolute;bottom:14%;--dollH:180px;width:100px;height:180px}
-#interact{position:absolute;z-index:6;display:none;font-size:20px;background:var(--mint);white-space:nowrap;bottom:calc(14% + 205px);transform:translateX(-50%)}
+#interact{position:absolute;z-index:6;display:none;font-size:20px;background:var(--mint);white-space:nowrap;bottom:calc(14% + 190px);transform:translateX(-50%)}
 #hud{position:absolute;left:0;right:0;bottom:calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;padding:0 18px;z-index:5}
 #hud button{font-size:30px;padding:10px 34px;touch-action:none;user-select:none}
 #hint{position:absolute;top:8px;left:8px;z-index:5;padding:4px 14px;font-size:16px;max-width:60vw}
@@ -50,15 +50,9 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 #cup{position:relative;width:64px;height:80px;margin:4px auto 10px;border:3px solid var(--ink);border-radius:6px 6px 20px 20px;background:#fff;overflow:hidden}
 #cup .f{position:absolute;left:0;right:0;bottom:0;height:20%;background:var(--mint);transition:height .4s}
 /* rooftop */
-#scene4{background:linear-gradient(#1f1e3c 0,#24203f 23%,#352b4d 46%,#514064 69%,#896e8d 92%,#5d496e 100%);overflow:hidden}
-#nightArt{position:absolute;bottom:0;left:50%;width:min(100vw,calc(100vh*.5622));width:min(100vw,calc(100svh*.5622));aspect-ratio:736/1309;transform:translateX(-50%);background:url(images/env/night-bg.jpg) center/100% 100% no-repeat;pointer-events:none}
-@media(min-aspect-ratio:3/4){#nightArt{-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}}
-.pl{position:absolute;transform-origin:50% 0;animation:lsw 7s ease-in-out infinite alternate}.pl img{display:block;width:100%;animation:lfl 6s ease-in-out infinite alternate}
-@keyframes lsw{from{transform:translate(-3px,0) rotate(-2.2deg)}to{transform:translate(3px,-7px) rotate(2.2deg)}}@keyframes lfl{from{filter:brightness(.95) drop-shadow(0 0 8px rgba(255,200,110,.25))}to{filter:brightness(1.12) drop-shadow(0 0 16px rgba(255,205,120,.5))}}
-@media(prefers-reduced-motion:reduce){.pl,.pl img,#cakeSprite,.cglow{animation:none}}
-#blanket{position:absolute;left:50%;bottom:3%;width:min(640px,98vw);transform:translateX(-50%);z-index:2;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(20,10,30,.35))}
+#scene4{background:linear-gradient(#10163a,#3b3a6e 65%,#6d5a8a);overflow:hidden}
 .star{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;animation:tw 2s infinite alternate}@keyframes tw{to{opacity:.2}}
-
+#roof{position:absolute;left:0;right:0;bottom:0;height:24%;background:#4a3f66;border-top:4px solid #2a2342}
 .fp{position:absolute;width:16px;height:28px;background:rgba(255,230,180,.8);border-radius:50% 50% 45% 45%;opacity:0;transition:opacity .5s}.fp.on{opacity:1}
 .lan{position:absolute;width:34px;height:46px;background:#ffcf7a;border:2px solid #fff3;border-radius:40% 40% 30% 30%;box-shadow:0 0 28px 8px rgba(255,200,110,.6);animation:fl linear infinite}
 @keyframes fl{from{transform:translateY(0)}to{transform:translateY(-110vh)}}
@@ -76,11 +70,11 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 #faceBox{width:min(230px,70vw);height:250px;overflow:hidden;position:relative;flex:none;border:3px solid var(--ink);border-radius:var(--sk);background:#fff}
 #faceBox .stage{--dollH:1530px;position:absolute;left:calc(50% - 425px);top:-88px}
 .sw{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);vertical-align:-2px;margin-right:6px}
-.fly{position:absolute;left:50%;bottom:90px;width:200px;margin-left:-100px;z-index:12;pointer-events:none;animation:rise 11s cubic-bezier(.3,.1,.6,1) forwards}
+.fly{position:absolute;left:50%;bottom:90px;width:150px;margin-left:-75px;z-index:12;pointer-events:none;animation:rise 11s cubic-bezier(.3,.1,.6,1) forwards}
 @keyframes rise{0%{transform:translateY(0) scale(1);opacity:0}6%{opacity:1}85%{opacity:1}100%{transform:translateY(-105vh) scale(.28);opacity:0}}
 .sway{position:relative;animation:sw 3s ease-in-out infinite alternate}@keyframes sw{from{transform:translateX(-22px) rotate(-4deg)}to{transform:translateX(22px) rotate(4deg)}}
 .fly img{width:100%;display:block;filter:drop-shadow(0 0 22px rgba(255,200,110,.85))}
-.fly span{position:absolute;left:25%;right:25%;top:33%;text-align:center;font-size:15px;line-height:1.1;overflow:hidden;max-height:46px;word-break:break-word;color:#6b4a45}
+.fly span{position:absolute;left:18%;right:18%;top:38%;text-align:center;font-size:15px;line-height:1.1;overflow:hidden;max-height:60px;word-break:break-word}
 .amb{position:absolute;bottom:-90px;opacity:.8;filter:drop-shadow(0 0 14px rgba(255,200,110,.7));animation:fl linear infinite}
 
 #mcard{width:min(780px,100%)}#mprog{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:4px 0}#mprog span{padding:2px 10px;border:2px dashed var(--ink);border-radius:var(--sk);font-size:15px;background:#fff}#mprog .on{background:var(--mint);border-style:solid}#mprog .dn{background:var(--pink)}
@@ -102,50 +96,52 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 #orderBtn{position:absolute;left:8px;top:44px;z-index:5;padding:4px 14px;font-size:16px}
 .wearIn{animation:wi .4s}@keyframes wi{from{opacity:0}}
 #glow{position:absolute;left:50%;bottom:6%;width:min(900px,130vw);height:50%;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 100%,rgba(255,200,110,.36),transparent 65%);pointer-events:none;animation:gp 5s ease-in-out infinite alternate}@keyframes gp{to{opacity:.65}}
-#lights{position:absolute;top:0;left:0;right:0;height:min(9vw,70px);min-height:34px;background:url(images/m/string-lights.png) center top/100% 100% no-repeat;pointer-events:none;animation:gp 4s ease-in-out infinite alternate;z-index:3}.l2{position:absolute;width:9px;height:9px;border-radius:50%;background:#ffe3a0;box-shadow:0 0 12px 4px rgba(255,210,120,.7);animation:tw 2.4s infinite alternate}
+#lights{position:absolute;top:0;left:0;right:0;height:70px;pointer-events:none}.l2{position:absolute;width:9px;height:9px;border-radius:50%;background:#ffe3a0;box-shadow:0 0 12px 4px rgba(255,210,120,.7);animation:tw 2.4s infinite alternate}
 .fz{position:absolute;bottom:-10px;width:6px;height:6px;border-radius:50%;background:radial-gradient(#fff6c8,rgba(255,220,140,0));opacity:0;animation:fz linear infinite;pointer-events:none}@keyframes fz{15%{opacity:.9}to{transform:translate(30px,-92vh);opacity:0}}
 .amb{animation:fl linear infinite,amsw 4s ease-in-out infinite alternate}@keyframes amsw{from{translate:-12px 0}to{translate:12px 0}}
 #mtog{position:fixed;top:8px;right:118px;z-index:50;padding:4px 12px;font-size:16px;display:none}
-#cakeW{position:absolute;left:50%;bottom:calc(3% + 62px);z-index:7;display:none;flex-direction:column;align-items:center;gap:8px;width:min(340px,72vw);opacity:0;transform:translateX(-50%) translateY(15px) scale(.96);transform-origin:50% 100%;pointer-events:none;transition:opacity .9s cubic-bezier(.22,.8,.3,1),transform .9s cubic-bezier(.22,.8,.3,1)}
-#cakeW.ready{display:flex}#cakeW.show{opacity:1;transform:translateX(-50%);pointer-events:auto}
-#cakeSprite{width:100%;aspect-ratio:338/312;background:url(images/m/cake-sparkler.png) 0 0/900% 100% no-repeat;animation:spr 1.26s steps(9,jump-none) infinite}@keyframes spr{to{background-position-x:100%}}
-#cakeSprite.out{-webkit-mask-image:linear-gradient(#0000 0 24%,#000 24%);mask-image:linear-gradient(#0000 0 24%,#000 24%)}
-.cshadow{position:absolute;left:16%;right:16%;bottom:-2%;height:10%;border-radius:50%;background:radial-gradient(ellipse,rgba(30,15,40,.5),transparent 70%);opacity:0;transition:opacity 1.2s .2s}#cakeW.show .cshadow{opacity:1}
-.cglow{position:absolute;left:51.5%;top:13%;width:34%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,244,200,.95) 0,rgba(255,220,130,.5) 22%,rgba(255,200,100,0) 62%);mix-blend-mode:screen;pointer-events:none;animation:cg .35s ease-in-out infinite alternate;transition:opacity .4s}.cglow.off{opacity:0;animation:none}@keyframes cg{to{opacity:.72;transform:translate(-50%,-50%) scale(.9)}}
-.cd.spk{left:38%;top:0;width:27%;height:36%}#cakeSay{padding:6px 14px;text-align:center;font-size:18px}#cakeBox{position:relative;width:100%}#cakeBox>img{width:100%;display:block}
+#cakeW{position:absolute;left:50%;bottom:21%;transform:translateX(-50%);z-index:7;display:none;flex-direction:column;align-items:center;gap:8px;width:min(340px,88vw)}#cakeSay{padding:6px 14px;text-align:center;font-size:18px}#cakeBox{position:relative;width:100%}#cakeBox>img{width:100%;display:block}
 .cd{position:absolute;top:6%;width:8.3%;padding:0;border:0;background:none;box-shadow:none;cursor:pointer}.cd>img.c{width:100%;display:block}.cd .fl{position:absolute;left:50%;top:-66%;width:133%;transform:translateX(-50%);animation:fk .7s infinite alternate;filter:drop-shadow(0 0 8px rgba(255,200,90,.9))}@keyframes fk{to{transform:translateX(-50%) scale(1.08,.94) rotate(3deg)}}.cd.out .fl{display:none}
 .smoke{position:absolute;left:50%;top:-40%;width:18px;height:18px;border-radius:50%;background:rgba(220,220,225,.7);filter:blur(4px);animation:sm 1.6s forwards;pointer-events:none}@keyframes sm{to{transform:translate(-30%,-60px) scale(2.4);opacity:0}}
 
-#prev{height:var(--dollH);width:min(330px,78vw)}#prev .cimg,#pc .cimg,#rc .cimg{position:absolute;bottom:0;top:auto;left:50%;width:auto;max-width:none;transform:translateX(-50%)}
-#pc{width:100px;height:190px}.thumb.out{height:150px;flex-direction:column;gap:2px}.thumb.out img{max-height:112px}.thumb.out small{font-size:13px;text-align:center;line-height:1}.credit{font-size:13px;text-align:center;opacity:.75;margin-top:4px}
-#rc{position:absolute;left:calc(50% - min(330px,47vw));bottom:calc(3% + 46px);height:min(44vh,360px);width:min(190px,34vw);z-index:6;opacity:0;transition:opacity 1.4s ease}#rc.show{opacity:1}
-@media(max-width:700px){#rc{height:27vh;width:30vw}:root{--dollH:min(36vh,300px)}#scene2.active{flex-direction:column;flex-wrap:nowrap;gap:6px;justify-content:flex-start}#wardrobe{flex:none}#items{max-height:30vh}#hint{display:none}.card{padding:12px}}
-@media(max-height:480px){:root{--dollH:62vh}#scene2.active{flex-direction:row;flex-wrap:nowrap}#items{max-height:46vh}}
+#prev{--dollH:min(76vh,640px);height:var(--dollH);width:calc(var(--dollH)*500/900)}#prev .cimg,#pc .cimg,#rc .cimg{position:absolute;bottom:0;top:auto;left:50%;width:auto;max-width:none;transform:translateX(-50%)}
+#pc{width:100px;height:180px}.thumb.out{height:150px;flex-direction:column;gap:2px}.thumb.out img{max-height:112px}.thumb.out small{font-size:13px;text-align:center;line-height:1}.credit{font-size:13px;text-align:center;opacity:.75;margin-top:4px}
+#rc{position:absolute;left:3%;bottom:14%;height:min(44vh,360px);width:min(190px,34vw);z-index:6;opacity:0;transition:opacity 1.4s ease}#rc.show{opacity:1}
 
-.shelf{max-height:44vh;overflow:auto}.pcard{transition:transform .25s ease,background .25s ease}.pcard.sel{transform:translateY(-3px) scale(1.05);box-shadow:0 0 0 3px #fff,0 0 0 6px var(--ink)}
-.plt .pa{height:72%;max-width:62%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 3px 2px rgba(107,74,69,.28));animation:pd2 .75s cubic-bezier(.2,.8,.3,1)}
-@keyframes pd2{from{transform:translate(-50%,-34px) scale(.88);opacity:0}to{transform:translate(-50%,0) scale(1);opacity:1}}
-#scrollW{top:2%}
-.letterCard{position:relative;container-type:inline-size;width:min(92vw,calc(72vh*.6667),440px);width:min(92vw,calc(72svh*.6667),440px);aspect-ratio:640/960;background:url(images/m/letter-card.png) center/100% 100% no-repeat;filter:drop-shadow(3px 7px 6px rgba(30,15,45,.5));opacity:0;transform:translateY(-22px) rotate(-2.2deg);transform-origin:50% 0;clip-path:inset(0 0 100% 0);transition:opacity 1s ease,transform 2.2s cubic-bezier(.22,.8,.3,1),clip-path 2.6s cubic-bezier(.45,0,.2,1)}
-.letterCard.go{opacity:1;transform:rotate(-.8deg);clip-path:inset(-10px -10px -20px -10px)}
-#letter{position:absolute;inset:11% 12% 10% 13%;overflow:auto;font-size:4.5cqw;line-height:1.36;text-align:left;color:#6b4a45;font-family:'Patrick Hand','Comic Sans MS',cursive;scrollbar-width:none}#letter::-webkit-scrollbar{display:none}
-#letter:first-line{font-size:1.25em}
+#wearing{font-size:16px;text-align:center;min-height:22px;margin:2px 0 6px}.thumb{position:relative}.sg{grid-column:1/-1;font-size:15px;text-align:left;opacity:.8}
+.thumb.sel::after,.opt.sel::after{content:"\2713";position:absolute;top:-8px;right:-8px;width:20px;height:20px;line-height:17px;text-align:center;border-radius:50%;background:#9b3d56;color:#fff;border:2px solid var(--ink);font-size:13px}
+#bcard{width:min(780px,100%)}#faceBox{width:min(300px,80vw);height:min(360px,44vh)}#faceBox .stage{--dollH:1350px;left:calc(50% - 375px);top:-8px}
+#stab{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}#sit{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:10px}.sh{width:100%;font-size:18px;text-align:center}
+.opt{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:78px;padding:8px 10px;background:#fff;border:3px dashed var(--ink);border-radius:var(--sk);cursor:pointer;font-size:15px}.opt.sel{background:var(--mint);border-style:solid}
+.sw2{display:block;width:38px;height:38px;border-radius:50%;border:3px solid var(--ink)}.sw2.none{background:linear-gradient(135deg,#fff 44%,var(--ink) 44% 56%,#fff 56%)}.opt img{width:74px;height:82px;object-fit:cover;border-radius:12px;border:2px solid var(--ink)}
+.plt .pa{height:auto;width:auto;max-height:80%;max-width:54%}.shelf{max-height:250px;overflow:auto}
+
+#rc .stage{--dollH:min(44vh,360px)}.wb button{padding:4px 12px;font-size:16px}
+#scene4{background:#2e2a5a url(images/m/lantern-bg.jpg) center bottom/auto 100% no-repeat}#roof{background:none;border:0}.star{display:none}#glow{background:radial-gradient(ellipse at 50% 100%,rgba(255,200,120,.28),transparent 62%)}
+.fly{z-index:7}.fly span{top:33%;max-height:44%;font-size:14px}
+#cakeW{display:flex;visibility:hidden;opacity:0;bottom:15%;gap:14px;width:min(300px,72vw,calc((100vh - 300px)*.725));transform:translate(-50%,15px) scale(.96);transition:opacity .9s ease,transform .9s cubic-bezier(.22,.8,.3,1),visibility 0s .9s}
+#cakeW.show{visibility:visible;opacity:1;transform:translate(-50%,0) scale(1);transition:opacity .9s ease,transform .9s cubic-bezier(.22,.8,.3,1),visibility 0s}
+#cakeSay{max-width:92vw}#cakeBox{margin-top:40px}#cakeBox::after{content:"";position:absolute;left:4%;right:4%;bottom:-1%;height:7%;background:radial-gradient(ellipse,rgba(20,16,50,.5),transparent 70%);opacity:0;transition:opacity 1.2s .3s;z-index:-1}#cakeW.show #cakeBox::after{opacity:1}
+.paper.go{max-height:calc(100vh - 240px)}.paper{overflow-y:auto}
+#stairs{background:none;border:0;width:auto;height:clamp(170px,36vh,320px);bottom:17%}
+.spr{height:100%;background-repeat:no-repeat}#scene2 #prev{height:min(70vh,560px);width:auto;flex:none}#items{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}#wearing{margin:2px 0 6px}
+@media(max-width:700px){#scene2 #prev{height:min(38vh,320px)}#rc{height:27vh;left:-3%;width:30vw}:root{--dollH:min(36vh,300px)}#scene2.active{flex-direction:column;flex-wrap:nowrap;gap:6px;justify-content:flex-start}#wardrobe{flex:none}#items{max-height:30vh}#hint{display:none}.card{padding:12px}}
+@media(max-height:480px){:root{--dollH:62vh}#scene2.active{flex-direction:row;flex-wrap:nowrap}#items{max-height:46vh}}
 </style></head><body>
 <button id="snd">Sound: on</button>
 <div id="scene1" class="scene active"><div id="bubble" class="sketch">Tap the door to knock.</div>
 <div id="houseWrap"><img src="images/shannon-house.png" alt=""><div id="door"></div></div></div>
-<div id="scene2" class="scene"><div class="stage" id="prev"></div>
-<div id="wardrobe" class="sketch"><h2>Get Ready With Me</h2><div id="tabs"></div><div id="items"></div><div class="credit">Character art by 上官凝儿 XTing</div><div class="row"><button id="go">Let's Go! &#10140;</button></div></div></div>
+<div id="scene2" class="scene"><div id="prev"></div>
+<div id="wardrobe" class="sketch"><h2>Choose Your Look</h2><p id="wearing"></p><div id="items"></div><div class="row"><button id="go">Let's Go! &#10140;</button></div></div></div>
 <div id="scene3" class="scene"><button id="orderBtn" class="sketch" style="display:none">My birthday order</button><div id="hint" class="sketch">Walk with arrow keys or buttons</div>
-<div id="clouds"></div><div id="hills"></div>
 <div id="world"><img class="bld" id="b-home" src="images/shannon-house.png" style="left:80px" alt="">
 <img class="bld" id="b-beauty" src="images/beauty-bar.png" style="left:700px" alt="">
 <img class="bld" id="b-matcha" src="images/matcha-shop.png" style="left:1300px" alt="">
 <img class="bld" id="b-fonda" src="images/blue-house.png" style="left:1880px" alt="">
-<img id="stairs" src="images/stair-ladder.png" alt=""><div id="ground"></div><button id="interact">Enter</button><div id="pc"></div></div>
+<img id="stairs" src="images/stair.png" alt="Stairs to the roof"><div id="ground"></div><button id="interact">Enter</button><div id="pc"></div></div>
 <div id="hud"><button id="bL">&lt;</button><button id="bR">&gt;</button></div></div>
-<div id="scene4" class="scene"><div id="nightArt"></div><div id="glow"></div><div id="lights"></div><img id="blanket" src="images/m/blanket.png" alt=""><button id="mtog">Music: on</button><div id="rc"></div><div id="cakeW"><div id="cakeSay" class="sketch">Make a wish, then tap each candle (and the sparkler) to blow it out.</div><div id="cakeBox"><div class="cshadow"></div><div id="cakeSprite"></div><div class="cglow"></div><button class="cd" style="left:33%;top:27%" aria-label="candle"><img class="c" src="images/m/candle.png" alt=""><img class="fl" src="images/m/flame.png" alt=""></button><button class="cd" style="left:62%;top:27%" aria-label="candle"><img class="c" src="images/m/candle.png" alt=""><img class="fl" src="images/m/flame.png" alt=""></button><button class="cd spk" aria-label="sparkler"></button></div></div><button id="open">Open the letter</button>
-<div id="scrollW"><div class="letterCard" id="paper"><div id="letter"></div></div></div>
+<div id="scene4" class="scene"><div id="glow"></div><div id="lights"></div><div id="roof"></div><button id="mtog">Music: on</button><div id="rc"></div><div id="cakeW"><div id="cakeSay" class="sketch">Make a wish, then tap each candle to blow it out.</div><div id="cakeBox"><img src="images/m/bdaycake.png" alt="Birthday cake"><button class="cd" style="left:26.5%;top:12.5%;width:7%"><img class="c" src="images/m/candle.png" alt=""><img class="fl" src="images/m/flame.png" alt=""></button><button class="cd" style="left:44.1%;top:12.5%;width:7%"><img class="c" src="images/m/candle.png" alt=""><img class="fl" src="images/m/flame.png" alt=""></button><button class="cd" style="left:62%;top:12.5%;width:7%"><img class="c" src="images/m/candle.png" alt=""><img class="fl" src="images/m/flame.png" alt=""></button></div></div><button id="open">Open the letter</button>
+<div id="scrollW"><div class="scroll"><div class="rod"></div><div class="paper" id="paper"><div id="letter"></div></div><div class="rod"></div></div></div>
 <div id="bar"><div class="row" style="margin:0"><input id="wish" placeholder="Type a birthday wish" maxlength="80"><button id="lan">Release lantern</button></div>
 <div class="row" style="margin:0"><button id="shC">Share my character</button><button id="shW">Share wishes card</button></div><div id="msg" style="color:#fff;font-size:16px"></div></div></div>
 <div class="modal" id="mBeauty"><div class="card sketch"><h2>Beauty Bar</h2><p>Pick your birthday vibe, Shannon.</p><div class="row" id="vibes"></div><div class="big" id="vm"></div><button data-x>Back to the street</button></div></div>
@@ -189,23 +185,21 @@ function sparkles(n,r){for(var i=0;i<n;i++)setTimeout(function(){var s=document.
 var LN=["Knock, knock! Shannon, are you awake?!","Happy Birthday!! Get ready, we're going on an adventure today! Tap the door to step outside."],kn=0;
 $("#door").onclick=function(){sfx("knock");anim($("#houseWrap"),"knock");if(kn<2){$("#bubble").textContent=LN[kn];anim($("#bubble"),"pop")}kn++;if(kn>2){show("#scene2");wardrobe()}};
 
-/* ===== Character system: complete illustrations (no clothing overlays) =====
-   CHARS lists every outfit and which poses exist for it. Today each outfit has ONE illustration, so poseFor() falls back to it.
-   When you add more art, just add a pose to an outfit, e.g.  CHARS["navy-coat"].poses.walking={file:"navy-coat-walking.png",w:..,h:..,face:"r"}
-   face = which way the drawing looks ("r" right, "l" left, "f" front) so the street can flip her correctly. */
-var V2="images/v2/",SH="images/shannon/",MAXH=845,FLIPN=1;
-var CHARS={"floral-blouse":{name:"Floral blouse",poses:{walking:{file:"floral-blouse.png",w:478,h:845,face:"r"}}},"beret-dress":{name:"Beret & flower dress",poses:{walking:{file:"beret-dress.png",w:528,h:765,face:"f"}}},"red-duffle":{name:"Red duffle coat",poses:{walking:{file:"red-duffle.png",w:340,h:797,face:"f"}}},"navy-coat":{name:"Navy coat & scarf",poses:{standing:{file:"navy-coat.png",w:323,h:768,face:"f"}}},"green-duffle":{name:"Green coat & baguettes",poses:{walking:{file:"green-duffle.png",w:433,h:767,face:"r"}}},"green-pinafore":{name:"Green pinafore",poses:{standing:{file:"green-pinafore.png",w:428,h:820,face:"f"}}},"plaid-skirt":{name:"Plaid skirt & vest",poses:{standing:{file:"plaid-skirt.png",w:390,h:762,face:"f"}}},"pink-dress":{name:"Pink dress & headscarf",poses:{standing:{file:"pink-dress.png",w:389,h:786,face:"l"}}},"gx-cherry-dress":{name:"Cherry sweater & cream skirt",poses:{walking:{file:"gx-cherry-dress.png",w:292,h:742,face:"r"}}},"gx-blue-dress-straw-hat":{name:"Blue dress & straw hat",poses:{walking:{file:"gx-blue-dress-straw-hat.png",w:292,h:738,face:"r"}}},"gx-yellow-gingham":{name:"Yellow gingham dress",poses:{walking:{file:"gx-yellow-gingham.png",w:234,h:724,face:"r"}}},"gx-cream-cardigan":{name:"Cream cardigan dress",poses:{walking:{file:"gx-cream-cardigan.png",w:264,h:738,face:"r"}}},"gx-green-knit-tulip":{name:"Green knit & tulip skirt",poses:{walking:{file:"gx-green-knit-tulip.png",w:294,h:740,face:"r"}}},"gx-stripes-skirt":{name:"Stripes & dark skirt",poses:{walking:{file:"gx-stripes-skirt.png",w:264,h:764,face:"r"}}}};
-var CHORDER=Object.keys(CHARS),G={outfit:"navy-coat",scene:"wardrobe",pose:""};
-var SCENE_POSE={wardrobe:["standing","walking"],street:["walking","standing"],flowers:["flowers","standing","walking"],picnic:["sitting","standing","walking"]};
-function poseFor(id,scene){var o=CHARS[id]||CHARS["navy-coat"],pr=SCENE_POSE[scene]||["standing"],k=null;pr.forEach(function(p){if(!k&&o.poses[p])k=p});if(!k)k=Object.keys(o.poses)[0];var q=o.poses[k];return {pose:k,file:q.file,h:q.h,face:q.face}}
-CHORDER.forEach(function(id){Object.keys(CHARS[id].poses).forEach(function(p){var i=new Image();i.src=SH+CHARS[id].poses[p].file;var t=new Image();t.src=SH+"t-"+id+".png"})});   /* preload */
-function showChar(el,id,scene){var p=poseFor(id,scene);G.outfit=id;G.scene=scene;G.pose=p.pose;var i=document.createElement("img");i.className="cimg";i.alt="Shannon";i.style.height=(p.h/MAXH*100)+"%";
- i.onerror=function(){if(i.dataset.fb)return;i.dataset.fb=1;i.src=SH+poseFor("navy-coat",scene).file};i.src=SH+p.file;el.innerHTML="";el.appendChild(i);
- var fl=p.face==="l"?-1:1;if(el.id==="pc")FLIPN=fl;else if(el.id==="rc")el.style.transform="scaleX("+fl+")";return p}
-function wardrobe(){$("#tabs").innerHTML="";var b=$("#items");b.innerHTML="";
- CHORDER.forEach(function(id){var d=document.createElement("div");d.className="thumb out"+(G.outfit===id?" sel":"");d.innerHTML='<img src="'+SH+'t-'+id+'.png" alt=""><small>'+CHARS[id].name+'</small>';
-  d.onclick=function(){sfx("pop");showChar($("#prev"),id,"wardrobe");anim($("#prev"),"wearIn");wardrobe()};b.appendChild(d)});showChar($("#prev"),G.outfit,"wardrobe")}
-$("#go").onclick=function(){showChar($("#pc"),G.outfit,"street");show("#scene3");start()};
+/* ===== S2: choose a complete look. Each look is a finished illustration with its own walking frames: images/walk/<id>/strip.png =====
+   WALK lists every look: n = frames in the walk cycle, w/h = size of one frame, idle = which frame is the standing pose. */
+var V2="images/v2/",FLIPN=1,SP=null,WACC=0,PCW=100,pvT=null;
+var WALK={"jeans-headband":{"name":"Cozy Jeans","n":5,"w":207,"h":440,"idle":1},"straw-hat":{"name":"Straw Hat","n":8,"w":275,"h":440,"idle":2},"bun-pink":{"name":"Pink Bun Dress","n":5,"w":200,"h":440,"idle":1},"bread-overalls":{"name":"Bread Overalls","n":5,"w":167,"h":440,"idle":0},"gingham":{"name":"Gingham Dress","n":4,"w":212,"h":440,"idle":0},"navy-coat":{"name":"Navy Coat","n":7,"w":192,"h":440,"idle":6},"plaid-braids":{"name":"Plaid Braids","n":5,"w":211,"h":440,"idle":0}};
+var WORDER=Object.keys(WALK),G={look:"navy-coat"};
+try{var sv=localStorage.getItem("shannonLook2");if(sv&&WALK[sv])G.look=sv}catch(e){}
+WORDER.forEach(function(id){var i=new Image();i.src="images/walk/"+id+"/strip.png";var t=new Image();t.src="images/walk/"+id+"/idle.png"});   /* preload */
+function mkSprite(el,id){var c=WALK[id];el.innerHTML='<div class="spr"></div>';var s=el.firstChild;s.style.backgroundImage="url(images/walk/"+id+"/strip.png)";s.style.backgroundSize=(c.n*100)+"% 100%";s.style.aspectRatio=c.w+"/"+c.h;
+ var o={el:s,c:c,i:-1,set:function(i){if(i===o.i)return;o.i=i;s.style.backgroundPosition=(c.n>1?i/(c.n-1)*100:0)+"% 0"}};o.set(c.idle);return o}
+function frameMs(c){return Math.min(140,Math.max(90,760/c.n))}
+function lookPreview(){clearInterval(pvT);var c=WALK[G.look],p=$("#prev");p.style.aspectRatio=c.w+"/"+c.h;var sp=mkSprite(p,G.look),i=0;pvT=setInterval(function(){i=(i+1)%c.n;sp.set(i)},frameMs(c)+40)}
+function pickLook(id){G.look=id;sfx("pop");try{localStorage.setItem("shannonLook2",id)}catch(e){}wardrobe();anim($("#prev"),"wearIn")}
+function wardrobe(){var b=$("#items");b.innerHTML="";WORDER.forEach(function(id){var d=document.createElement("div");d.className="thumb out"+(G.look===id?" sel":"");d.innerHTML='<img src="images/walk/'+id+'/idle.png" alt=""><small>'+WALK[id].name+'</small>';d.onclick=function(){pickLook(id)};b.appendChild(d)});
+ $("#wearing").textContent="Selected: "+WALK[G.look].name+". Tap a look to try it.";lookPreview()}
+$("#go").onclick=function(){clearInterval(pvT);var c=WALK[G.look],pc=$("#pc");PCW=Math.round(190*c.w/c.h);pc.style.height="190px";pc.style.width=PCW+"px";SP=mkSprite(pc,G.look);WACC=0;show("#scene3");start()};
 
 /* ===== S3: street ===== */
 var STOPS=[{id:"b-beauty",m:"#mBeauty",t:"Enter Beauty Bar"},{id:"b-matcha",m:"#mMatcha",t:"Enter Matcha & Bread"},{id:"b-fonda",m:"#mFonda",t:"Visit Fonda's Place"},{id:"stairs",m:"roof",t:"Climb to the roof"}];
@@ -213,33 +207,24 @@ var px=30,dir=1,held={l:0,r:0},run=0,near=null,fr=0;
 function start(){if(!run){run=1;requestAnimationFrame(loop)}}
 function loop(){if(!$("#scene3").classList.contains("active")){run=0;return}
  var mo=!!$(".modal.open");if(!mo){if(held.l){px-=5;dir=-1}if(held.r){px+=5;dir=1}px=Math.max(0,Math.min(2502,px))}
- var mv=!mo&&(held.l||held.r);if(mv&&++fr%14===0)sfx("step");
- var pc=$("#pc");pc.style.left=px+"px";pc.style.transformOrigin="50% 100%";pc.style.transform="translateY("+(mv?Math.sin(px/8)*-4:0)+"px) rotate("+(mv?Math.sin(px/8)*2.4:0)+"deg) scaleX("+dir*FLIPN+")";
- var vw=innerWidth,cam=Math.max(0,Math.min(2600-vw,px+49-vw/2));$("#world").style.transform="translateX("+-cam+"px)";window.CAMX=cam;$("#hills").style.transform="translate3d("+(-cam*.35)+"px,0,0)";
- near=null;STOPS.forEach(function(s){var e=document.getElementById(s.id),c=px+49;if(!near&&c>e.offsetLeft-20&&c<e.offsetLeft+e.offsetWidth+20)near=s});
- var b=$("#interact");if(near&&!mo){b.style.display="block";b.textContent=near.t;b.style.left=px+49+"px"}else b.style.display="none";requestAnimationFrame(loop)}
-/* drifting watercolor clouds: own rAF loop, transform-only, parallax with camera */
-(function(){var host=$("#clouds"),sc=$("#scene3"),mq=matchMedia("(prefers-reduced-motion: reduce)"),T=0,last=0,on=0,vw=0,vh=0,base=1,
- D=[["01",200,.04,0],["04",155,.19,.1],["10",230,.07,.2],["05",270,.28,.3],["06",306,.16,.4],["07",336,.23,.5],["03",377,.31,.6],["08",392,.10,.7],["09",451,.33,.8],["11",325,.20,.9],["02",647,.12,1]],
- C=D.map(function(d,i){var e=new Image();e.src="images/env/cloud-"+d[0]+".png";e.alt="";e.decoding="async";e.draggable=false;e.style.opacity=.8+.2*d[3];host.appendChild(e);
-  return {e:e,w:0,sw:d[1],y:0,top:d[2],d:d[3],sp:4+9*d[3]*(.9+.2*((i*37)%10)/10),cf:.02+.08*d[3],x0:((i*.382+.13)%1)}});
- function size(){vw=innerWidth;vh=innerHeight;base=Math.max(vw,vh*1.1)/1998*.8;C.forEach(function(c){c.w=c.sw*base*(.9+.3*c.d);c.e.style.width=c.w+"px";c.y=vh*c.top})}
- function draw(){var cam=window.CAMX||0,k=Math.max(.6,Math.min(1.6,vw/1000));C.forEach(function(c){var span=vw+c.w+60,pos=c.x0*span-T*c.sp*k-cam*c.cf,x=((pos+c.w)%span+span)%span-c.w;c.e.style.transform="translate3d("+x.toFixed(1)+"px,"+c.y.toFixed(1)+"px,0)"})}
- function tick(t){if(!on)return;var dt=Math.min((t-last)/1000,.1);last=t;if(!mq.matches)T+=dt;draw();requestAnimationFrame(tick)}
- function sync(){var w=sc.classList.contains("active")&&!document.hidden;if(w&&!on){on=1;last=performance.now();requestAnimationFrame(tick)}else if(!w)on=0}
- size();draw();addEventListener("resize",function(){size();draw()});document.addEventListener("visibilitychange",sync);new MutationObserver(sync).observe(sc,{attributes:true,attributeFilter:["class"]});sync()})();
+ var nw=performance.now(),dt=Math.min(60,nw-(loop.t||nw));loop.t=nw;var mv=!mo&&(held.l||held.r);if(mv&&++fr%14===0)sfx("step");if(SP){if(mv){WACC+=dt;SP.set(Math.floor(WACC/frameMs(SP.c))%SP.c.n)}else{WACC=0;SP.set(SP.c.idle)}}
+ var pc=$("#pc");pc.style.left=px+"px";pc.style.transform="scaleX("+dir+")";
+ var vw=innerWidth,cam=Math.max(0,Math.min(2600-vw,px+PCW/2-vw/2));$("#world").style.transform="translateX("+-cam+"px)";
+ near=null;STOPS.forEach(function(s){var e=document.getElementById(s.id),c=px+PCW/2;if(!near&&c>e.offsetLeft-20&&c<e.offsetLeft+e.offsetWidth+20)near=s});
+ var b=$("#interact");if(near&&!mo){b.style.display="block";b.textContent=near.t;b.style.left=px+PCW/2+"px"}else b.style.display="none";requestAnimationFrame(loop)}
 function enter(){if(!near)return;if(near.m==="roof")return rooftop();$(near.m).classList.add("open");sfx("pop")}
 addEventListener("keydown",function(e){if(e.key==="ArrowLeft"){held.l=1;e.preventDefault()}if(e.key==="ArrowRight"){held.r=1;e.preventDefault()}if(e.key==="Enter"&&$("#scene3").classList.contains("active")&&!$(".modal.open"))enter()});
 addEventListener("keyup",function(e){if(e.key==="ArrowLeft")held.l=0;if(e.key==="ArrowRight")held.r=0});
 [["#bL","l"],["#bR","r"]].forEach(function(p){var b=$(p[0]);b.addEventListener("pointerdown",function(e){e.preventDefault();held[p[1]]=1});["pointerup","pointerleave","pointercancel"].forEach(function(v){b.addEventListener(v,function(){held[p[1]]=0})})});
 $("#interact").onclick=enter;
 
-/* Beauty bar: pick a birthday vibe (hair and makeup can't change on complete illustrations) */
-var V={"Glowy Queen":"Shannon, you are literally glowing. Another year older and somehow even more radiant.","Cozy Aesthetic":"Soft sweaters, warm drinks and the comfiest energy on earth. Being near you feels like a hug.","Main Character Energy":"Cue the soundtrack: this is your year. Everyone is just lucky to be in your story.","Soft Girl Era":"Pastel, kind and quietly powerful. You make the world gentler just by being in it."};
-Object.keys(V).forEach(function(k){var b=document.createElement("button");b.textContent=k;b.onclick=function(){$$("#vibes button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");$("#vm").textContent=V[k];anim($("#vm"),"pop");sfx("spark");burst(14)};$("#vibes").appendChild(b)});
+/* Beauty Bar: pick a birthday vibe */
+var VIBE={"Glowy Queen":"Shannon, you are literally glowing. Another year older and somehow even more radiant.","Cozy Aesthetic":"Soft sweaters, warm drinks and the comfiest energy on earth. Being near you feels like a hug.","Main Character Energy":"Cue the soundtrack: this is your year. Everyone is just lucky to be in your story.","Soft Girl Era":"Pastel, kind and quietly powerful. You make the world gentler just by being in it."};
+Object.keys(VIBE).forEach(function(k){var b=document.createElement("button");b.textContent=k;b.onclick=function(){$$("#vibes button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");$("#vm").textContent=VIBE[k];anim($("#vm"),"pop");sfx("spark");burst(14)};$("#vibes").appendChild(b)});
 /* ===== Shannon's Birthday Matcha Lab ===== */
 var MSTEP=["Matcha","Drink","Pastry","Prepare","Order"],mstep=-1,M={sc:0,sifted:0,poured:0,whisk:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0},mt=[],said={},order=null;
-var SWEET=["No sugar","A little sweet","Perfectly sweet","Extra sweet"],MILK=[["Oat milk","#e8d6b2"],["Fresh milk","#fbfaf2"],["Almond milk","#efe3cc"],["Coconut milk","#fffbea"]],STY=["Iced matcha latte","Hot matcha latte","Strawberry matcha"],PAS=[["Croissant","pastry-croissant"],["Cinnamon swirl bun","pastry-cinnamon-swirl"],["Almond brioche","pastry-almond-brioche"],["Sesame round bun","pastry-sesame-round-bun"],["Star bread","pastry-star-bread"],["Smiley toast","pastry-toast-bread"],["Herb roll","pastry-herb-roll"],["Ciabatta","pastry-ciabatta"],["Dark baguette","pastry-baguette-dark"],["Baguette in newsprint","pastry-baguette-newsprint"],["Seeded bun in a bag","pastry-seeded-bun-bag"],["Chocolate scored loaf","pastry-scored-loaf"],["Strawberry cake","pastry-strawberry-cake"],["Joyeux Noël cake","pastry-joyeux-noel-cake"],["Knit hat cream cake","pastry-knit-hat-cake"],["Yule log","pastry-yule-log"],["Holly kugelhopf","pastry-kugelhopf"]];
+var SWEET=["No sugar","A little sweet","Perfectly sweet","Extra sweet"],MILK=[["Oat milk","#e8d6b2"],["Fresh milk","#fbfaf2"],["Almond milk","#efe3cc"],["Coconut milk","#fffbea"]],STY=["Iced matcha latte","Hot matcha latte","Strawberry matcha"];
+var PAS=[["Croissant","pastry-croissant","Bread"],["Almond loaf","pastry-almond-loaf","Bread"],["Sugar bun","pastry-sugar-bun","Bread"],["Smiley toast","pastry-smiley-toast","Bread"],["Star bread","pastry-star-bread","Bread"],["Cinnamon swirl","pastry-cinnamon-swirl","Bread"],["Baguette","pastry-baguette","Bread"],["Herb bread","pastry-herb-bread","Bread"],["Scored loaf","pastry-scored-loaf","Bread"],["Rustic loaf","pastry-rustic-loaf","Bread"],["Strawberry cake","pastry-strawberry-cake","Cakes"],["Ribbon cake roll","pastry-ribbon-cake-roll","Cakes"],["Knit-hat cake","pastry-knit-hat-cake","Cakes"],["Cherry cream cake","pastry-cherry-cream-cake","Cakes"],["Holly bundt cake","pastry-holly-bundt-cake","Cakes"]];var ptab="Bread";
 function mi(n,c){return '<img'+(c?' class="'+c+'"':'')+' src="images/m/'+n+'.png" alt="">'}
 function say(t){var e=$("#mtalk");e.textContent=t;anim(e,"pop")}
 function clearT(){mt.forEach(clearTimeout);mt=[]}
@@ -248,7 +233,7 @@ function mnav(){var ok=[M.whisk>=100,M.sweet>=0&&M.milk>=0&&M.style>=0,M.pastry>
  $("#mback").style.display=mstep<0||mstep===4?"none":"inline-block";var n=$("#mnext");n.style.display=mstep===4?"none":"inline-block";n.disabled=!ok&&mstep>=0;n.style.opacity=n.disabled?.45:1;
  n.textContent=mstep<0?"Ready, matcha girl!":mstep===3?"See my order":"Next"}
 function mgo(n){clearT();mstep=n;mnav();var s=$("#mstage");
- if(n<0){say("Welcome to Shannon's Matcha & Bread! Since it's your birthday, you get to make your very own birthday special. Ready, matcha girl?");s.innerHTML='<div class="lab">'+mi("tin")+mi("whisk")+mi("pastry-croissant")+'</div>'}
+ if(n<0){say("Welcome to Shannon's Matcha & Bread! Since it's your birthday, you get to make your very own birthday special. Ready, matcha girl?");s.innerHTML='<div class="lab">'+mi("tin")+mi("whisk")+mi("croissant")+'</div>'}
  else if(n===0)st0();else if(n===1)st1();else if(n===2)st2();else if(n===3)st3();else st4()}
 function st0(){var s=$("#mstage");say(M.whisk>=100?"Smooth as silk. Matcha master!":"Pick how many scoops of matcha powder you want.");
  s.innerHTML='<div class="lab"><div class="tinw">'+mi("tin")+'<div class="row" id="scoops"></div></div><div class="bowlw"><div class="pow" id="pow"></div><div class="liq" id="liq"><div class="foam" id="foam"></div></div>'+mi("bowl-top","bowl")+'</div><div class="tools"><button class="tool" id="tS">'+mi("sieve")+'<span>Sift</span></button><button class="tool" id="tK">'+mi("kettle")+'<span>Pour</span></button><div class="tool" id="tW">'+mi("whisk")+'<span>Whisk</span></div></div></div><div id="wbar"><i id="wfill"></i></div>';
@@ -270,8 +255,9 @@ function st1(){var s=$("#mstage");say("Now make it yours: pick sweetness, milk a
  var o=$("#opts");[["Sweetness",SWEET,"sweet"],["Milk",MILK.map(function(x){return x[0]}),"milk"],["Drink style",STY,"style"]].forEach(function(g){var h=document.createElement("div");h.innerHTML="<b>"+g[0]+"</b>";o.appendChild(h);var r=document.createElement("div");r.className="row";
   g[1].forEach(function(t,i){var b=document.createElement("button");b.textContent=t;if(M[g[2]]===i)b.className="on";b.onclick=function(){M[g[2]]=i;M.prepared=0;[].forEach.call(r.children,function(x){x.classList.remove("on")});b.classList.add("on");upd1();sfx("pop");say(g[2]==="milk"?t+" swirls into the matcha.":g[2]==="style"?t+", great choice.":t+".");mnav()};r.appendChild(b)});o.appendChild(r)});upd1()}
 function upd1(){setDrink($(".gl"),curDrink());$("#pips").innerHTML=[0,1,2].map(function(i){return '<b class="'+(M.sweet>i?"f":"")+'"></b>'}).join("")}
-function st2(){var s=$("#mstage");say(M.pastry<0?"Pick a pastry from the bakery counter.":PAS[M.pastry][0]+", yum.");s.innerHTML='<div><div class="shelf" id="shelf"></div><div class="plt" id="plt">'+mi("plate","pl")+'</div></div>';
- PAS.forEach(function(p,i){var b=document.createElement("button");b.className="pcard"+(M.pastry===i?" sel":"");b.innerHTML=mi(p[1])+p[0];b.onclick=function(){M.pastry=i;M.prepared=0;sfx("pop");say(p[0]+" slides onto your plate.");plate();[].forEach.call($("#shelf").children,function(x,j){x.classList.toggle("sel",j===i)});mnav()};$("#shelf").appendChild(b)});plate()}
+function st2(){var s=$("#mstage");say(M.pastry<0?"Pick a bread or a cake from the bakery counter.":PAS[M.pastry][0]+", yum.");s.innerHTML='<div><div class="row" id="ptabs"></div><div class="shelf" id="shelf"></div><div class="plt" id="plt">'+mi("plate","pl")+'</div></div>';ptabs();plate()}
+function ptabs(){var t=$("#ptabs");t.innerHTML="";["Bread","Cakes"].forEach(function(k){var b=document.createElement("button");b.textContent=k;if(k===ptab)b.className="on";b.onclick=function(){ptab=k;ptabs()};t.appendChild(b)});var sh=$("#shelf");sh.innerHTML="";
+ PAS.forEach(function(p,i){if(p[2]!==ptab)return;var b=document.createElement("button");b.className="pcard"+(M.pastry===i?" sel":"");b.innerHTML=mi(p[1])+p[0];b.onclick=function(){M.pastry=i;M.prepared=0;sfx("pop");say(p[0]+" slides onto your plate.");plate();[].forEach.call(sh.children,function(x){x.classList.remove("sel")});b.classList.add("sel");mnav()};sh.appendChild(b)})}
 function plate(){var p=$("#plt");if(!p)return;[].forEach.call(p.querySelectorAll(".pa"),function(x){x.remove()});if(M.pastry>=0)p.insertAdjacentHTML("beforeend",mi(PAS[M.pastry][1],"pa"))}
 function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'<div class="plt" id="plt2" style="opacity:0">'+mi("plate","pl")+mi(PAS[M.pastry][1],"pa")+'</div></div>';var g=$(".gl"),o=curDrink();
  if(M.prepared){setDrink(g,o);$("#plt2").style.opacity=1;say("Your order is ready on the counter.");return}
@@ -282,7 +268,7 @@ function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'
  T(5200,function(){say("Here comes your pastry...");$("#plt2").style.opacity=1;$("#plt2").classList.add("slide");sfx("pop")});
  T(6600,function(){say("Your order is ready on the counter!");M.prepared=1;sfx("spark");burst(14,1);mnav()})}
 function omsg(){var a=["Bold and unbothered, just like you.","Your birthday drink is as sweet as you are.","Your birthday drink is as sweet as you are.","Extra sweet, because you deserve every bit of it."][M.sweet];var b=M.style===2?" Pink, dreamy and a little bit extra.":M.style===1?" Warm, cozy and just right.":" Cool, calm and main-character ready.";return a+b+" Here's to another year of main-character moments!"}
-function st4(){var s=$("#mstage");M.done=1;order={style:STY[M.style],sweet:SWEET[M.sweet],milk:MILK[M.milk][0],pastry:PAS[M.pastry][0],file:PAS[M.pastry][1]};try{localStorage.setItem("shannonOrder",JSON.stringify(order))}catch(e){}
+function st4(){var s=$("#mstage");M.done=1;order={style:STY[M.style],sweet:SWEET[M.sweet],milk:MILK[M.milk][0],pastry:PAS[M.pastry][0]};try{localStorage.setItem("shannonOrder",JSON.stringify(order))}catch(e){}
  $("#orderBtn").style.display="block";say("Order up!");
  s.innerHTML='<div class="ocard sketch"><h3>Shannon\u2019s Birthday Special</h3><div class="row" style="align-items:flex-end">'+drinkHTML()+'<div class="plt" style="width:150px;height:76px">'+mi("plate","pl")+mi(PAS[M.pastry][1],"pa")+'</div></div><p><b>Matcha style:</b> '+order.style+'</p><p><b>Sweetness:</b> '+order.sweet+'</p><p><b>Milk:</b> '+order.milk+'</p><p><b>Pastry:</b> '+order.pastry+'</p><p>'+omsg()+'</p><div class="row"><button id="yum">Yummm! Let\u2019s Continue &#10140;</button><button id="remake">Make a new one</button></div></div>';
  setDrink($(".gl"),curDrink());$("#yum").onclick=function(){burst(24,1);sfx("spark");closeM()};$("#remake").onclick=function(){M={sc:0,sifted:0,poured:0,whisk:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0};said={};mgo(-1)}}
@@ -299,8 +285,8 @@ $("#mFonda").addEventListener("transitionend",function(){});new MutationObserver
 var LET="Shannon T.K,<br><br>It\u2019s crazy to think our friendship started from chatting on IG just because you knew my sister.<br><br>Thank you for always picking me up and driving me home - Passenger princess appreciates it.<br><br>Happy Birthday! I hope everything you\u2019ve ever wished for comes true this year - you truly deserve all the happiness in the world.<br><br>Love always,<br>Fonda <span style='display:inline-block;width:16px;height:16px;background:#d9a520;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)'></span>";
 var LTXT=["Shannon T.K,","","It\u2019s crazy to think our friendship started from chatting on IG just because you knew my sister.","","Thank you for always picking me up and driving me home - Passenger princess appreciates it.","","Happy Birthday! I hope everything you\u2019ve ever wished for comes true this year - you truly deserve all the happiness in the world.","","Love always,","Fonda"];
 function rooftop(){show("#scene4");mood="off";clearInterval(musicT);startBirthday();ambience();$("#letter").innerHTML=LET;
- buildNight();
-
+ for(var i=0;i<70;i++){var s=document.createElement("div");s.className="star";s.style.left=Math.random()*100+"%";s.style.top=Math.random()*70+"%";s.style.animationDelay=Math.random()*2+"s";$("#scene4").appendChild(s)}
+ for(i=0;i<6;i++)ambient(6+i*16,16+Math.random()*10);
  var P=[[8,86],[18,80],[28,86],[38,80],[46,86],[52,80]];P.forEach(function(p,i){var f=document.createElement("div");f.className="fp";f.style.cssText="left:"+p[0]+"%;top:"+p[1]+"%;transform:rotate("+(i%2?12:-12)+"deg)";$("#scene4").appendChild(f);setTimeout(function(){f.classList.add("on");sfx("step")},700+i*650)});
  setTimeout(cakeTime,700+P.length*650+300)}
 /* ===== Birthday music =====
@@ -321,39 +307,25 @@ function bsong(){if(bUsing!=="synth")return;var B=.86,t=AC.currentTime+.15,F={G4
  bT=setTimeout(bsong,27*B*1000)}
 $("#mtog").onclick=function(){bOn=!bOn;this.textContent="Music: "+(bOn?"on":"off");applyB()};
 SFX.puff=function(){noise(.35,1800,.6,.3,600)};
-function ambience(){var L=$("#lights"),i,d;
+function ambience(){var L=$("#lights"),i,d;for(i=0;i<16;i++){d=document.createElement("div");d.className="l2";d.style.left=(2+i*6.4)+"%";d.style.top=(10+20*Math.sin(Math.PI*(i%8)/7))+"px";d.style.animationDelay=Math.random()*2+"s";L.appendChild(d)}
  for(i=0;i<26;i++){d=document.createElement("div");d.className="fz";d.style.left=Math.random()*100+"%";d.style.animationDuration=9+Math.random()*9+"s";d.style.animationDelay=-Math.random()*12+"s";$("#scene4").appendChild(d)}}
-var NL=[[30.16, 57.75, 35.33], [21.33, 18.49, 26.63], [51.9, 29.56, 24.73], [14.13, 42.25, 24.73], [69.02, 13.98, 21.47], [75.54, 41.1, 15.49], [44.29, 10.54, 15.49], [12.09, 16.35, 10.33]];
-function buildNight(){var a=$("#nightArt");if(a.children.length)return;var sc=$("#scene4");
- if(innerWidth/innerHeight>.75){[[3,12,6],[8,34,8],[14,60,5],[22,22,7],[78,18,7],[86,40,5],[92,14,6],[95,62,8],[27,50,4],[72,56,4]].forEach(function(b,k){var d=document.createElement("div");d.className="pl";d.style.cssText="position:absolute;left:"+b[0]+"%;top:"+b[1]+"%;width:"+b[2]*1.1+"vh;max-width:90px;opacity:.9;animation-duration:"+(7+k%3)+"s;animation-delay:"+(-k*1.1)+"s";var m=document.createElement("img");m.alt="";m.src="images/env/lanterns/lantern-heart-"+(k%7+2)+".png";m.style.animationDelay=(-k*.7)+"s";d.appendChild(m);sc.insertBefore(d,sc.children[1])});
-  for(var q=0;q<46;q++){var t=document.createElement("div");t.className="star";var lf=Math.random()<.5?Math.random()*26:74+Math.random()*26;t.style.cssText="left:"+lf+"%;top:"+Math.random()*70+"%;background:#f3c96b;width:2px;height:2px;animation-delay:"+Math.random()*2+"s";sc.insertBefore(t,sc.children[1])}}
- NL.forEach(function(b,k){var d=document.createElement("div");d.className="pl";d.style.cssText="left:"+b[0]+"%;top:"+b[1]+"%;width:"+b[2]+"%;animation-duration:"+(6+(k*1.7)%4)+"s;animation-delay:"+(-k*1.3)+"s";var m=document.createElement("img");m.alt="";m.src="images/env/lanterns/lantern-heart-"+(k+1)+".png";m.style.animationDuration=(4.5+(k*.9)%3)+"s";m.style.animationDelay=(-k*.8)+"s";d.appendChild(m);a.appendChild(d)})}
-(function(){["images/m/cake-sparkler.png","images/env/night-bg.jpg"].forEach(function(u){new Image().src=u})})();
-function cakeTime(){showChar($("#rc"),G.outfit,"picnic");requestAnimationFrame(function(){$("#rc").classList.add("show")});
- var w=$("#cakeW"),left=3,shown=0;
- function reveal(){if(shown)return;shown=1;w.classList.add("ready");requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add("show")})})}
- var im=new Image();im.onload=im.onerror=reveal;im.src="images/m/cake-sparkler.png";if(im.decode)im.decode().then(reveal,reveal);
- $$(".cd").forEach(function(c){c.onclick=function(){if(c.classList.contains("out"))return;c.classList.add("out");
-  if(c.classList.contains("spk")){$("#cakeSprite").classList.add("out");$(".cglow").classList.add("off")}
-  var sm=document.createElement("span");sm.className="smoke";c.appendChild(sm);sfx("puff");left--;
-  $("#cakeSay").textContent=left?"Keep going, "+left+" to go.":"Happy Birthday, Shannon!";
-  if(!left){burst(36,1);sfx("spark");setTimeout(function(){w.classList.remove("show");setTimeout(function(){w.classList.remove("ready");$("#open").style.display="block";anim($("#open"),"pop")},900)},1800)}}})}
+function cakeTime(){var rcw=WALK[G.look];$("#rc").style.aspectRatio=rcw.w+"/"+rcw.h;$("#rc").style.width="auto";mkSprite($("#rc"),G.look);requestAnimationFrame(function(){$("#rc").classList.add("show")});var w=$("#cakeW");var ci=$("#cakeBox>img");(ci.decode?ci.decode():Promise.resolve()).catch(function(){}).then(function(){requestAnimationFrame(function(){w.classList.add("show")})});var left=3;$$(".cd").forEach(function(c){c.onclick=function(){if(c.classList.contains("out"))return;c.classList.add("out");var sm=document.createElement("span");sm.className="smoke";c.appendChild(sm);sfx("puff");left--;
+  $("#cakeSay").textContent=left?"Keep going, "+left+" to go.":"Happy Birthday, Shannon!";if(!left){burst(36,1);sfx("spark");setTimeout(function(){w.classList.remove("show");$("#open").style.display="block";anim($("#open"),"pop")},2300)}}})}
 
 var LC=["pink","mint","butter"],rel=0;
 function ambient(x,d){var l=document.createElement("img");l.className="amb";l.src=V2+"lantern-"+LC[Math.random()*3|0]+".png";l.alt="";l.style.cssText="left:"+x+"%;width:"+(38+Math.random()*26)+"px;animation-duration:"+d+"s;animation-delay:"+(-Math.random()*d)+"s";$("#scene4").appendChild(l)}
-$("#open").onclick=function(){this.style.display="none";$("#scrollW").style.display="flex";sfx("unroll");$("#paper").classList.add("go");var r=$(".letterCard").getBoundingClientRect();
- var t=setInterval(function(){var b=$(".letterCard").getBoundingClientRect();sparkles(2,{x:b.left+b.width/2,y:b.bottom,w:b.width,h:30})},300);
+$("#open").onclick=function(){this.style.display="none";$("#scrollW").style.display="flex";sfx("unroll");$("#paper").classList.add("go");var r=$(".scroll").getBoundingClientRect();
+ var t=setInterval(function(){var b=$(".scroll").getBoundingClientRect();sparkles(2,{x:b.left+b.width/2,y:b.bottom,w:b.width,h:30})},300);
  setTimeout(function(){clearInterval(t);sfx("spark");sparkles(18);$("#bar").style.display="flex"},3700)};
-$("#lan").onclick=function(){var w=$("#wish").value.trim(),f=document.createElement("div");f.className="fly";var sw=document.createElement("div");sw.className="sway";var im=document.createElement("img");rel++;im.src="images/env/lanterns/lantern-heart-1.png";im.alt="";var sp=document.createElement("span");sp.textContent=w||"a quiet wish";sw.appendChild(im);sw.appendChild(sp);f.appendChild(sw);$("#scene4").appendChild(f);
+$("#lan").onclick=function(){var w=$("#wish").value.trim(),f=document.createElement("div");f.className="fly";var sw=document.createElement("div");sw.className="sway";var im=document.createElement("img");im.src=V2+"lantern-"+LC[rel++%3]+".png";im.alt="";var sp=document.createElement("span");sp.textContent=w||"a quiet wish";sw.appendChild(im);sw.appendChild(sp);f.appendChild(sw);$("#scene4").appendChild(f);
  sfx("spark");sparkles(12,{x:innerWidth/2,y:innerHeight-150,w:160,h:120});$("#msg").textContent="Watch your wish float up into the night...";setTimeout(function(){f.remove();$("#msg").textContent="Your wish has reached the stars."},11500)};
 /* ===== Share (free: native share sheet on phones, PNG download elsewhere) ===== */
 function img(src){return new Promise(function(r,j){var i=new Image();i.onload=function(){r(i)};i.onerror=j;i.src=src})}
 function wrap(c,t,x,y,w,lh){var ws=t.split(" "),l="";ws.forEach(function(wd){var tt=l+wd+" ";if(c.measureText(tt).width>w&&l){c.fillText(l,x,y);y+=lh;l=wd+" "}else l=tt});c.fillText(l,x,y);return y+lh}
 function card(kind){var cv=document.createElement("canvas");cv.width=1080;cv.height=1350;var c=cv.getContext("2d");c.fillStyle="#fffdf6";c.fillRect(0,0,1080,1350);c.strokeStyle="#6b4a45";c.lineWidth=8;c.strokeRect(36,36,1008,1278);c.textAlign="center";c.fillStyle="#6b4a45";c.font="86px 'Patrick Hand','Comic Sans MS',cursive";
- if(kind==="c"){c.fillText("Happy Birthday Shannon!",540,150);var p=poseFor(G.outfit,"picnic");return img(SH+p.file).then(function(im){var H=1020,W=im.width*H/im.height;if(W>900){W=900;H=im.height*W/im.width}c.save();if(p.face==="l"){c.translate(1080,0);c.scale(-1,1)}c.drawImage(im,540-W/2,230+(1020-H),W,H);c.restore();c.font="40px 'Patrick Hand',cursive";c.fillText("with love, Fonda",540,1290);c.font="24px 'Patrick Hand',cursive";c.fillText("Illustration by XTing",540,1330);return cv})}
+ if(kind==="c"){c.fillText("Happy Birthday Shannon!",540,150);var wc=WALK[G.look];return img("images/walk/"+G.look+"/strip.png").then(function(im){var H=1020,W=wc.w*H/wc.h;if(W>900){W=900;H=wc.h*W/wc.w}c.drawImage(im,wc.idle*wc.w,0,wc.w,wc.h,540-W/2,230+(1020-H),W,H);c.font="40px 'Patrick Hand',cursive";c.fillText("with love, Fonda",540,1290);return cv})}
  c.fillText("Birthday Wishes",540,150);c.font="42px 'Patrick Hand','Comic Sans MS',cursive";c.textAlign="left";var y=250;LTXT.forEach(function(t){y=t?wrap(c,t,110,y,860,58):y+30});
- var w=$("#wish").value.trim();c.fillStyle="#9b3d56";if(order){y=wrap(c,"Birthday order: "+order.style+" and "+order.pastry.toLowerCase(),110,y+20,860,58)}if(w){y=wrap(c,"Shannon's wish: "+w,110,y+20,860,58)}
- var room=1280-(y+30);if(order&&order.file&&room>=90){return img("images/m/"+order.file+".png").then(function(im){var h=Math.min(230,room),sc=Math.min(h/im.height,420/im.width);c.drawImage(im,540-im.width*sc/2,y+30+(h-im.height*sc),im.width*sc,im.height*sc);return cv},function(){return cv})}return Promise.resolve(cv)}
+ var w=$("#wish").value.trim();c.fillStyle="#9b3d56";if(order){y=wrap(c,"Birthday order: "+order.style+" and "+order.pastry.toLowerCase(),110,y+20,860,58)}if(w){wrap(c,"Shannon's wish: "+w,110,y+20,860,58)}return Promise.resolve(cv)}
 function share(kind){$("#msg").textContent="Making your image...";card(kind).then(function(cv){cv.toBlob(function(b){if(!b){$("#msg").textContent="Please open this game from its web link to save images.";return}
  var f=new File([b],"shannon-birthday.png",{type:"image/png"});
  if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:"Happy Birthday Shannon"}).then(function(){$("#msg").textContent="Pick Instagram in the share sheet."},function(){$("#msg").textContent="Share cancelled."});
