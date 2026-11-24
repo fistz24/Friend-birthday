@@ -50,8 +50,8 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 #cup{position:relative;width:64px;height:80px;margin:4px auto 10px;border:3px solid var(--ink);border-radius:6px 6px 20px 20px;background:#fff;overflow:hidden}
 #cup .f{position:absolute;left:0;right:0;bottom:0;height:20%;background:var(--mint);transition:height .4s}
 /* rooftop */
-#scene4{background:linear-gradient(#1f1e3c 0,#24203f 23%,#352b4d 46%,#514064 69%,#896e8d 92%,#5d496e 100%);overflow:hidden}
-#nightArt{position:absolute;bottom:0;left:50%;width:min(100vw,calc(100vh*.5622));width:min(100vw,calc(100svh*.5622));aspect-ratio:736/1309;transform:translateX(-50%);background:url(images/env/night-bg.jpg) center/100% 100% no-repeat;pointer-events:none}
+#scene4{background:#211b35;overflow:hidden}
+#nightArt{position:absolute;bottom:0;left:50%;width:min(100vw,calc(100vh*.5622));width:min(100vw,calc(100svh*.5622));aspect-ratio:736/1309;transform:translateX(-50%);background:none;pointer-events:none}
 @media(min-aspect-ratio:3/4){#nightArt{-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}}
 .pl{position:absolute;transform-origin:50% 0;animation:lsw 7s ease-in-out infinite alternate}.pl img{display:block;width:100%;animation:lfl 6s ease-in-out infinite alternate}
 @keyframes lsw{from{transform:translate(-3px,0) rotate(-2.2deg)}to{transform:translate(3px,-7px) rotate(2.2deg)}}@keyframes lfl{from{filter:brightness(.95) drop-shadow(0 0 8px rgba(255,200,110,.25))}to{filter:brightness(1.12) drop-shadow(0 0 16px rgba(255,205,120,.5))}}
@@ -76,8 +76,8 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 #faceBox{width:min(230px,70vw);height:250px;overflow:hidden;position:relative;flex:none;border:3px solid var(--ink);border-radius:var(--sk);background:#fff}
 #faceBox .stage{--dollH:1530px;position:absolute;left:calc(50% - 425px);top:-88px}
 .sw{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);vertical-align:-2px;margin-right:6px}
-.fly{position:absolute;left:50%;bottom:90px;width:200px;margin-left:-100px;z-index:12;pointer-events:none;animation:rise 11s cubic-bezier(.3,.1,.6,1) forwards}
-@keyframes rise{0%{transform:translateY(0) scale(1);opacity:0}6%{opacity:1}85%{opacity:1}100%{transform:translateY(-105vh) scale(.28);opacity:0}}
+.fly{position:absolute;left:50%;bottom:90px;width:200px;margin-left:-100px;z-index:12;pointer-events:none;animation:rise 7.2s cubic-bezier(.3,.1,.6,1) forwards}
+@keyframes rise{0%{transform:translateY(0) scale(1);opacity:0}6%{opacity:1}78%{opacity:1}100%{transform:translateY(-105vh) scale(.28);opacity:0}}
 .sway{position:relative;animation:sw 3s ease-in-out infinite alternate}@keyframes sw{from{transform:translateX(-22px) rotate(-4deg)}to{transform:translateX(22px) rotate(4deg)}}
 .fly img{width:100%;display:block;filter:drop-shadow(0 0 22px rgba(255,200,110,.85))}
 .fly span{position:absolute;left:25%;right:25%;top:33%;text-align:center;font-size:15px;line-height:1.1;overflow:hidden;max-height:46px;word-break:break-word;color:#6b4a45}
@@ -99,7 +99,7 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 .steam{position:absolute;top:-4%;left:32%;z-index:4;display:none;gap:10px}.steam i{width:8px;height:38px;border-radius:50%;background:rgba(190,190,190,.55);animation:stm 2.2s infinite;filter:blur(2px)}.steam i:nth-child(2){animation-delay:.7s}.steam i:nth-child(3){animation-delay:1.4s}@keyframes stm{from{transform:translateY(10px);opacity:.8}to{transform:translateY(-36px);opacity:0}}
 .pips{display:flex;gap:5px;justify-content:center;margin-top:6px}.pips b{width:12px;height:12px;border:2px solid var(--ink);border-radius:50%;background:#fff}.pips b.f{background:var(--pink)}.drk{text-align:center}.opts{max-width:330px}
 .shelf{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:6px;border-bottom:6px solid #c9a37a}.pcard{display:flex;flex-direction:column;align-items:center;width:104px;font-size:15px;padding:4px;background:#fff0}.pcard img{width:80px;height:66px;object-fit:contain}.pcard.sel{background:var(--mint)}
-.plt{position:relative;width:240px;height:120px;margin:8px auto;transition:opacity .6s}.plt .pl{position:absolute;left:0;bottom:0;width:100%}.plt .pa{position:absolute;left:50%;bottom:22%;height:68%;transform:translateX(-50%);animation:pd .6s}@keyframes pd{from{transform:translate(-50%,-80px);opacity:0}}.plt.slide{animation:ps .8s}@keyframes ps{from{transform:translateX(70px);opacity:0}}
+.plt{position:relative;width:240px;height:120px;margin:8px auto;transition:opacity .6s}.plt .pl{position:absolute;left:0;bottom:0;width:100%}.plt .pa{position:absolute;left:50%;bottom:33%;height:54%;max-width:60%;width:auto;object-fit:contain;object-position:center bottom;transform:translateX(-50%);animation:pd .6s}@keyframes pd{from{transform:translate(-50%,-80px);opacity:0}}.plt.slide{animation:ps .8s}@keyframes ps{from{transform:translateX(70px);opacity:0}}
 .prep{display:flex;gap:18px;align-items:flex-end;justify-content:center;flex-wrap:wrap}.ocard{padding:14px;max-width:540px;margin:0 auto;text-align:left;background:#fff}.ocard h3{text-align:center;margin:0 0 6px;font-size:26px}.ocard p{margin:3px 0}
 #orderBtn{position:absolute;left:8px;top:44px;z-index:5;padding:4px 14px;font-size:16px}
 .wearIn{animation:wi .4s}@keyframes wi{from{opacity:0}}
@@ -240,7 +240,7 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 #mstage #shelf{width:100%;max-height:30vh;min-height:0;overflow:auto;box-sizing:border-box;border-bottom:0;padding:4px 8px 10px;}
 #mstage #plt{width:min(280px,72vw);height:132px;margin:2px auto 8px;flex:none;}
 #mstage #plt .pl{width:100%;height:100%;object-fit:contain;}
-#mstage #plt .pa{left:50%;bottom:34%;height:54%;max-width:56%;width:auto;object-fit:contain;object-position:center bottom;transform:translateX(-50%);filter:drop-shadow(0 3px 2px rgba(107,74,69,.22));z-index:2;}
+#mstage #plt .pa{left:50%;bottom:33%;height:54%;max-width:60%;width:auto;object-fit:contain;object-position:center bottom;transform:translateX(-50%);filter:drop-shadow(0 3px 2px rgba(107,74,69,.22));z-index:2;} #mstage #plt2 .pa,.ocard .plt .pa{left:50%;bottom:33%;height:54%;max-width:60%;width:auto;object-fit:contain;object-position:center bottom;transform:translateX(-50%);z-index:2;}
 @media(max-width:600px){#mstage .pastry-stage{gap:6px}#mstage #shelf{max-height:27vh}#mstage #plt{height:116px;width:min(250px,72vw)}}
 /* Candle tap targets sit over the cake's own printed candles; no replacement candles are drawn. */
 #cakeBox .cd{width:9%;height:13%;top:0!important;}
@@ -255,6 +255,55 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 /* Persistent app ownership notice. */
 #appCopyright{position:fixed;left:0;right:0;bottom:3px;z-index:1000;text-align:center;font:12px/1.2 system-ui,sans-serif;letter-spacing:.04em;color:rgba(255,255,255,.82);text-shadow:0 1px 3px rgba(0,0,0,.65);pointer-events:none;padding:2px 6px}
 
+
+/* Responsive polish: mobile-first fit, centered pastry, unobstructed street controls */
+@media(max-width:600px){
+  #hud{bottom:calc(84px + env(safe-area-inset-bottom));padding:0 14px}
+  #hud button{padding:8px 28px;min-width:70px}
+  #mMatcha.modal{align-items:center;justify-content:center;overflow:hidden;padding:5px}
+  #mMatcha #mcard{width:100%;max-height:calc(100dvh - 10px);height:auto;overflow:hidden;padding:8px 9px}
+  #mMatcha #mcard h2{font-size:clamp(18px,5vw,23px);margin:0 0 2px}
+  #mMatcha #mtalk{font-size:15px;min-height:0;padding:5px 8px;margin:2px auto}
+  #mMatcha #mprog{margin:2px 0;gap:3px}
+  #mMatcha #mprog span{font-size:12px;padding:1px 6px}
+  #mMatcha #mstage{min-height:0;gap:5px;padding:2px 0}
+  #mMatcha .pastry-stage{gap:4px}
+  #mMatcha #shelf{max-height:18dvh;padding:2px 4px 5px}
+  #mMatcha .pcard{width:82px;min-height:74px;padding:2px;font-size:12px}
+  #mMatcha .pcard .pastry-thumb{width:68px;height:52px}
+  #mMatcha #plt{height:90px;width:min(215px,64vw);margin:0 auto 2px}
+  #mMatcha #mcard .row{margin:3px 0;gap:5px}
+  #mMatcha #mcard button{font-size:15px;padding:6px 10px;min-height:38px}
+  #mMatcha #mcard .big{font-size:17px;min-height:0;margin:4px 0}
+  #mMatcha .ocard{padding:8px}
+}
+@media(max-width:600px) and (max-height:700px){
+  #mMatcha #shelf{max-height:15dvh}
+  #mMatcha #plt{height:76px}
+  #mMatcha .pcard{min-height:66px}
+  #mMatcha .pcard .pastry-thumb{height:44px}
+}
+#bdecor .bdec.txt{font-family:MixStitch,'Patrick Hand',cursive!important;letter-spacing:.4px}
+#bdecor .bdec.txt{font-size:clamp(13px,3.3vw,19px)}
+#bdecor .bdec svg{width:100%;height:100%;display:block}
+#bdecor .bdec:not(.txt){width:14%;aspect-ratio:1;min-width:12px}
+#bpanel{max-height:calc(100dvh - 14px)}
+#bstrip{width:min(160px,32vw,calc((100vh - 220px)*.31))}
+.sc-wrap{width:min(520px,calc(66dvh * .642857),88vw)!important}
+@media(max-width:600px){
+  .sc-wrap{width:min(86vw,calc(62dvh * .642857),340px)!important}
+  #scrollW{top:0!important;max-height:100dvh!important;padding:6px!important}
+  .sc-hint{font-size:13px;margin:5px 0 0}
+  #open{top:50%!important}
+}
+#msg:not(:empty){font-family:MixStitch,'Patrick Hand',cursive!important;top:50%!important;bottom:auto!important}
+
+#mstage #plt .pa,#mstage #plt2 .pa,.ocard .plt .pa{
+ left:50%!important;bottom:26%!important;height:64%!important;max-width:80%!important;
+ width:auto!important;object-fit:contain!important;object-position:center bottom!important;
+ transform:translateX(-50%)!important;
+}
+
 </style></head><body>
 <button id="snd">Sound: on</button><div id="appCopyright">© 2026 Fonda I. Santoso. All rights reserved.</div>
 <div id="scene1" class="scene active"><div id="bubble" class="sketch">Tap the door to knock.</div>
@@ -263,7 +312,7 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 <div id="wardrobe" class="sketch"><h2>Choose Your Character</h2><div id="tabs"></div><div id="items"></div><div class="credit">Pick who walks with you from house to house.</div><div class="row"><button id="go">Let's Go! &#10140;</button></div></div></div>
 <div id="scene3" class="scene"><button id="orderBtn" class="sketch" style="display:none">My birthday order</button><div id="hint" class="sketch">Walk with arrow keys or buttons</div>
 <div id="clouds"></div><div id="hills"></div>
-<div id="world"><img class="bld" id="b-home" src="images/shannon-house.png" style="left:80px" alt="">
+<div id="world"><div class="street-trees" aria-hidden="true"><img src="images/env/trees/tree-1.png" style="left:430px;height:155px" alt=""><img src="images/env/trees/tree-3.png" style="left:1010px;height:220px" alt=""><img src="images/env/trees/tree-5.png" style="left:1660px;height:145px" alt=""><img src="images/env/trees/tree-7.png" style="left:2330px;height:190px" alt=""><img src="images/env/trees/tree-9.png" style="left:2940px;height:205px" alt=""></div><img class="bld" id="b-home" src="images/shannon-house.png" style="left:80px" alt="">
 <img class="bld" id="b-beauty" src="images/photobooth.png" style="left:700px" alt="">
 <img class="bld" id="b-tennis" src="images/tennis/court.png" style="left:1290px;height:clamp(150px,34vh,300px);bottom:13%" alt="">
 <img class="bld" id="b-matcha" src="images/matcha-shop.png" style="left:1950px" alt="">
@@ -619,7 +668,16 @@ function bposes(){var c=CHARS[G.outfit];return c.walk?c.walk.frames:[c.poses.sta
 var BCH=new Image();function bsetpose(){BCH=new Image();BCH.src=SH+bposes()[BO.pose%bposes().length]}
 function bnt(t){var e=$("#bnote");e.textContent=t;anim(e,"pop")}
 function bfull(){return BO.shots.every(Boolean)}
-function inkIcon(name){var paths={heart:'M50 84 C18 60 14 34 34 26 C46 21 50 32 50 32 C62 17 83 24 85 40 C88 57 67 75 50 84Z',star:'M50 12 L59 39 L88 43 L66 60 L73 87 L50 71 L27 87 L34 60 L12 43 L41 39 Z',flower:'M50 24 C31 4 18 30 39 42 C13 39 12 62 38 58 C20 76 39 91 50 68 C61 91 80 76 62 58 C88 62 87 39 61 42 C82 30 69 4 50 24Z',spark:'M50 10 L55 43 L88 50 L55 57 L50 90 L45 57 L12 50 L45 43 Z',bow:'M48 50 C12 13 5 40 28 55 C10 75 31 91 48 55 M52 50 C88 13 95 40 72 55 C90 75 69 91 52 55 M50 45 L50 60'};var p=paths[name]||paths.heart;return '<svg viewBox="0 0 100 100" aria-hidden="true"><defs><filter id="dry"><feTurbulence type="fractalNoise" baseFrequency=".07" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter></defs><path d="'+p+'" fill="none" stroke="#9b5a6a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#dry)"/><path d="'+p+'" fill="none" stroke="#d58b91" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/></svg>'}
+function inkIcon(name){
+var svg={
+heart:'<path d="M50 84 C18 59 10 38 28 25 C41 17 50 29 50 35 C59 20 79 22 87 39 C94 58 69 74 50 84Z" fill="#e99ba8" stroke="#9b5a6a" stroke-width="4.5" stroke-linejoin="round"/><path d="M34 35 Q29 42 36 49" fill="none" stroke="#fff5eb" stroke-width="4" stroke-linecap="round"/>',
+star:'<path d="M50 9 L61 37 L91 43 L68 61 L75 90 L50 74 L25 90 L32 61 L9 43 L39 37Z" fill="#f7d27c" stroke="#9b5a6a" stroke-width="4.5" stroke-linejoin="round"/><path d="M50 25 L55 42 L73 46 L59 57 L63 74 L50 65 L37 74 L41 57 L27 46 L45 42Z" fill="#fff4c7" opacity=".55"/>',
+flower:'<g stroke="#9b5a6a" stroke-width="3.5"><ellipse cx="50" cy="25" rx="13" ry="23" fill="#f4c3c5"/><ellipse cx="50" cy="25" rx="13" ry="23" fill="#f4c3c5" transform="rotate(60 50 50)"/><ellipse cx="50" cy="25" rx="13" ry="23" fill="#f4c3c5" transform="rotate(120 50 50)"/><circle cx="50" cy="50" r="13" fill="#f5d47c"/></g><circle cx="46" cy="46" r="4" fill="#fff5d5"/>',
+spark:'<path d="M50 8 L57 39 L91 50 L57 61 L50 92 L43 61 L9 50 L43 39Z" fill="#fff2c5" stroke="#c28b52" stroke-width="4" stroke-linejoin="round"/><path d="M20 20 L26 31 M74 70 L80 81" stroke="#f1c56e" stroke-width="5" stroke-linecap="round"/>',
+bow:'<path d="M47 48 C20 15 4 26 13 49 C23 68 36 65 48 53 C36 67 29 81 39 87 C49 92 53 70 51 56 C65 68 80 64 89 49 C99 29 77 17 53 48Z" fill="#f0b2bd" stroke="#9b5a6a" stroke-width="4.5" stroke-linejoin="round"/><circle cx="50" cy="52" r="9" fill="#fff2e2" stroke="#9b5a6a" stroke-width="3.5"/><path d="M24 36 Q32 31 37 40 M68 40 Q76 31 81 37" fill="none" stroke="#fff7ef" stroke-width="3" stroke-linecap="round"/>'
+};
+return '<svg viewBox="0 0 100 100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'+(svg[name]||svg.heart)+'</svg>';
+}
 function bdecorRender(){var layer=$('#bdecor');layer.innerHTML='';BO.decor.forEach(function(d,i){var el=document.createElement('div');el.className='bdec'+(d.type==='text'?' txt':'');el.style.left=d.x+'%';el.style.top=d.y+'%';el.style.transform='translate(-50%,-50%) rotate('+d.rot+'deg)';el.innerHTML=d.type==='text'?esc(d.text):inkIcon(d.type);el.dataset.index=i;el.onpointerdown=function(e){e.preventDefault();el.setPointerCapture(e.pointerId);var r=$('#bstrip').getBoundingClientRect(),sx=e.clientX,sy=e.clientY,ox=d.x,oy=d.y;el.onpointermove=function(ev){d.x=Math.max(3,Math.min(97,ox+(ev.clientX-sx)/r.width*100));d.y=Math.max(2,Math.min(98,oy+(ev.clientY-sy)/r.height*100));el.style.left=d.x+'%';el.style.top=d.y+'%'};el.onpointerup=el.onpointercancel=function(){el.onpointermove=null;bslots()}};layer.appendChild(el)})}
 function bslots(){$$('#bstrip .bslot').forEach(function(s,i){s.innerHTML=BO.shots[i]?'<img src="'+BO.shots[i]+'" alt="photo '+(i+1)+'">':'';s.classList.toggle('tgt',BO.target===i)});bdecorRender();$('#bShoot').textContent=bfull()&&BO.target<0?'Strip is full':'Take photo';$('#bShoot').disabled=bfull()&&BO.target<0;$('#bSave').disabled=!bfull();$('#bShare').disabled=!bfull();if(!bfull())$('#bShareMenu').hidden=true;$('#bRetake').style.display=BO.shots.some(Boolean)?'inline-block':'none'}
 function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -639,7 +697,7 @@ function bstopcam(){BO.cam=0;$("#bvid").style.display="none";$("#bPose").style.d
 function bstrip(){if(!bfull())return Promise.resolve(null);var k=1.6,sw=BSI.naturalWidth*k,sh=BSI.naturalHeight*k,cv=document.createElement("canvas");cv.width=sw;cv.height=sh;var c=cv.getContext("2d");c.drawImage(BSI,0,0,sw,sh);
  var iconLoads=BO.decor.map(function(d){if(d.type==='text')return Promise.resolve(null);return new Promise(function(resolve){var im=new Image();im.onload=function(){resolve(im)};im.onerror=function(){resolve(null)};im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(inkIcon(d.type))})});
  return Promise.all([Promise.all(BO.shots.map(function(u){return img(u)})),Promise.all(iconLoads)]).then(function(results){var ims=results[0],icons=results[1];ims.forEach(function(im,i){var r=BSL[i],x=r[0]*sw+6,y=r[1]*sh+6,w=r[2]*sw-12,h=r[3]*sh-12,q=Math.max(w/im.width,h/im.height);c.save();c.beginPath();c.rect(x,y,w,h);c.clip();c.drawImage(im,x+(w-im.width*q)/2,y+(h-im.height*q)/2,im.width*q,im.height*q);c.restore()});
- c.textAlign="center";c.fillStyle="#fff3ea";c.font="64px MixStitch,'Patrick Hand',cursive";c.fillText("Shannon's",sw/2,sh*.8);c.fillText("Photo Booth",sw/2,sh*.8+76);c.font="40px MixStitch,'Patrick Hand',cursive";c.fillText("Happy Birthday!",sw/2,sh*.8+150);BO.decor.forEach(function(d,i){var x=d.x/100*sw,y=d.y/100*sh;c.save();c.translate(x,y);c.rotate(d.rot*Math.PI/180);if(d.type==='text'){c.font='36px Patrick Hand, cursive';c.fillStyle='#7c3d4d';c.strokeStyle='rgba(255,250,240,.8)';c.lineWidth=3;c.strokeText(d.text,0,0);c.fillText(d.text,0,0)}else if(icons[i])c.drawImage(icons[i],-22,-22,44,44);else{c.font='40px sans-serif';c.fillText({heart:'♡',star:'☆',flower:'✿',spark:'✧',bow:'🎀'}[d.type]||'♡',0,12)}c.restore()});return cv})}
+ c.textAlign="center";c.fillStyle="#fff3ea";c.font="64px MixStitch,'Patrick Hand',cursive";c.fillText("Shannon's",sw/2,sh*.8);c.fillText("Photo Booth",sw/2,sh*.8+76);c.font="40px MixStitch,'Patrick Hand',cursive";c.fillText("Happy Birthday!",sw/2,sh*.8+150);BO.decor.forEach(function(d,i){var x=d.x/100*sw,y=d.y/100*sh;c.save();c.translate(x,y);c.rotate(d.rot*Math.PI/180);if(d.type==='text'){c.font='36px MixStitch, Patrick Hand, cursive';c.fillStyle='#7c3d4d';c.strokeStyle='rgba(255,250,240,.8)';c.lineWidth=3;c.strokeText(d.text,0,0);c.fillText(d.text,0,0)}else if(icons[i])c.drawImage(icons[i],-22,-22,44,44);else{c.font='40px sans-serif';c.fillText({heart:'♡',star:'☆',flower:'✿',spark:'✧',bow:'🎀'}[d.type]||'♡',0,12)}c.restore()});return cv})}
 function bblob(cb){bstrip().then(function(cv){cv.toBlob(cb,"image/png")})}
 $("#bShoot").onclick=bshoot;$("#bPose").onclick=function(){bnt("Use your device camera for real photos.")};$("#bCam").onclick=bcam;
 $("#bRetake").onclick=function(){BO.shots=[null,null,null];BO.decor=[];BO.target=-1;bslots();bnt("Fresh strip. Take 3 new photos.");sfx("pop")};
@@ -861,7 +919,7 @@ function cakeTime(){
  }})}
 var LC=["pink","mint","butter"],rel=0;
 function ambient(x,d){var l=document.createElement("img");l.className="amb";l.src=V2+"lantern-"+LC[Math.random()*3|0]+".png";l.alt="";l.style.cssText="left:"+x+"%;width:"+(38+Math.random()*26)+"px;animation-duration:"+d+"s;animation-delay:"+(-Math.random()*d)+"s";$("#scene4").appendChild(l)}
-$("#open").onclick=function(){this.style.display="none";$("#scrollW").style.display="flex";$("#bar").style.display="flex";$("#bar .row:first-child").style.display="none";$("#bar .row:nth-child(2)").style.display="flex";sfx("unroll");sparkles(16);setTimeout(function(){sfx("spark");$("#gram").style.display="block";anim($("#gram"),"pop")},1700)};
+$("#open").onclick=function(){this.style.display="none";$("#msg").textContent="";$("#scrollW").style.display="flex";$("#bar").style.display="flex";$("#bar .row:first-child").style.display="none";$("#bar .row:nth-child(2)").style.display="flex";sfx("unroll");sparkles(16);setTimeout(function(){sfx("spark");$("#gram").style.display="block";anim($("#gram"),"pop")},1700)};
 $("#lan").onclick=function(){
  if(this.disabled)return;var w=$("#wish").value.trim();if(!w){$("#msg").textContent="Write your wish first, then release it.";$("#wish").focus();return}
  this.disabled=true;$("#wish").disabled=true;$("#bar .row:first-child").style.display="none";
@@ -882,3 +940,111 @@ function card(kind){var cv=document.createElement("canvas");cv.width=1080;cv.hei
 $("#shC").onclick=function(){runCardShare(function(){return card("c")},"shannon-character.png","Shannon's Birthday Character","Shannon's birthday character! Made with love by Fonda.")};
 $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-birthday-wishes.png","Shannon's Birthday Wishes","A birthday wishes card for Shannon, made with love by Fonda.")};
 })();</script></body></html>
+
+<style id="v4-visual-cleanup">
+#scene4 #skyDoodle{display:none!important}
+#scene4 .star{display:none!important}
+#scene4 #glow{display:none!important}
+#scene4{background-color:#211b35!important;background-image:none!important}
+#lanternBackdrop{object-fit:contain!important;object-position:center center!important}
+#nightArt{background:none!important}
+</style>
+
+<style id="v4-street-trees">
+.street-trees{position:absolute;inset:0;z-index:1;pointer-events:none}
+.street-trees img{position:absolute;bottom:16%;width:auto;max-width:240px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 3px 3px rgba(76,78,38,.12))}
+#world .bld,#world #stairs{z-index:2}
+#world #ground{z-index:0}
+@media(max-width:600px){.street-trees img{max-width:180px;bottom:16%;}}
+</style>
+
+<style id="v5-mobile-and-alignment">
+/* Matcha: put the pastry's visual center on the plate's inner oval. */
+#mstage .plt{position:relative;isolation:isolate}
+#mstage .plt .pl,.prep .plt .pl,.ocard .plt .pl{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:1}
+#mstage .plt .pa,#mstage #plt2 .pa,.prep .plt .pa,.ocard .plt .pa{
+  left:50%!important;bottom:19%!important;height:53%!important;max-width:66%!important;
+  width:auto!important;object-fit:contain!important;object-position:center bottom!important;
+  transform:translateX(-50%)!important;z-index:2;display:block
+}
+@media(max-width:600px){
+  /* Keep the entire Matcha Lab within one phone viewport. */
+  #mMatcha{padding:5px;overflow:hidden;align-items:center}
+  #mMatcha #mcard{
+    width:100%;height:calc(100dvh - 10px);max-height:calc(100dvh - 10px);
+    overflow:hidden;display:flex;flex-direction:column;gap:3px;padding:8px 9px
+  }
+  #mMatcha #mcard h2{font-size:21px;line-height:1.05;margin:0 0 2px}
+  #mMatcha #mprog{gap:3px;margin:2px 0;flex:none}
+  #mMatcha #mprog span{font-size:12px;padding:1px 6px}
+  #mMatcha #mtalk{font-size:15px;line-height:1.15;min-height:0;padding:5px 8px;margin:2px auto;flex:none}
+  #mMatcha #mstage{flex:1 1 0;min-height:0;overflow:hidden;gap:5px;padding:2px 0;align-content:center}
+  #mMatcha #mcard>.row{flex:none;margin:3px 0 0;gap:5px}
+  #mMatcha #mcard>.row button{font-size:15px;padding:7px 10px;min-height:38px}
+  #mMatcha #mstage .pastry-stage{height:100%;min-height:0;justify-content:space-evenly;gap:4px}
+  #mMatcha #mstage #shelf{
+    display:flex;flex:0 0 auto;width:100%;max-height:none;height:clamp(92px,17vh,126px);
+    overflow-x:auto;overflow-y:hidden;gap:6px;padding:3px 5px 7px;align-items:stretch;
+    scrollbar-width:thin;overscroll-behavior-x:contain
+  }
+  #mMatcha #mstage #shelf .pcard{flex:0 0 82px;width:82px;min-width:82px;min-height:0;height:100%;padding:4px 3px;font-size:12px;line-height:1.05}
+  #mMatcha #mstage #shelf .pcard .pastry-thumb{width:100%;height:68px;object-fit:contain}
+  #mMatcha #mstage #plt{flex:0 0 auto;width:min(250px,74vw);height:clamp(88px,15vh,112px);margin:0 auto 2px}
+  #mMatcha #mstage .plt .pa,#mMatcha #mstage #plt2 .pa{height:53%!important;max-width:66%!important;bottom:19%!important}
+  #mMatcha #mstage .lab{gap:7px}
+  #mMatcha #mstage .tinw>img,#mMatcha #mstage .tinw>.mi-svg{width:58px;height:58px}
+  #mMatcha #mstage .bowlw{width:min(170px,42vw)}
+  #mMatcha #mstage .tools button,#mMatcha #mstage #scoops button{min-height:36px;padding:5px 8px;font-size:14px}
+  #mMatcha #mstage .prep{gap:6px;align-items:center}
+  #mMatcha #mstage .prep .plt{width:126px!important;height:70px!important}
+  #mMatcha #mstage .ocard{padding:8px;max-width:100%;font-size:14px}
+  #mMatcha #mstage .ocard h3{font-size:19px}
+}
+@media(max-width:600px) and (max-height:680px){
+  #mMatcha #mcard h2{font-size:19px}
+  #mMatcha #mtalk{font-size:13px}
+  #mMatcha #mstage #shelf{height:86px}
+  #mMatcha #mstage #shelf .pcard .pastry-thumb{height:58px}
+  #mMatcha #mstage #plt{height:82px}
+}
+/* Lift street movement controls clear of Netlify's mobile badge. */
+@media(max-width:700px){
+  #hud{bottom:calc(76px + env(safe-area-inset-bottom))!important;padding:0 12px}
+  #hud button{padding:8px 25px;min-width:64px;min-height:48px}
+}
+/* Photo booth note: use the same MixStitch face in the editor, preview and saved strip. */
+#bwrite,.bdec.txt{font-family:MixStitch,'Patrick Hand',cursive!important}
+.bdec.txt{font-size:19px;line-height:1.08;letter-spacing:.2px}
+.bdec svg{filter:drop-shadow(0 1px 1px rgba(255,248,236,.85));}
+#bstickerTools button{font-family:MixStitch,'Patrick Hand',cursive}
+@media(max-width:600px){
+  #bwrite{font-size:16px;width:min(220px,55vw)}
+  .bdec.txt{font-size:16px}
+}
+/* Wish confirmation sits in the visual center, not at the bottom control bar. */
+#msg:not(:empty){
+  position:fixed;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);
+  z-index:30;width:min(88vw,620px);margin:0;padding:12px 16px;text-align:center;
+  font:clamp(19px,3vw,28px)/1.2 MixStitch,'Patrick Hand',cursive!important;
+  color:#fffaf0!important;background:rgba(35,27,54,.58);border:1px solid rgba(255,255,255,.35);
+  border-radius:14px;text-shadow:0 2px 5px rgba(20,12,30,.75);pointer-events:none;
+  animation:msgIn .35s ease-out
+}
+@keyframes msgIn{from{opacity:0;transform:translate(-50%,-44%)}to{opacity:1;transform:translate(-50%,-50%)}}
+/* Greeting card: constrain by height as well as width on phones and desktop. */
+.sc-wrap{width:min(520px,calc(66dvh * .642857),88vw)!important}
+@media(max-width:600px){
+  #scrollW{inset:0!important;top:0!important;max-height:100dvh!important;padding:8px!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+  .sc-wrap{width:min(78vw,calc(66dvh * .642857),340px)!important;max-height:66dvh}
+  .sc-card{max-height:66dvh}
+  .sc-hint{font-size:13px;margin:5px 0 0}
+}
+</style>
+
+<style id="lantern-final-fixes">
+/* Keep the lantern artwork continuous across the entire scene. Fill the viewport
+   vertically instead of letterboxing the image into a center strip. */
+#scene4 #lanternBackdrop{object-fit:cover!important;object-position:center center!important;width:100%!important;height:100%!important}
+/* Clear the wish caption as soon as the greeting card opens. */
+#msg:empty{display:none!important}
+</style>
