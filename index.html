@@ -22,7 +22,13 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 #scene1.active{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:10px}
 #bubble{max-width:540px;min-height:70px;padding:14px 24px;text-align:center;display:flex;align-items:center}
 #houseWrap{position:relative;height:min(58vh,520px)}#houseWrap>img{height:100%;display:block}
-#door{position:absolute;left:52%;top:64%;width:27%;height:35%;cursor:pointer}
+#door{position:absolute;left:52%;top:64%;width:27%;height:35%;cursor:pointer;z-index:2}
+/* Hand-drawn cartoon impact marks, anchored to the door for every tap */
+#knockFx{position:absolute;left:75%;top:61%;width:19%;height:18%;z-index:3;pointer-events:none;opacity:0;transform:scale(.65) rotate(-8deg)}
+#knockFx svg{width:100%;height:100%;overflow:visible}
+#knockFx path{fill:none;stroke:#6b4a45;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+#knockFx.play{animation:knockBurst .48s ease-out both}
+@keyframes knockBurst{0%{opacity:0;transform:scale(.55) rotate(-12deg)}18%{opacity:1;transform:scale(1.12) rotate(5deg)}55%{opacity:1;transform:scale(1) rotate(-3deg)}100%{opacity:0;transform:scale(1.2) rotate(7deg)}}
 /* S2 */
 #scene2.active{display:flex;align-items:center;justify-content:center;gap:28px;padding:12px;flex-wrap:wrap;overflow:auto}
 #wardrobe{width:min(500px,96vw);padding:14px}#tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
@@ -308,7 +314,7 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 </style></head><body>
 <button id="snd">Sound: on</button><div id="appCopyright">© 2026 Fonda I. Santoso. All rights reserved.</div>
 <div id="scene1" class="scene active"><div id="bubble" class="sketch">Tap the door to knock.</div>
-<div id="houseWrap"><img src="images/shannon-house.png" alt=""><div id="door"></div></div></div>
+<div id="houseWrap"><img src="images/shannon-house.png" alt=""><div id="door" aria-label="Knock on the door" role="button" tabindex="0"></div><div id="knockFx" aria-hidden="true"><svg viewBox="0 0 100 80"><path d="M8 28 L22 20 M4 48 L20 46 M22 7 L29 19 M72 8 L68 22 M91 29 L78 34 M89 54 L75 50"/><path d="M38 24 Q49 12 61 24 M34 43 Q48 32 63 43"/></svg></div></div></div>
 <div id="scene2" class="scene"><div class="stage" id="prev"></div>
 <div id="wardrobe" class="sketch"><h2>Choose Your Character</h2><div id="tabs"></div><div id="items"></div><div class="credit">Pick who walks with you from house to house.</div><div class="row"><button id="go">Let's Go! &#10140;</button></div></div></div>
 <div id="scene3" class="scene"><button id="orderBtn" class="sketch" style="display:none">My birthday order</button><div id="hint" class="sketch">Walk with arrow keys or buttons</div>
@@ -321,7 +327,7 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 <img id="stairs" src="images/stair-ladder.png" alt=""><div id="ground"></div><button id="interact">Enter</button><div id="pc"></div></div>
 <div id="hud"><button id="bL">&lt;</button><button id="bR">&gt;</button></div></div>
 <div id="scene4" class="scene"><img id="lanternBackdrop" src="images/env/lantern-bg.jpg" alt="" aria-hidden="true"><div id="nightArt"></div><div id="skyDoodle" aria-hidden="true"></div><div id="lanternSky" aria-hidden="true"></div><div id="glow"></div><div id="lights"></div><img id="blanket" src="images/m/blanket.png" alt=""><button id="mtog">Music: on</button><div id="rc"></div><div id="cakeW"><div id="cakeSay" class="sketch">Your birthday cake is here! Tap all four candles to blow them out, then make a wish.</div><div id="cakeBox"><div class="cshadow"></div><img id="birthdayCakeImg" src="images/m/birthday-cake-upload.png" alt="A strawberry birthday cake on a blue stand"><div class="cglow"></div><button class="cd" aria-label="Blow out candle 1"></button><button class="cd" aria-label="Blow out candle 2"></button><button class="cd" aria-label="Blow out candle 3"></button><button class="cd" aria-label="Blow out candle 4"></button></div></div><button id="open">Open birthday letter</button>
-<button id="gram" aria-label="Play voice memo"><img src="images/gramophone.png" alt="Gramophone"><svg id="gnotes" class="music-notes" viewBox="0 0 100 100" aria-hidden="true"><g class="note" fill="#e85d78"><path d="M24.5 43.8 L24.5 35.8 L29.1 34.3 L29.1 35.5 L25.8 36.2 L25.8 43.2 Q25.8 45.1 23.7 45.6 Q21.8 46 21.8 44.6 Q21.8 43.2 24.5 43.8Z"/></g><g class="note" fill="#f1a83d"><path d="M17.6 38.6 L17.6 31.5 L22.1 30 L22.1 31.2 L18.9 31.9 L18.9 38 Q18.9 39.8 16.8 40.3 Q14.9 40.7 14.9 39.3 Q14.9 37.9 17.6 38.6Z"/></g><g class="note" fill="#79bfa7"><path d="M31.4 46.1 L31.4 39.2 L35.8 37.7 L35.8 38.9 L32.7 39.6 L32.7 45.5 Q32.7 47.3 30.6 47.8 Q28.7 48.2 28.7 46.8 Q28.7 45.4 31.4 46.1Z"/></g></svg><span id="gsay" class="sketch">A voice memo for you. Tap to play!</span></button><audio id="voice" preload="auto" src="audio/voice_memo.m4a"></audio>
+<button id="gram" aria-label="Play voice memo"><img src="images/gramophone.png" alt="Gramophone"><svg id="gnotes" class="music-notes" viewBox="0 0 100 100" aria-hidden="true"><g class="note" fill="#e85d78"><path d="M24.5 43.8 L24.5 35.8 L29.1 34.3 L29.1 35.5 L25.8 36.2 L25.8 43.2 Q25.8 45.1 23.7 45.6 Q21.8 46 21.8 44.6 Q21.8 43.2 24.5 43.8Z"/></g><g class="note" fill="#f1a83d"><path d="M17.6 38.6 L17.6 31.5 L22.1 30 L22.1 31.2 L18.9 31.9 L18.9 38 Q18.9 39.8 16.8 40.3 Q14.9 40.7 14.9 39.3 Q14.9 37.9 17.6 38.6Z"/></g><g class="note" fill="#79bfa7"><path d="M31.4 46.1 L31.4 39.2 L35.8 37.7 L35.8 38.9 L32.7 39.6 L32.7 45.5 Q32.7 47.3 30.6 47.8 Q28.7 48.2 28.7 46.8 Q28.7 45.4 31.4 46.1Z"/></g></svg><span id="gsay" class="sketch">A voice memo for you. Tap to play!</span></button><audio id="voice" preload="auto" src="audio/ending-voice.m4a"></audio>
 <div id="scrollW"><!-- Embroidered birthday card for Shannon (portrait). Paste wherever the game ending appears.
      Tap the card to open it, tap again while it sews to skip ahead, or call window.openStitchCard().
      Self-contained; all textures are generated procedurally. Sewing speed: change SPEED below. -->
@@ -609,7 +615,9 @@ function sparkles(n,r){for(var i=0;i<n;i++)setTimeout(function(){var s=document.
 
 /* ===== S1 ===== */
 var LN=["Knock, knock! Shannon, are you awake?!","Happy Birthday!! Get ready, we're going on an adventure today! Tap the door to step outside."],kn=0;
-$("#door").onclick=function(){sfx("knock");anim($("#houseWrap"),"knock");if(kn<2){$("#bubble").textContent=LN[kn];anim($("#bubble"),"pop")}kn++;if(kn>2){show("#scene2");wardrobe()}};
+function knockDoor(){sfx("knock");anim($("#houseWrap"),"knock");anim($("#knockFx"),"play");if(kn<2){$("#bubble").textContent=LN[kn];anim($("#bubble"),"pop")}kn++;if(kn>2){show("#scene2");wardrobe()}}
+$("#door").onclick=knockDoor;
+$("#door").onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();knockDoor()}};
 
 /* ===== Character system: complete illustrations (no clothing overlays) =====
    CHARS lists every outfit and which poses exist for it. Today each outfit has ONE illustration, so poseFor() falls back to it.
