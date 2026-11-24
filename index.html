@@ -83,13 +83,15 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 .fly span{position:absolute;left:25%;right:25%;top:33%;text-align:center;font-size:15px;line-height:1.1;overflow:hidden;max-height:46px;word-break:break-word;color:#6b4a45}
 .amb{position:absolute;bottom:-90px;opacity:.8;filter:drop-shadow(0 0 14px rgba(255,200,110,.7));animation:fl linear infinite}
 
-#mcard{width:min(780px,100%)}#mprog{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:4px 0}#mprog span{padding:2px 10px;border:2px dashed var(--ink);border-radius:var(--sk);font-size:15px;background:#fff}#mprog .on{background:var(--mint);border-style:solid}#mprog .dn{background:var(--pink)}
+#mcard{width:min(780px,100%)}
+#scoops button{display:flex;align-items:center;gap:7px;justify-content:center;min-width:88px}#scoops .scoopIcon{width:28px;height:28px;display:inline-block;flex:none}#scoops .scoopIcon svg{width:100%;height:100%;display:block}
+#tW .mi-svg{width:64px;height:64px}.tool .mi-svg{filter:drop-shadow(0 2px 1px rgba(100,80,50,.12))}#mprog{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:4px 0}#mprog span{padding:2px 10px;border:2px dashed var(--ink);border-radius:var(--sk);font-size:15px;background:#fff}#mprog .on{background:var(--mint);border-style:solid}#mprog .dn{background:var(--pink)}
 #mtalk{padding:8px 16px;margin:6px auto;max-width:600px;min-height:48px}#mstage{min-height:290px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:6px 0}
-.lab{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}.tinw{text-align:center}.tinw>img{width:80px}
-.bowlw{position:relative;width:min(220px,56vw);aspect-ratio:1}.bowlw .bowl{position:absolute;inset:0;width:100%;height:100%;z-index:3}
+.lab{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}.tinw{text-align:center}.tinw>img,.tinw>.mi-svg{width:80px;height:80px}
+.bowlw{position:relative;width:min(220px,56vw);aspect-ratio:1}.bowlw .bowl{position:absolute;inset:0;width:100%;height:100%;z-index:3}.bowlw .mi-svg{position:absolute;inset:0;width:100%;height:100%;z-index:3}
 .pow,.liq{position:absolute;inset:17%;border-radius:50%;overflow:hidden}.pow{z-index:1;background-color:#a9c874;background-image:radial-gradient(#e3efbf 25%,transparent 28%);background-size:14px 14px;opacity:0;transition:opacity .6s}
 .liq{z-index:2;background:rgb(150,185,100);transform:scale(0);transition:transform 1.2s,background .3s}.liq.on{transform:scale(1)}.foam{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(238,247,210,.95) 0,rgba(238,247,210,0) 72%);opacity:0}
-.tools{display:flex;flex-direction:column;gap:6px}.tool{background:#fff;border:3px solid var(--ink);border-radius:var(--sk);padding:2px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font:inherit;color:var(--ink);box-shadow:3px 4px 0 rgba(155,61,86,.2);touch-action:none;user-select:none}.tool img{height:58px;pointer-events:none}.tool.lock{opacity:.45}
+.tools{display:flex;flex-direction:column;gap:6px}.tool{background:#fff;border:3px solid var(--ink);border-radius:var(--sk);padding:2px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font:inherit;color:var(--ink);box-shadow:3px 4px 0 rgba(155,61,86,.2);touch-action:none;user-select:none}.tool img,.tool .mi-svg{height:58px;width:58px;pointer-events:none}.mi-svg{overflow:visible}.tool.lock{opacity:.45}
 .wig img{animation:wg .3s}@keyframes wg{25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}.tilt img{animation:tl 1.2s}@keyframes tl{40%,70%{transform:rotate(-30deg) translateX(-10px)}}
 #wbar{width:min(340px,80%);height:16px;border:3px solid var(--ink);border-radius:var(--sk);background:#fff;overflow:hidden;margin:0 auto}#wfill{display:block;height:100%;width:0;background:var(--mint);transition:width .15s}
 .gl{position:relative;width:min(170px,42vw);aspect-ratio:220/300}.gl>img.g{position:absolute;inset:0;width:100%;height:100%;z-index:3}.lq{position:absolute;inset:0;clip-path:polygon(16% 8%,84% 8%,77% 95%,23% 95%);display:flex;flex-direction:column-reverse;z-index:1}.lq div{flex:none;height:0;transition:height 1.1s,background 1.1s}
@@ -145,12 +147,116 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 /* tennis */
 #tcard{width:min(780px,100%)}#ttalk{padding:8px 14px;margin:6px auto;max-width:620px;min-height:48px}#tstage{width:min(720px,100%,calc((100vh - 330px)*1.4));aspect-ratio:840/600;margin:6px auto;border:3px solid var(--ink);border-radius:var(--sk);overflow:hidden;touch-action:manipulation;cursor:pointer;background:#fbf3e3}#tcv{width:100%;height:100%;display:block}
 .lock{align-items:flex-end;justify-content:center;min-height:200px}.lock img{height:min(240px,calc(100vh - 360px));min-height:140px;max-width:60vw;object-fit:contain}#thud span{padding:2px 14px}
+/* Photo booth doodle tools, drag stickers, and share destinations */
+#bdecor{position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:5}
+.bdec{position:absolute;left:0;top:0;transform:translate(-50%,-50%);pointer-events:auto;touch-action:none;cursor:grab;user-select:none}
+.bdec:active{cursor:grabbing}.bdec svg{width:42px;height:42px;overflow:visible;filter:drop-shadow(0 2px 1px #fff8)}.bdec.txt{font:20px 'Patrick Hand',cursive;color:#7c3d4d;background:#fff9;border-radius:6px;padding:2px 7px;white-space:pre-wrap;max-width:68%;text-align:center}
+#bstickerTools{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;margin:5px auto}
+#bstickerTools button{min-width:44px;min-height:44px;padding:3px 8px;background:#fff8ec;border:2px dashed #9b5a6a}
+#bstickerTools svg{width:30px;height:30px;display:block}#bwrite{width:min(280px,64vw);padding:8px;border:2px solid #9b5a6a;border-radius:9px;font:18px 'Patrick Hand',cursive}
+#bshareBtns{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+#bShareMenu{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}#bShareMenu[hidden]{display:none}
+.pcard{width:108px;min-height:108px}.pcard .pastry-thumb{width:92px;height:76px;object-fit:contain;display:block}.plt .pa{position:absolute;left:50%;bottom:22%;height:68%;max-width:90%;width:auto;object-fit:contain;transform:translateX(-50%);animation:pd .6s}
+/* mobile camera view uses real video frame; controls wrap naturally */
+#bstrip{touch-action:none}#bdecor{touch-action:none}
+/* Front-facing tennis court and responsive movement controls */
+#tcontrols{flex-wrap:wrap}#tcontrols button{min-width:80px;touch-action:none;user-select:none}
+#scene4 #skyDoodle{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.94}
+#lanternSky{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+#nightArt{z-index:0}#glow,#lights{position:relative;z-index:1}#blanket{z-index:3}#rc{z-index:4}
+#cakeW{z-index:8;bottom:calc(3% + 68px);width:min(360px,84vw);max-height:64vh}#cakeSprite{max-height:56vh}#cakeSprite{aspect-ratio:338/312}
+#open{z-index:10;top:52%;max-width:90vw;white-space:nowrap}
+@media(max-width:600px){#lanternBackdrop{object-fit:contain}#bstickerTools button{min-width:42px;min-height:42px}.bdec svg{width:34px;height:34px}#bshareBtns button{flex:1 1 42%}#cakeW{bottom:calc(2% + 62px)}#open{top:50%}}
+/* Mobile-friendly camera and finale card */
+#bview{position:relative;flex:1;min-width:0;aspect-ratio:7/6;overflow:hidden}
+#bvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bslot img{object-fit:cover}
+.sc-wrap{width:min(100%,520px);margin:0 auto;perspective:2000px;position:relative;pointer-events:auto}
+.sc-card{position:relative;aspect-ratio:9/14;cursor:pointer;outline:none;filter:drop-shadow(0 10px 18px rgba(90,40,60,.35));touch-action:manipulation}
+.sc-card:focus-visible{outline:3px solid #9d8fd3;outline-offset:6px}
+.sc-card canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:6px}
+.sc-cover{transform-origin:left center;transition:transform 1.6s cubic-bezier(.55,0,.25,1),opacity .5s ease 1.3s}
+.sc-card.open .sc-cover{transform:rotateY(-178deg);opacity:0;pointer-events:none}
+.sc-hint{text-align:center;font:15px/1.4 'Patrick Hand','Segoe Print',system-ui,sans-serif;opacity:.75;margin:10px 0 0}
+#scrollW{pointer-events:auto;max-height:96vh;overflow:auto;align-items:flex-start}
+#tstage{touch-action:none}
+#tcontrols{display:flex;justify-content:center;gap:12px;margin:8px auto;max-width:380px}
+#tcontrols button{min-width:96px;min-height:52px;font-size:24px;touch-action:manipulation}
+@media(max-width:600px){
+ .modal{padding:6px;align-items:flex-start;overflow:auto}
+ #bpanel{width:100%;max-height:calc(100dvh - 12px);overflow:auto;padding:8px}
+ #bmain{gap:8px;align-items:flex-start}
+ #bview{width:min(62vw,390px);flex:1;aspect-ratio:1/1;min-height:180px}
+ #bstrip{width:min(28vw,126px);max-width:126px}
+ #btitle{font-size:24px}
+ #bnote{font-size:17px;line-height:1.2}
+ #mBooth button,#mTennis button{padding:9px 12px;min-height:44px;font-size:17px}
+ #tcard{padding:10px;width:100%;max-height:none}
+ #tstage{width:100%;max-height:44dvh}
+ #thud{font-size:16px}
+ #scrollW{top:1%;max-height:98dvh}
+ .sc-wrap{width:min(92vw,460px)}
+ #open{top:37%}
+}
 /* gramophone */
 #gram{display:none;position:absolute;right:max(6px,2vw);bottom:150px;z-index:9;width:min(32vw,170px);padding:0;background:none;border:0;box-shadow:none}#gram>img{width:100%;display:block}#gram .sketch{display:block;font-size:14px;padding:2px 8px;margin-top:2px;text-align:center}
 .music-notes{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;opacity:0}.music-notes .note{transform-box:fill-box;transform-origin:center;opacity:0}.music-notes.playing{opacity:1}.music-notes.playing .note{animation:fnote 1.9s ease-out infinite}.music-notes.playing .note:nth-child(2){animation-delay:.62s}.music-notes.playing .note:nth-child(3){animation-delay:1.22s}
 @keyframes fnote{0%{opacity:0;transform:translate(0,8px) rotate(-10deg) scale(.72)}18%{opacity:1}100%{opacity:0;transform:translate(-15px,-24px) rotate(14deg) scale(1.12)}}
+ 
+/* Birthday ending assets: uploaded lantern backdrop, transparent cake, wish ritual */
+#scene4{background:#211b35!important}
+#lanternBackdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;z-index:0;pointer-events:none}
+#nightArt{display:none!important}
+#cakeW{width:min(400px,82vw);max-height:66vh;bottom:calc(2% + 52px);gap:8px}
+#cakeSay{background:rgba(255,249,236,.9);border-radius:16px;max-width:90%;font-size:clamp(15px,4vw,20px)}
+#cakeBox{height:min(48vh,480px);width:auto;aspect-ratio:502/715;position:relative;flex:none}
+#birthdayCakeImg{width:100%;height:100%;object-fit:contain;display:block}
+#cakeBox .cd{width:7%;height:9%}#cakeBox .cd:nth-of-type(1){top:3%!important}#cakeBox .cd:nth-of-type(2){top:2%!important}#cakeBox .cd:nth-of-type(3){top:2%!important}#cakeBox .cd:nth-of-type(4){top:1%!important}
+#cakeBox .cd{width:8%;height:8%;border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important;z-index:10;touch-action:manipulation}
+#cakeBox .flame{position:absolute;left:50%;top:-65%;width:70%;height:110%;transform:translateX(-50%);border-radius:50% 50% 45% 45%;background:radial-gradient(ellipse at 45% 25%,#fff9b9 0 15%,#ffd46b 28%,#ff8b31 70%,transparent 100%);filter:drop-shadow(0 0 8px rgba(255,191,75,.9));animation:flameWaver .65s ease-in-out infinite alternate}
+@keyframes flameWaver{to{transform:translateX(-50%) scale(.9,1.14) rotate(4deg)}}
+#cakeBox .cd.out .flame{display:none}
+#cakeBox .cd.out{pointer-events:none}
+#cakeW .cshadow{display:none}
+#bar{bottom:0;gap:8px;max-height:30vh;overflow:auto;background:rgba(21,21,52,.72)}
+#bar .row:first-child{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+#bar input{width:min(320px,65vw)}
+#open{top:46%;z-index:20;max-width:92vw;white-space:normal}
+.fly{width:min(180px,38vw);bottom:12%;z-index:14}
+.fly .wish-ink{font-size:clamp(12px,3vw,16px);text-shadow:0 1px 0 rgba(255,255,255,.35);white-space:normal;max-height:48%;display:flex;align-items:center;justify-content:center}
+#bar .row:nth-child(2){display:none;flex-wrap:wrap}
+@media(max-width:600px){
+ #cakeW{width:min(360px,88vw);bottom:calc(2% + 48px)}
+ #cakeBox{height:min(43dvh,340px)}
+ #cakeSay{font-size:15px;padding:6px 10px}
+ #bar{max-height:35vh;padding:6px 6px calc(10px + env(safe-area-inset-bottom))}
+ #bar .row:first-child{gap:5px}
+ #bar input{width:min(270px,60vw);font-size:16px}
+ #open{top:48%}
+}
+
+/* Matcha pastry counter: keep the selection shelf above the clear serving area. */
+#mstage .pastry-stage{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;}
+#mstage #shelf{width:100%;max-height:30vh;min-height:0;overflow:auto;box-sizing:border-box;border-bottom:0;padding:4px 8px 10px;}
+#mstage #plt{width:min(280px,72vw);height:132px;margin:2px auto 8px;flex:none;}
+#mstage #plt .pl{width:100%;height:100%;object-fit:contain;}
+#mstage #plt .pa{left:50%;bottom:34%;height:54%;max-width:56%;width:auto;object-fit:contain;object-position:center bottom;transform:translateX(-50%);filter:drop-shadow(0 3px 2px rgba(107,74,69,.22));z-index:2;}
+@media(max-width:600px){#mstage .pastry-stage{gap:6px}#mstage #shelf{max-height:27vh}#mstage #plt{height:116px;width:min(250px,72vw)}}
+/* Candle tap targets sit over the cake's own printed candles; no replacement candles are drawn. */
+#cakeBox .cd{width:9%;height:13%;top:0!important;}
+#cakeBox .cd:nth-of-type(1){left:28.5%!important}
+#cakeBox .cd:nth-of-type(2){left:42.1%!important}
+#cakeBox .cd:nth-of-type(3){left:53.1%!important}
+#cakeBox .cd:nth-of-type(4){left:62.8%!important}
+#cakeBox .cd .flame{display:none!important}
+#cakeBox .cd.out::after{content:"";position:absolute;left:2%;top:-28%;width:96%;height:72%;border-radius:50%;background:rgba(250,244,225,.97);box-shadow:0 0 5px rgba(250,244,225,.75);}
+#cakeBox .cd .smoke{position:absolute;left:50%;top:-55%;width:18px;height:24px;border-radius:50%;border-left:3px solid rgba(255,255,255,.8);border-right:2px solid rgba(220,220,220,.65);filter:blur(1px);animation:smokeUp 1.3s ease-out forwards;pointer-events:none;z-index:3}
+@keyframes smokeUp{to{transform:translate(-8px,-28px) scale(1.5);opacity:0}}
+/* Persistent app ownership notice. */
+#appCopyright{position:fixed;left:0;right:0;bottom:3px;z-index:1000;text-align:center;font:12px/1.2 system-ui,sans-serif;letter-spacing:.04em;color:rgba(255,255,255,.82);text-shadow:0 1px 3px rgba(0,0,0,.65);pointer-events:none;padding:2px 6px}
+
 </style></head><body>
-<button id="snd">Sound: on</button>
+<button id="snd">Sound: on</button><div id="appCopyright">© 2026 Fonda I. Santoso. All rights reserved.</div>
 <div id="scene1" class="scene active"><div id="bubble" class="sketch">Tap the door to knock.</div>
 <div id="houseWrap"><img src="images/shannon-house.png" alt=""><div id="door"></div></div></div>
 <div id="scene2" class="scene"><div class="stage" id="prev"></div>
@@ -164,13 +270,257 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 <img class="bld" id="b-fonda" src="images/blue-house.png" style="left:2600px" alt="">
 <img id="stairs" src="images/stair-ladder.png" alt=""><div id="ground"></div><button id="interact">Enter</button><div id="pc"></div></div>
 <div id="hud"><button id="bL">&lt;</button><button id="bR">&gt;</button></div></div>
-<div id="scene4" class="scene"><div id="nightArt"></div><div id="glow"></div><div id="lights"></div><img id="blanket" src="images/m/blanket.png" alt=""><button id="mtog">Music: on</button><div id="rc"></div><div id="cakeW"><div id="cakeSay" class="sketch">Make a wish, then tap each candle (and the sparkler) to blow it out.</div><div id="cakeBox"><div class="cshadow"></div><div id="cakeSprite"></div><div class="cglow"></div><button class="cd" style="left:33%;top:27%" aria-label="candle"><img class="c" src="images/m/candle.png" alt=""><img class="fl" src="images/m/flame.png" alt=""></button><button class="cd" style="left:62%;top:27%" aria-label="candle"><img class="c" src="images/m/candle.png" alt=""><img class="fl" src="images/m/flame.png" alt=""></button><button class="cd spk" aria-label="sparkler"></button></div></div><button id="open">Open the letter</button>
+<div id="scene4" class="scene"><img id="lanternBackdrop" src="images/env/lantern-bg.jpg" alt="" aria-hidden="true"><div id="nightArt"></div><div id="skyDoodle" aria-hidden="true"></div><div id="lanternSky" aria-hidden="true"></div><div id="glow"></div><div id="lights"></div><img id="blanket" src="images/m/blanket.png" alt=""><button id="mtog">Music: on</button><div id="rc"></div><div id="cakeW"><div id="cakeSay" class="sketch">Your birthday cake is here! Tap all four candles to blow them out, then make a wish.</div><div id="cakeBox"><div class="cshadow"></div><img id="birthdayCakeImg" src="images/m/birthday-cake-upload.png" alt="A strawberry birthday cake on a blue stand"><div class="cglow"></div><button class="cd" aria-label="Blow out candle 1"></button><button class="cd" aria-label="Blow out candle 2"></button><button class="cd" aria-label="Blow out candle 3"></button><button class="cd" aria-label="Blow out candle 4"></button></div></div><button id="open">Open birthday letter</button>
 <button id="gram" aria-label="Play voice memo"><img src="images/gramophone.png" alt="Gramophone"><svg id="gnotes" class="music-notes" viewBox="0 0 100 100" aria-hidden="true"><g class="note" fill="#e85d78"><path d="M24.5 43.8 L24.5 35.8 L29.1 34.3 L29.1 35.5 L25.8 36.2 L25.8 43.2 Q25.8 45.1 23.7 45.6 Q21.8 46 21.8 44.6 Q21.8 43.2 24.5 43.8Z"/></g><g class="note" fill="#f1a83d"><path d="M17.6 38.6 L17.6 31.5 L22.1 30 L22.1 31.2 L18.9 31.9 L18.9 38 Q18.9 39.8 16.8 40.3 Q14.9 40.7 14.9 39.3 Q14.9 37.9 17.6 38.6Z"/></g><g class="note" fill="#79bfa7"><path d="M31.4 46.1 L31.4 39.2 L35.8 37.7 L35.8 38.9 L32.7 39.6 L32.7 45.5 Q32.7 47.3 30.6 47.8 Q28.7 48.2 28.7 46.8 Q28.7 45.4 31.4 46.1Z"/></g></svg><span id="gsay" class="sketch">A voice memo for you. Tap to play!</span></button><audio id="voice" preload="auto" src="audio/voice_memo.m4a"></audio>
-<div id="scrollW"><div class="letterCard" id="paper"><div id="letter"></div></div></div>
+<div id="scrollW"><!-- Embroidered birthday card for Shannon (portrait). Paste wherever the game ending appears.
+     Tap the card to open it, tap again while it sews to skip ahead, or call window.openStitchCard().
+     Self-contained; all textures are generated procedurally. Sewing speed: change SPEED below. -->
+<div class="sc-wrap">
+  <div class="sc-card" tabindex="0" role="button" aria-label="Open the birthday card">
+    <canvas class="sc-in" width="900" height="1400"></canvas>
+    <canvas class="sc-cover" width="900" height="1400"></canvas>
+  </div>
+  <p class="sc-hint">tap the card to open</p>
+</div>
+
+<style>
+  .sc-wrap { width: min(100%, 520px); margin: 0 auto; perspective: 2000px; }
+  .sc-card { position: relative; aspect-ratio: 9 / 14; cursor: pointer; outline: none; filter: drop-shadow(0 10px 18px rgba(90,40,60,.35)); }
+  .sc-card:focus-visible { outline: 3px solid #9d8fd3; outline-offset: 6px; }
+  .sc-card canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 6px; }
+  .sc-cover { transform-origin: left center; transition: transform 1.6s cubic-bezier(.55,0,.25,1), opacity .5s ease 1.3s; }
+  .sc-card.open .sc-cover { transform: rotateY(-178deg); opacity: 0; pointer-events: none; }
+  .sc-hint { text-align: center; font: 15px/1.4 'Patrick Hand','Segoe Print',system-ui,sans-serif; opacity: .65; margin: 12px 0 0; }
+</style>
+
+<script>
+(function () {
+  var W = 900, H = 1400, SPEED = 1; // SPEED: 0.5 = twice as slow, 2 = twice as fast
+  var wrap = document.querySelector('.sc-wrap'), card = wrap.querySelector('.sc-card'), hint = wrap.querySelector('.sc-hint');
+  var main = wrap.querySelector('.sc-in').getContext('2d'), cover = wrap.querySelector('.sc-cover').getContext('2d');
+  var seed = 7, R = function () { return (seed = seed * 16807 % 2147483647) / 2147483647; };
+  var ease = function (t) { return t * t * (3 - 2 * t); }, lerp = function (a, b, t) { return a + (b - a) * t; };
+  function mk(w, h) { var c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
+  function line(c, a, b, d, e) { c.beginPath(); c.moveTo(a, b); c.lineTo(d, e); c.stroke(); }
+
+  /* ---------- procedural linen ---------- */
+  function linen(w, h, base, wr, mask) {
+    var cv = mk(w, h), c = cv.getContext('2d'), id = c.createImageData(w, h), d = id.data, i, x, y, cvv = [], rvv = [], a = 0, b = 0;
+    for (i = 0; i < w; i++) { a = a * .8 + (R() - .5) * .07; cvv.push(a); }
+    for (i = 0; i < h; i++) { b = b * .8 + (R() - .5) * .07; rvv.push(b); }
+    for (y = 0; y < h; y++) for (x = 0; x < w; x++) {
+      var hz = ((x / 4 | 0) + (y / 4 | 0)) & 1, sh = Math.sin((hz ? y % 4 : x % 4) / 4 * Math.PI);
+      var v = 1 + (sh - .6) * .16 + cvv[x] * (hz ? .4 : 1) + rvv[y] * (hz ? 1 : .4) + (R() - .5) * .05, al = 255;
+      if (wr) v *= 1 + wr * Math.sin(y * .05 + Math.sin(x * .006) * 4) * Math.sin(x * .004 + 1);
+      if (mask) { var m = mask(x, y); if (m < 0) al = 0; else if (m < 9) v *= .86 + .14 * m / 9; }
+      var o = (y * w + x) * 4; d[o] = base[0] * v; d[o + 1] = base[1] * v; d[o + 2] = base[2] * v; d[o + 3] = al;
+    }
+    c.putImageData(id, 0, 0); return cv;
+  }
+  var base = mk(W, H), bc = base.getContext('2d');
+  bc.drawImage(linen(W, H, [226, 191, 200], .02), 0, 0);
+  var PX = 50, PY = 60, PW = 800, PH = 1280, M = 40, jt = [], jb = [], jl = [], jr = [], k;
+  for (k = 0; k < PW + 2 * M; k++) { jt.push(R() * 5); jb.push(R() * 5); }
+  for (k = 0; k < PH + 2 * M; k++) { jl.push(R() * 5); jr.push(R() * 5); }
+  var patch = linen(PW + 2 * M, PH + 2 * M, [248, 245, 236], .03, function (x, y) {
+    return Math.min(y - M - jt[x], M + PH - jb[x] - y, x - M - jl[y], M + PW - jr[y] - x);
+  });
+  var pc = patch.getContext('2d'); pc.strokeStyle = 'rgba(250,247,240,.75)'; pc.lineWidth = 1;
+  for (k = 0; k < 1100; k++) {
+    var e = R() * 4 | 0, t = R(), L = 3 + R() * 12, px, py, dx = 0, dy = 0;
+    if (e < 2) { px = M + t * PW; py = e ? M + PH : M; dy = e ? 1 : -1; } else { py = M + t * PH; px = e == 2 ? M : M + PW; dx = e == 2 ? -1 : 1; }
+    pc.beginPath(); pc.moveTo(px, py); pc.lineTo(px + dx * L + (R() - .5) * 4, py + dy * L + (R() - .5) * 4); pc.stroke();
+  }
+  bc.save(); bc.shadowColor = 'rgba(95,45,65,.4)'; bc.shadowBlur = 22; bc.shadowOffsetY = 8; bc.drawImage(patch, PX - M, PY - M); bc.restore();
+
+  /* ---------- running-stitch thread, seed beads, daisy pearls ---------- */
+  function thread(c, x1, y1, x2, y2, col, w) {
+    var dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, nx = -uy, ny = ux;
+    c.lineCap = 'round'; c.fillStyle = 'rgba(50,30,50,.4)';
+    c.beginPath(); c.arc(x1, y1, w * .5, 0, 7); c.arc(x2, y2, w * .5, 0, 7); c.fill();
+    c.strokeStyle = 'rgba(60,35,55,.34)'; c.lineWidth = w * 1.1; line(c, x1 + 1.5, y1 + 2.4, x2 + 1.5, y2 + 2.4);
+    c.strokeStyle = col; c.lineWidth = w; line(c, x1, y1, x2, y2);
+    c.strokeStyle = 'rgba(30,20,70,.3)'; c.lineWidth = 1;
+    for (var t = 1.5; t < L - 1; t += 2.4) { var px = x1 + ux * t, py = y1 + uy * t; line(c, px + nx * w * .45 - ux, py + ny * w * .45 - uy, px - nx * w * .45 + ux, py - ny * w * .45 + uy); }
+    c.strokeStyle = 'rgba(255,255,255,.5)'; c.lineWidth = w * .26; line(c, x1 - nx * w * .2, y1 - ny * w * .2, x2 - nx * w * .2, y2 - ny * w * .2);
+  }
+  function bead(c, x, y, r, c1, c2, ang) {
+    c.save(); c.translate(x, y); c.rotate(ang || 0); c.scale(1.4, .82);
+    c.fillStyle = 'rgba(50,30,45,.32)'; c.beginPath(); c.ellipse(r * .3, r * .5, r, r * .9, 0, 0, 7); c.fill();
+    var g = c.createRadialGradient(-r * .35, -r * .4, r * .08, 0, 0, r * 1.05); g.addColorStop(0, '#fff'); g.addColorStop(.35, c1); g.addColorStop(1, c2);
+    c.fillStyle = g; c.beginPath(); c.arc(0, 0, r, 0, 7); c.fill(); c.strokeStyle = 'rgba(0,0,0,.14)'; c.lineWidth = 1; c.stroke();
+    c.fillStyle = 'rgba(40,25,60,.55)'; c.beginPath(); c.ellipse(0, 0, r * .22, r * .3, 0, 0, 7); c.fill();
+    c.fillStyle = 'rgba(255,255,255,.9)'; c.beginPath(); c.ellipse(-r * .36, -r * .4, r * .22, r * .12, -.6, 0, 7); c.fill(); c.restore();
+  }
+  function pearl(c, x, y, r) { // scalloped daisy pearl, like the stitched-pearl sample
+    c.save(); c.translate(x, y);
+    c.fillStyle = 'rgba(80,40,45,.3)'; c.beginPath(); c.arc(1.2, 1.8, r * 1.02, 0, 7); c.fill();
+    var g = c.createRadialGradient(-r * .3, -r * .35, r * .1, 0, 0, r * 1.1); g.addColorStop(0, '#fff7f3'); g.addColorStop(.5, '#efc9c0'); g.addColorStop(1, '#c98f86');
+    c.fillStyle = g; c.beginPath(); c.arc(0, 0, r, 0, 7); c.fill();
+    c.strokeStyle = 'rgba(140,80,78,.4)'; c.lineWidth = .9;
+    for (var i = 0; i < 10; i++) { var a = i * .6283 + .2; line(c, Math.cos(a) * r * .38, Math.sin(a) * r * .38, Math.cos(a) * r * .97, Math.sin(a) * r * .97); }
+    c.beginPath(); c.arc(0, 0, r, 0, 7); c.stroke();
+    c.fillStyle = 'rgba(255,255,255,.7)'; c.beginPath(); c.arc(-r * .12, -r * .15, r * .26, 0, 7); c.fill();
+    c.fillStyle = 'rgba(255,255,255,.9)'; c.beginPath(); c.ellipse(-r * .45, -r * .5, r * .2, r * .1, -.7, 0, 7); c.fill(); c.restore();
+  }
+
+  /* ---------- cross stitches: all "/" legs along a row, then all "\\" legs back ---------- */
+  var HEART = ['.XX.XX.', 'XXXXXXX', 'XXXXXXX', '.XXXXX.', '..XXX..', '...X...'];
+  function crossStitches(pat, cx, cy, cell, fn) {
+    var w = pat[0].length, x0 = cx - w * cell / 2, y0 = cy - pat.length * cell / 2;
+    pat.forEach(function (row, r) {
+      var cs = [], y = y0 + r * cell; for (var c = 0; c < w; c++) if (row[c] == 'X') cs.push(c);
+      cs.forEach(function (c) { var x = x0 + c * cell; fn(x + cell * .1, y + cell * .9, x + cell * .9, y + cell * .1); });
+      cs.slice().reverse().forEach(function (c) { var x = x0 + c * cell; fn(x + cell * .1, y + cell * .1, x + cell * .9, y + cell * .9); });
+    });
+  }
+  function needle(c, tx, ty) {
+    var ca = .62, sa = -.78, len = 170, ex = tx + ca * len, ey = ty + sa * len, nx = -sa, ny = ca, AX = W + 80, AY = H + 100;
+    c.save(); c.lineCap = 'round';
+    c.beginPath(); c.moveTo(ex, ey); c.quadraticCurveTo((ex + AX) / 2 + 30, Math.max(ey, AY) * .8 + 40, AX, AY);
+    c.strokeStyle = 'rgba(60,35,55,.28)'; c.lineWidth = 4; c.save(); c.translate(3, 5); c.stroke(); c.restore();
+    c.strokeStyle = '#9d8fd3'; c.lineWidth = 3.4; c.stroke(); c.strokeStyle = 'rgba(255,255,255,.5)'; c.lineWidth = 1; c.stroke();
+    c.shadowColor = 'rgba(50,30,45,.4)'; c.shadowBlur = 6; c.shadowOffsetX = 4; c.shadowOffsetY = 8;
+    var g = c.createLinearGradient(tx, ty, ex, ey); g.addColorStop(0, '#9a9aa6'); g.addColorStop(.5, '#f4f4f8'); g.addColorStop(1, '#b3b3bd');
+    c.fillStyle = g; c.beginPath(); c.moveTo(tx, ty); c.lineTo(ex + nx * 3.6, ey + ny * 3.6); c.lineTo(ex - nx * 3.6, ey - ny * 3.6); c.closePath(); c.fill();
+    c.shadowColor = 'transparent'; c.fillStyle = 'rgba(70,50,90,.85)'; c.beginPath(); c.ellipse(ex - ca * 14, ey - sa * 14, 2.2, 8, Math.atan2(ca, -sa), 0, 7); c.fill(); c.restore();
+  }
+
+  /* ---------- single-stroke alphabet (x,y in tenths; y: 0 top, 5 x-height, 10 baseline, 15 descender) ---------- */
+  var GD = {
+    a: '5|5,6 3,5 1,6 1,9 3,10 5,9|5,5 5,10', b: '5|1,0 1,10|1,6 3,5 5,6 5,9 3,10 1,9', c: '5|5,6 3,5 1,6 1,9 3,10 5,9', d: '5|5,0 5,10|5,6 3,5 1,6 1,9 3,10 5,9',
+    e: '5|1,7 5,7 5,6 3,5 1,6 1,9 3,10 5,9', f: '4|4,1 3,0 2,1 2,10|0,5 4,5', g: '5|5,5 5,13 4,15 1,15|5,6 3,5 1,6 1,9 3,10 5,9', h: '5|1,0 1,10|1,6 3,5 5,6 5,10',
+    i: '2|1,5 1,10|1,2 1,3', j: '3|2,5 2,13 1,15 0,14|2,2 2,3', k: '5|1,0 1,10|5,5 1,8|2,7 5,10', l: '2|1,0 1,10', m: '8|1,5 1,10|1,6 3,5 4,6 4,10|4,6 6,5 8,6 8,10',
+    n: '5|1,5 1,10|1,6 3,5 5,6 5,10', o: '5|3,5 1,6 1,9 3,10 5,9 5,6 3,5', p: '5|1,5 1,15|1,6 3,5 5,6 5,9 3,10 1,9', r: '4|1,5 1,10|1,7 2,5 4,5',
+    s: '5|5,6 3,5 1,6 1,7 5,8 5,9 3,10 1,9', t: '4|2,1 2,10|0,5 4,5', u: '5|1,5 1,9 3,10 5,9|5,5 5,10', v: '6|0,5 3,10 6,5', w: '8|0,5 2,10 4,6 6,10 8,5',
+    y: '5|0,5 3,10 5,5|3,10 1,15', z: '5|0,5 5,5 0,10 5,10', I: '3|1,0 1,10|0,0 2,0|0,10 2,10', G: '7|7,2 5,0 2,0 0,2 0,8 2,10 5,10 7,8 7,5 4,5',
+    T: '6|0,0 6,0|3,0 3,10', P: '6|1,0 1,10|1,0 4,0 6,2 5,4 1,5', H: '7|1,0 1,10|6,0 6,10|1,5 6,5', B: '6|1,0 1,10|1,0 4,0 5,1 4,4 1,5|4,5 6,7 5,9 4,10 1,10',
+    L: '5|1,0 1,10 5,10', F: '5|1,0 1,10|1,0 5,0|1,5 4,5', S: '7|6,1 4,0 2,0 0,1 1,4 5,5 6,7 5,9 3,10 0,9', K: '6|1,0 1,10|6,0 1,6|3,5 6,10',
+    "'": '2|1,0 1,3', ',': '2|1,9 0,12', '.': '2|1,9 1,10', '-': '4|0,6 4,6', '!': '2|1,0 1,7|1,9 1,10', ' ': '2'
+  }, GP = {};
+  Object.keys(GD).forEach(function (ch) { var p = GD[ch].split('|'); GP[ch] = { w: +p[0], s: p.slice(1).map(function (s) { return s.split(' ').map(function (q) { return q.split(',').map(Number); }); }) }; });
+  function path(p) {
+    var cum = [0], tot = 0, i; for (i = 1; i < p.length; i++) { tot += Math.hypot(p[i][0] - p[i - 1][0], p[i][1] - p[i - 1][1]); cum.push(tot); }
+    return { tot: tot, at: function (d) { d = Math.min(d, tot); var j = 1; while (j < cum.length - 1 && cum[j] < d) j++; var t = (d - cum[j - 1]) / ((cum[j] - cum[j - 1]) || 1); return [lerp(p[j - 1][0], p[j][0], t), lerp(p[j - 1][1], p[j][1], t)]; } };
+  }
+  function runs(p, L, G) {
+    var q = path(p), tot = q.tot, seg = [], i; if (tot < L * 1.3) return [[p[0][0], p[0][1], p[p.length - 1][0], p[p.length - 1][1]]];
+    var n = Math.max(1, Math.round((tot + G) / (L + G))), sl = (tot - (n - 1) * G) / n;
+    for (i = 0; i < n; i++) { var a = q.at(i * (sl + G)), b = q.at(i * (sl + G) + sl); seg.push([a[0], a[1], b[0], b[1]]); }
+    return seg;
+  }
+  function smooth(p, n) { while (n--) { var o = [p[0]]; for (var i = 0; i < p.length - 1; i++) { var a = p[i], b = p[i + 1]; o.push([.75 * a[0] + .25 * b[0], .75 * a[1] + .25 * b[1]], [.25 * a[0] + .75 * b[0], .25 * a[1] + .75 * b[1]]); } o.push(p[p.length - 1]); p = o; } return p; }
+  function wlen(t, S, adv) { var n = 0; t.split('').forEach(function (c) { n += (GP[c].w + adv) / 10 * S; }); return n; }
+  function wrapText(txt, S, maxW, adv) {
+    var lines = [], cur = ''; txt.split(' ').forEach(function (w) { var t = cur ? cur + ' ' + w : w; if (wlen(t, S, adv) > maxW && cur) { lines.push(cur); cur = w; } else cur = t; });
+    lines.push(cur); return lines;
+  }
+
+  /* ---------- the sewing timeline ---------- */
+  var ops, cur, LAV = '#9d8fd3', ROSE = '#dc7f9f';
+  function addOp(o) { o.from = cur; cur = o.end || cur; var q = o.a || o.p, dist = Math.hypot(q[0] - o.from[0], q[1] - o.from[1]); o.d = ((o.db || 260) + Math.min(dist, 320) * (o.t == 's' ? .12 : .4)) / SPEED; ops.push(o); }
+  function addStitch(s, col, w, db) { addOp({ t: 's', a: [s[0], s[1]], b: [s[2], s[3]], col: col, w: w, db: db, end: [s[2], s[3]] }); }
+  function sewText(txt, x, base, S, col) {
+    txt.split('').forEach(function (ch) {
+      GP[ch].s.forEach(function (st) {
+        var pts = st.map(function (q) { return [x + q[0] / 10 * S + (R() - .5) * 3, base - S + q[1] / 10 * S + (R() - .5) * 3]; });
+        runs(pts, 15, 6).forEach(function (s) { addStitch(s, col, 3.6, 55); });
+      }); x += (GP[ch].w + 1.8) / 10 * S;
+    });
+  }
+  function build() {
+    ops = []; cur = [900, 1300]; seed = 11; var i, j;
+    var bp = [[76, 86], [824, 86], [824, 1314], [76, 1314], [76, 86]];
+    for (i = 0; i < 4; i++) runs([bp[i], bp[i + 1]], 24, 15).forEach(function (s) { addStitch(s, '#cf9bb0', 3.4, 22); });
+    [[102, 112], [798, 112], [102, 1288], [798, 1288]].forEach(function (b, n) { addOp({ t: 'b', p: b, r: 9, c1: n % 2 ? '#ffd9e5' : '#e8dcff', c2: n % 2 ? '#d6779a' : '#8f7fd0', ang: n, end: b, db: 200 }); });
+    sewText('Shannon T.K,', 80, 170, 44, LAV);
+    wrapText("It's crazy to think our friendship started from chatting on IG just because you knew my sister. Thank you for always picking me up and driving me home - Passenger princess appreciates it.", 36, 740, 1.8).forEach(function (l, n) { sewText(l, 80, 280 + n * 58, 36, LAV); });
+    // "Happy Birthday!" in stitched pearls
+    var x = 90, S = 58;
+    'Happy Birthday!'.split('').forEach(function (ch) {
+      GP[ch].s.forEach(function (st) {
+        var pts = smooth(st.map(function (q) { return [x + (q[0] / 10 + (10 - q[1]) / 10 * .3) * S, 790 - S + q[1] / 10 * S]; }), 2), q = path(pts), n = Math.max(1, Math.round(q.tot / 12));
+        for (j = 0; j <= n; j++) { var p = q.at(q.tot * j / n); addOp({ t: 'p', p: p, r: 6.3, end: p, db: 80 }); }
+      }); x += (GP[ch].w + 1.7) / 10 * S;
+    });
+    wrapText("I hope everything you've ever wished for comes true this year - you truly deserve all the happiness in the world.", 36, 740, 1.8).forEach(function (l, n) { sewText(l, 80, 920 + n * 58, 36, LAV); });
+    sewText('Love always,', 80, 1190, 40, LAV); sewText('Fonda', 80, 1252, 40, LAV);
+    // satin heart
+    var hp = [], cx = 300, cy = 1232, sc = 2.5, t;
+    for (t = 0; t < 6.2832; t += .08) hp.push([cx + 16 * Math.pow(Math.sin(t), 3) * sc, cy - (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * sc]);
+    for (var X = cx - 41; X < cx + 41; X += 3.2) {
+      var ys = []; for (i = 0; i < hp.length; i++) { var p1 = hp[i], p2 = hp[(i + 1) % hp.length]; if ((p1[0] <= X) != (p2[0] <= X)) ys.push(lerp(p1[1], p2[1], (X - p1[0]) / (p2[0] - p1[0]))); }
+      ys.sort(function (a, b) { return a - b; });
+      for (j = 0; j + 1 < ys.length; j += 2) addStitch([X - 2, ys[j], X + 2, ys[j + 1]], ROSE, 3.8, 45);
+    }
+    // cross-stitched hearts
+    [[690, 1200, 20, ROSE, 4.6], [560, 1195, 9, LAV, 3.4], [790, 1160, 8, LAV, 3.2]].forEach(function (h) {
+      crossStitches(HEART, h[0], h[1], h[2], function (x1, y1, x2, y2) { addStitch([x1, y1, x2, y2], h[3], h[4], 55); });
+    });
+    addOp({ t: 'x', p: [W + 120, H + 160], end: [W + 120, H + 160], db: 1000 });
+  }
+
+  /* ---------- player ---------- */
+  var sl = mk(W, H), sc2 = sl.getContext('2d'), idx = 0, el = 0, lastT = 0, tip = [W, H], playing = false, done = false, opened = false;
+  function commit(o) {
+    if (o.t == 's') thread(sc2, o.a[0], o.a[1], o.b[0], o.b[1], o.col, o.w);
+    else if (o.t == 'b') bead(sc2, o.p[0], o.p[1], o.r, o.c1, o.c2, o.ang);
+    else if (o.t == 'p') pearl(sc2, o.p[0], o.p[1], o.r);
+  }
+  function drawFrame() {
+    main.clearRect(0, 0, W, H); main.drawImage(base, 0, 0); main.drawImage(sl, 0, 0);
+    var o = ops[idx]; if (!o) return;
+    var u = el / o.d, s = .4, mv = u < s ? ease(u / s) : 1, p = o.t == 's' ? o.a : o.p, q = (u - s) / (1 - s);
+    tip = [lerp(o.from[0], p[0], mv), lerp(o.from[1], p[1], mv) - (u < s ? Math.sin(mv * Math.PI) * 14 : 0)];
+    if (o.t == 's' && u >= s) { tip = [lerp(o.a[0], o.b[0], q), lerp(o.a[1], o.b[1], q)]; thread(main, o.a[0], o.a[1], tip[0], tip[1], o.col, o.w); }
+    if ((o.t == 'b' || o.t == 'p') && u >= s) {
+      var dy = -50 * (1 - ease(q)); main.globalAlpha = Math.min(1, q * 3);
+      if (o.t == 'p') pearl(main, o.p[0], o.p[1] + dy, o.r); else bead(main, o.p[0], o.p[1] + dy, o.r, o.c1, o.c2, o.ang);
+      main.globalAlpha = 1; tip = [o.p[0], o.p[1] + dy - 6];
+    }
+    needle(main, tip[0], tip[1]);
+  }
+  function tick(now) {
+    var dt = Math.min(now - lastT, 50); lastT = now; el += dt;
+    while (idx < ops.length && el >= ops[idx].d) { commit(ops[idx]); el -= ops[idx].d; idx++; }
+    if (!playing) return;
+    if (idx < ops.length) { drawFrame(); requestAnimationFrame(tick); } else { drawFrame(); finish(); }
+  }
+  function finish() { done = true; playing = false; hint.textContent = 'tap to watch it again'; }
+  function skip() { for (; idx < ops.length; idx++) commit(ops[idx]); drawFrame(); finish(); }
+  function play() {
+    build(); sc2.clearRect(0, 0, W, H); idx = 0; el = 0; done = false; playing = true; hint.textContent = 'tap to skip the sewing';
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { skip(); return; }
+    lastT = performance.now(); requestAnimationFrame(tick);
+  }
+
+  /* ---------- cover: stitched linen with a satin bow ---------- */
+  cover.drawImage(linen(W, H, [221, 170, 188], .02), 0, 0);
+  var vg = cover.createLinearGradient(0, 0, W, 0); vg.addColorStop(0, 'rgba(0,0,0,.14)'); vg.addColorStop(.06, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(255,255,255,.06)');
+  cover.fillStyle = vg; cover.fillRect(0, 0, W, H);
+  var cb = [[60, 60], [840, 60], [840, 1340], [60, 1340], [60, 60]];
+  for (var ci = 0; ci < 4; ci++) runs([cb[ci], cb[ci + 1]], 26, 16).forEach(function (s) { thread(cover, s[0], s[1], s[2], s[3], '#f4e9ee', 4); });
+  [[450, 690, 34, '#f6ece6', 6.4], [300, 500, 14, '#b3a5e0', 4.4], [600, 880, 14, '#b3a5e0', 4.4]].forEach(function (h) {
+    crossStitches(HEART, h[0], h[1], h[2], function (x1, y1, x2, y2) { thread(cover, x1, y1, x2, y2, h[3], h[4]); });
+  });
+  main.drawImage(base, 0, 0);
+
+  function open() {
+    if (playing) { skip(); return; }
+    if (done) { play(); return; }
+    if (opened) return;
+    opened = true; card.classList.add('open'); hint.textContent = ''; setTimeout(play, 1200);
+  }
+  card.addEventListener('click', open);
+  card.addEventListener('keydown', function (e) { if (e.key == 'Enter' || e.key == ' ') { e.preventDefault(); open(); } });
+  window.openStitchCard = open;
+})();
+</script>
+</div>
 <div id="bar"><div class="row" style="margin:0"><input id="wish" placeholder="Type a birthday wish" maxlength="80"><button id="lan">Release lantern</button></div>
 <div class="row" style="margin:0"><button id="shA">Share my whole day</button><button id="shC">Share my character</button><button id="shW">Share wishes card</button></div><div id="msg" style="color:#fff;font-size:16px"></div></div></div>
-<div class="modal" id="mBooth"><div id="bpanel"><div id="btitle">Shannon's Photo Booth</div><div id="bmain"><div id="bview"><canvas id="bcv" width="700" height="600"></canvas><video id="bvid" playsinline muted style="display:none"></video><div id="bcount"></div><div id="bflash"></div></div><div id="bstrip"><img src="images/booth/strip.png" alt=""><div class="bslot" style="left:9.4%;top:6.6%;width:79.5%;height:21%"></div><div class="bslot" style="left:8.4%;top:28.6%;width:81.7%;height:21.6%"></div><div class="bslot" style="left:7.8%;top:51.3%;width:82.2%;height:20.9%"></div></div></div><div id="bnote"></div><div class="bbtns"><button id="bShoot">Take photo</button><button id="bPose">Change pose</button><button id="bCam">Use my camera</button><button id="bRetake">Retake all</button></div><div class="bbtns"><button id="bSave" disabled>Save strip</button><button id="bShare" disabled>Share strip</button><button data-x>Back to the street</button></div></div></div>
-<div class="modal" id="mTennis"><div class="card sketch" id="tcard"><h2>Tennis Court</h2><div id="ttalk" class="sketch"></div><div id="tlock" class="lock"></div><div id="tstage" style="display:none"><canvas id="tcv" width="840" height="600"></canvas></div><div id="thud" class="row"><span class="sketch" id="tsc">Rally: 0</span><span class="sketch" id="tbs">Best: 0</span></div><div class="row"><button id="tgo">Change into tennis gear</button><button data-x>Back to the street</button></div></div></div>
+<div class="modal" id="mBooth"><div id="bpanel"><div id="btitle">Shannon's Photo Booth</div><div id="bmain"><div id="bview"><canvas id="bcv" width="700" height="600"></canvas><video id="bvid" playsinline muted style="display:none"></video><div id="bcount"></div><div id="bflash"></div></div><div id="bstrip"><img src="images/booth/strip.png" alt=""><div id="bdecor"></div><div class="bslot" style="left:9.4%;top:6.6%;width:79.5%;height:21%"></div><div class="bslot" style="left:8.4%;top:28.6%;width:81.7%;height:21.6%"></div><div class="bslot" style="left:7.8%;top:51.3%;width:82.2%;height:20.9%"></div></div></div><div id="bnote"></div><div id="bstickerTools"><button data-sticker="heart" aria-label="Add heart">♡</button><button data-sticker="star" aria-label="Add star">☆</button><button data-sticker="flower" aria-label="Add flower">✿</button><button data-sticker="spark" aria-label="Add sparkle">✧</button><button data-sticker="bow" aria-label="Add bow">🎀</button><input id="bwrite" maxlength="34" placeholder="Write a little note…"><button id="baddText">Add note</button><button id="bclearDecor">Clear doodles</button></div><div class="bbtns"><button id="bShoot">Take photo</button><button id="bPose">Change pose</button><button id="bCam">Use my camera</button><button id="bRetake">Retake all</button></div><div class="bbtns"><button id="bSave" disabled>Save strip</button><div id="bshareBtns"><button id="bShare" disabled>Share photo…</button><div id="bShareMenu" hidden><button data-bshare="email">Email</button><button data-bshare="instagram">Instagram</button><button data-bshare="whatsapp">WhatsApp</button></div></div><button data-x>Back to the street</button></div></div></div>
+<div class="modal" id="mTennis"><div class="card sketch" id="tcard"><h2>Tennis Court</h2><div id="ttalk" class="sketch"></div><div id="tlock" class="lock"></div><div id="tstage" style="display:none"><canvas id="tcv" width="840" height="600"></canvas></div><div id="tcontrols" style="display:none"><button id="tleft" aria-label="Move left">◀ Move</button><button id="tswingBtn">Hit!</button><button id="tright" aria-label="Move right">Move ▶</button></div><div id="thud" class="row"><span class="sketch" id="tsc">Rally: 0</span><span class="sketch" id="tbs">Best: 0</span></div><div class="row"><button id="tgo">Change into tennis gear</button><button data-x>Back to the street</button></div></div></div>
 <div class="modal" id="mMatcha"><div class="card sketch" id="mcard"><h2>Shannon's Birthday Matcha Lab</h2><div id="mprog"></div><div id="mtalk" class="sketch"></div><div id="mstage"></div><div class="row"><button id="mback">Back</button><button id="mnext">Next</button><button data-x>Leave shop</button></div></div></div>
 <div class="modal" id="mFonda"><div class="card sketch"><h2>Fonda's Place: Friendship Quiz</h2><div class="big" id="qq"></div><div class="row" id="qa"></div><div id="qf" class="big"></div><button data-x>Back to the street</button></div></div>
 <script>
@@ -263,81 +613,129 @@ $("#interact").onclick=enter;
 SFX.booth=function(){noise(.6,900,.8,.3,2600);[523,659,784,1047].forEach(function(f,i){tone(f,.4,"sine",.22,0,AC&&AC.currentTime+.14*i+.2)})};
 SFX.beep=function(){tone(880,.12,"square",.12)};SFX.shutter=function(){noise(.05,3200,.9,.8);tone(170,.07,"square",.18);noise(.08,1400,.9,.55)};
 SFX.print=function(){for(var i=0;i<8;i++)(function(i){setTimeout(function(){noise(.07,1100+i*70,1.2,.35)},i*95)})(i)};
-var BO={shots:[null,null,null],pose:0,target:-1,busy:0,cam:0,stream:null,run:0,t:0},BSL=[[.094,.066,.795,.21],[.084,.286,.817,.216],[.078,.513,.822,.209]];
+var BO={shots:[null,null,null],decor:[],pose:0,target:-1,busy:0,cam:0,stream:null,run:0,t:0},BSL=[[.094,.066,.795,.21],[.084,.286,.817,.216],[.078,.513,.822,.209]];
 var BBG=new Image();BBG.src="images/booth/bg.jpg";var BSI=new Image();BSI.src="images/booth/strip.png";
 function bposes(){var c=CHARS[G.outfit];return c.walk?c.walk.frames:[c.poses.standing.file]}
 var BCH=new Image();function bsetpose(){BCH=new Image();BCH.src=SH+bposes()[BO.pose%bposes().length]}
 function bnt(t){var e=$("#bnote");e.textContent=t;anim(e,"pop")}
 function bfull(){return BO.shots.every(Boolean)}
-function bslots(){$$("#bstrip .bslot").forEach(function(s,i){s.innerHTML=BO.shots[i]?'<img src="'+BO.shots[i]+'" alt="photo '+(i+1)+'">':'';s.classList.toggle("tgt",BO.target===i)})
- $("#bShoot").textContent=bfull()&&BO.target<0?"Strip is full":"Take photo";$("#bShoot").disabled=bfull()&&BO.target<0;$("#bSave").disabled=$("#bShare").disabled=!bfull();$("#bRetake").style.display=BO.shots.some(Boolean)?"inline-block":"none"}
+function inkIcon(name){var paths={heart:'M50 84 C18 60 14 34 34 26 C46 21 50 32 50 32 C62 17 83 24 85 40 C88 57 67 75 50 84Z',star:'M50 12 L59 39 L88 43 L66 60 L73 87 L50 71 L27 87 L34 60 L12 43 L41 39 Z',flower:'M50 24 C31 4 18 30 39 42 C13 39 12 62 38 58 C20 76 39 91 50 68 C61 91 80 76 62 58 C88 62 87 39 61 42 C82 30 69 4 50 24Z',spark:'M50 10 L55 43 L88 50 L55 57 L50 90 L45 57 L12 50 L45 43 Z',bow:'M48 50 C12 13 5 40 28 55 C10 75 31 91 48 55 M52 50 C88 13 95 40 72 55 C90 75 69 91 52 55 M50 45 L50 60'};var p=paths[name]||paths.heart;return '<svg viewBox="0 0 100 100" aria-hidden="true"><defs><filter id="dry"><feTurbulence type="fractalNoise" baseFrequency=".07" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter></defs><path d="'+p+'" fill="none" stroke="#9b5a6a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#dry)"/><path d="'+p+'" fill="none" stroke="#d58b91" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/></svg>'}
+function bdecorRender(){var layer=$('#bdecor');layer.innerHTML='';BO.decor.forEach(function(d,i){var el=document.createElement('div');el.className='bdec'+(d.type==='text'?' txt':'');el.style.left=d.x+'%';el.style.top=d.y+'%';el.style.transform='translate(-50%,-50%) rotate('+d.rot+'deg)';el.innerHTML=d.type==='text'?esc(d.text):inkIcon(d.type);el.dataset.index=i;el.onpointerdown=function(e){e.preventDefault();el.setPointerCapture(e.pointerId);var r=$('#bstrip').getBoundingClientRect(),sx=e.clientX,sy=e.clientY,ox=d.x,oy=d.y;el.onpointermove=function(ev){d.x=Math.max(3,Math.min(97,ox+(ev.clientX-sx)/r.width*100));d.y=Math.max(2,Math.min(98,oy+(ev.clientY-sy)/r.height*100));el.style.left=d.x+'%';el.style.top=d.y+'%'};el.onpointerup=el.onpointercancel=function(){el.onpointermove=null;bslots()}};layer.appendChild(el)})}
+function bslots(){$$('#bstrip .bslot').forEach(function(s,i){s.innerHTML=BO.shots[i]?'<img src="'+BO.shots[i]+'" alt="photo '+(i+1)+'">':'';s.classList.toggle('tgt',BO.target===i)});bdecorRender();$('#bShoot').textContent=bfull()&&BO.target<0?'Strip is full':'Take photo';$('#bShoot').disabled=bfull()&&BO.target<0;$('#bSave').disabled=!bfull();$('#bShare').disabled=!bfull();if(!bfull())$('#bShareMenu').hidden=true;$('#bRetake').style.display=BO.shots.some(Boolean)?'inline-block':'none'}
+function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function badd(type,text){BO.decor.push({type:type,text:text||'',x:48+Math.random()*6,y:30+Math.random()*35,rot:(Math.random()*18-9)});bslots();sfx('pop')}
 function bdrawBG(c,W,H){if(BBG.complete&&BBG.naturalWidth){var k=Math.max(W/BBG.naturalWidth,H/BBG.naturalHeight);c.drawImage(BBG,(W-BBG.naturalWidth*k)/2,(H-BBG.naturalHeight*k)/2,BBG.naturalWidth*k,BBG.naturalHeight*k)}else{c.fillStyle="#efdcc7";c.fillRect(0,0,W,H)}}
-function bloop(){if(!$("#mBooth").classList.contains("open")){BO.run=0;return}BO.t+=.016;var cv=$("#bcv"),c=cv.getContext("2d"),W=700,H=600;
- if(BO.cam&&BO.stream&&$("#bvid").videoWidth){var v=$("#bvid"),k=Math.max(W/v.videoWidth,H/v.videoHeight);c.save();c.translate(W,0);c.scale(-1,1);c.drawImage(v,(W-v.videoWidth*k)/2,(H-v.videoHeight*k)/2,v.videoWidth*k,v.videoHeight*k);c.restore()}
- else{bdrawBG(c,W,H);if(BCH.complete&&BCH.naturalWidth){var h=H*.9,w=BCH.naturalWidth*h/BCH.naturalHeight,b=Math.abs(Math.sin(BO.t*2.4))*5;c.fillStyle="rgba(80,40,40,.15)";c.beginPath();c.ellipse(W/2,H-14,w*.32,10,0,0,7);c.fill();c.drawImage(BCH,W/2-w/2,H-h-12-b,w,h)}}
+function bloop(){if(!$("#mBooth").classList.contains("open")){BO.run=0;return}BO.t+=.016;var cv=$("#bcv"),c=cv.getContext("2d"),W=cv.width,H=cv.height;
+ if(BO.cam&&BO.stream&&$("#bvid").videoWidth){var v=$("#bvid"),vw=v.videoWidth,vh=v.videoHeight,k=Math.max(W/vw,H/vh);c.save();c.translate(W,0);c.scale(-1,1);c.drawImage(v,(W-vw*k)/2,(H-vh*k)/2,vw*k,vh*k);c.restore()}
+ else{bdrawBG(c,W,H);c.fillStyle="#765b61";c.textAlign="center";c.font="28px Patrick Hand, cursive";c.fillText("Turn on your camera to take photos!",W/2,H/2)}
  requestAnimationFrame(bloop)}
 function bstart(){if(!BO.run){BO.run=1;requestAnimationFrame(bloop)}}
-function bshoot(){if(BO.busy||(bfull()&&BO.target<0))return;var i=BO.target>=0?BO.target:BO.shots.indexOf(null);BO.busy=1;var n=3,cd=$("#bcount");$("#bShoot").disabled=true;
- (function tick(){if(n>0){cd.textContent=n;cd.className="show";anim(cd,"cdp");sfx("beep");n--;setTimeout(tick,850)}else{cd.className="";cd.textContent="";sfx("shutter");var f=$("#bflash");f.classList.remove("go");void f.offsetWidth;f.classList.add("go");
-  BO.shots[i]=$("#bcv").toDataURL("image/jpeg",.92);BO.target=-1;BO.busy=0;bslots();var s=$$("#bstrip .bslot")[i];anim(s,"pop");
-  if(bfull()){sfx("print");setTimeout(function(){sfx("spark");burst(18,1)},500);bnt("Your strip is ready! Save it or share it. Tap any photo to retake it.");anim($("#bstrip"),"printIn")}
-  else{var nx=BO.shots.indexOf(null);bnt("Cute! "+(nx+1)+" of 3 next. Change your pose or just smile.")}}})()}
-function bcam(){if(BO.cam){BO.cam=0;if(BO.stream){BO.stream.getTracks().forEach(function(t){t.stop()});BO.stream=null}$("#bCam").textContent="Use my camera";bnt("Back to your game character.");return}
- if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)return bnt("Camera isn't available here, so we're using your game character.");
- navigator.mediaDevices.getUserMedia({video:{facingMode:"user"},audio:false}).then(function(s){BO.stream=s;BO.cam=1;var v=$("#bvid");v.srcObject=s;v.play();$("#bCam").textContent="Use my character";bnt("Camera on. Photos stay on your device.")},function(){bnt("No camera permission, so we're using your game character.")})}
-function bstopcam(){BO.cam=0;if(BO.stream){BO.stream.getTracks().forEach(function(t){t.stop()});BO.stream=null}$("#bCam").textContent="Use my camera"}
+function bshoot(){if(BO.busy||bfull()&&BO.target<0)return;if(!BO.cam||!BO.stream||!$("#bvid").videoWidth){bnt("Please tap Use my camera and allow camera access first.");sfx("pop");return}var i=BO.target>=0?BO.target:BO.shots.indexOf(null);if(i<0)return;BO.busy=1;var n=3,cd=$("#bcount");$("#bShoot").disabled=true;
+ (function tick(){if(n>0){cd.textContent=n;cd.className="show";anim(cd,"cdp");sfx("beep");n--;setTimeout(tick,850)}else{cd.className="";cd.textContent="";sfx("shutter");var f=$("#bflash");f.classList.remove("go");void f.offsetWidth;f.classList.add("go");var v=$("#bvid");var shot=document.createElement("canvas");shot.width=v.videoWidth;shot.height=v.videoHeight;var sc=shot.getContext("2d");sc.translate(shot.width,0);sc.scale(-1,1);sc.drawImage(v,0,0,shot.width,shot.height);BO.shots[i]=shot.toDataURL("image/jpeg",.92);BO.target=-1;BO.busy=0;bslots();anim($$("#bstrip .bslot")[i],"pop");if(bfull()){sfx("print");setTimeout(function(){sfx("spark");burst(18,1)},500);bnt("Your strip is ready! Add doodles or a note, then save or share. Tap a photo to retake.");anim($("#bstrip"),"printIn")}else{var nx=BO.shots.indexOf(null);bnt("Nice! "+(nx+1)+" of 3.")}}})()}
+function bcam(){if(BO.cam){BO.cam=0;if(BO.stream){BO.stream.getTracks().forEach(function(t){t.stop()});BO.stream=null}$("#bvid").srcObject=null;$("#bvid").style.display="none";$("#bCam").textContent="Use my camera";$("#bShoot").disabled=bfull()&&BO.target<0; bnt("Camera off. Turn it back on to keep taking photos.");return}
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)return bnt("Camera unavailable. Open this page over HTTPS or localhost and try again.");
+ navigator.mediaDevices.getUserMedia({video:{facingMode:"user"},audio:false}).then(function(s){BO.stream=s;BO.cam=1;var v=$("#bvid");v.srcObject=s;v.style.display="block";v.play().catch(function(){bnt("Camera preview blocked—tap Use my camera again.")});$("#bCam").textContent="Turn camera off";$("#bShoot").disabled=false;$("#bPose").style.display="none";bnt("Camera ready! Take three photos of yourself.")},function(){bnt("Camera permission denied. Please allow camera access in your browser settings.")})}
+function bstopcam(){BO.cam=0;$("#bvid").style.display="none";$("#bPose").style.display="none";if(BO.stream){BO.stream.getTracks().forEach(function(t){t.stop()});BO.stream=null}$("#bCam").textContent="Use my camera"}
 function bstrip(){if(!bfull())return Promise.resolve(null);var k=1.6,sw=BSI.naturalWidth*k,sh=BSI.naturalHeight*k,cv=document.createElement("canvas");cv.width=sw;cv.height=sh;var c=cv.getContext("2d");c.drawImage(BSI,0,0,sw,sh);
- return Promise.all(BO.shots.map(function(u){return img(u)})).then(function(ims){ims.forEach(function(im,i){var r=BSL[i],x=r[0]*sw+6,y=r[1]*sh+6,w=r[2]*sw-12,h=r[3]*sh-12,q=Math.max(w/im.width,h/im.height);c.save();c.beginPath();c.rect(x,y,w,h);c.clip();c.drawImage(im,x+(w-im.width*q)/2,y+(h-im.height*q)/2,im.width*q,im.height*q);c.restore()});
-  c.textAlign="center";c.fillStyle="#fff3ea";c.font="64px MixStitch,'Patrick Hand',cursive";c.fillText("Shannon's",sw/2,sh*.8);c.fillText("Photo Booth",sw/2,sh*.8+76);c.font="40px MixStitch,'Patrick Hand',cursive";c.fillText("Happy Birthday!",sw/2,sh*.8+150);return cv})}
+ var iconLoads=BO.decor.map(function(d){if(d.type==='text')return Promise.resolve(null);return new Promise(function(resolve){var im=new Image();im.onload=function(){resolve(im)};im.onerror=function(){resolve(null)};im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(inkIcon(d.type))})});
+ return Promise.all([Promise.all(BO.shots.map(function(u){return img(u)})),Promise.all(iconLoads)]).then(function(results){var ims=results[0],icons=results[1];ims.forEach(function(im,i){var r=BSL[i],x=r[0]*sw+6,y=r[1]*sh+6,w=r[2]*sw-12,h=r[3]*sh-12,q=Math.max(w/im.width,h/im.height);c.save();c.beginPath();c.rect(x,y,w,h);c.clip();c.drawImage(im,x+(w-im.width*q)/2,y+(h-im.height*q)/2,im.width*q,im.height*q);c.restore()});
+ c.textAlign="center";c.fillStyle="#fff3ea";c.font="64px MixStitch,'Patrick Hand',cursive";c.fillText("Shannon's",sw/2,sh*.8);c.fillText("Photo Booth",sw/2,sh*.8+76);c.font="40px MixStitch,'Patrick Hand',cursive";c.fillText("Happy Birthday!",sw/2,sh*.8+150);BO.decor.forEach(function(d,i){var x=d.x/100*sw,y=d.y/100*sh;c.save();c.translate(x,y);c.rotate(d.rot*Math.PI/180);if(d.type==='text'){c.font='36px Patrick Hand, cursive';c.fillStyle='#7c3d4d';c.strokeStyle='rgba(255,250,240,.8)';c.lineWidth=3;c.strokeText(d.text,0,0);c.fillText(d.text,0,0)}else if(icons[i])c.drawImage(icons[i],-22,-22,44,44);else{c.font='40px sans-serif';c.fillText({heart:'♡',star:'☆',flower:'✿',spark:'✧',bow:'🎀'}[d.type]||'♡',0,12)}c.restore()});return cv})}
 function bblob(cb){bstrip().then(function(cv){cv.toBlob(cb,"image/png")})}
-$("#bShoot").onclick=bshoot;$("#bPose").onclick=function(){BO.pose=(BO.pose+1)%bposes().length;bsetpose();sfx("pop");bnt("New pose! Strike it.")};$("#bCam").onclick=bcam;
-$("#bRetake").onclick=function(){BO.shots=[null,null,null];BO.target=-1;bslots();bnt("Fresh strip. Take 3 new photos.");sfx("pop")};
+$("#bShoot").onclick=bshoot;$("#bPose").onclick=function(){bnt("Use your device camera for real photos.")};$("#bCam").onclick=bcam;
+$("#bRetake").onclick=function(){BO.shots=[null,null,null];BO.decor=[];BO.target=-1;bslots();bnt("Fresh strip. Take 3 new photos.");sfx("pop")};
 $$("#bstrip .bslot").forEach(function(s,i){s.onclick=function(){if(!BO.shots[i]||BO.busy)return;BO.target=i;bslots();sfx("pop");bnt("Retaking photo "+(i+1)+". Press Take photo.")}});
-$("#bSave").onclick=function(){bblob(function(b){var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="shannon-photo-strip.png";a.click();bnt("Saved! Post it on Instagram from your gallery.")})};
-$("#bShare").onclick=function(){bblob(function(b){var f=new File([b],"shannon-photo-strip.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:"Shannon's Photo Booth"}).then(function(){bnt("Pick Instagram in the share sheet.")},function(){bnt("Share cancelled.")});else{var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="shannon-photo-strip.png";a.click();bnt("Saved! Open Instagram and post it from your gallery.")}})};
-new MutationObserver(function(){var o=$("#mBooth").classList.contains("open");if(o){sfx("booth");bsetpose();bslots();bnt(bfull()?"Your strip is ready!":"Step into the booth. Take 3 photos!");bstart()}else{bstopcam();BO.busy=0;$("#bcount").className=""}}).observe($("#mBooth"),{attributes:true,attributeFilter:["class"]});
+function bdownload(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='shannon-photo-strip.png';a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},1500)}
+function bfile(){return bblob(function(b){})}
+$('#bSave').onclick=function(){bblob(function(b){bdownload(b);bnt('Saved your strip. The doodles and writing are included!')})};
+$('#bShare').onclick=function(){var menu=$('#bShareMenu');menu.hidden=!menu.hidden};
+function bshareTo(target){
+ $('#bShareMenu').hidden=true;
+ /* Open a target window synchronously from the tap; mobile browsers otherwise block app deep links after the image is rendered. */
+ var appTab=window.open('about:blank','_blank');
+ bblob(function(b){if(!b){if(appTab)appTab.close();return;}
+  var f=new File([b],'shannon-photo-strip.png',{type:'image/png'}),title="Shannon's Photo Booth",text="Here's my birthday photobooth strip! 🎀";
+  bdownload(b);
+  var encoded=encodeURIComponent(text),fallback='';
+  if(target==='email'){
+   var mail='mailto:?subject='+encodeURIComponent(title)+'&body='+encodeURIComponent(text+'\n\nPlease attach shannon-photo-strip.png from your Downloads.');
+   if(appTab)appTab.location.href=mail;else window.location.href=mail;
+   bnt('Your email app is opening. Attach the saved photostrip to your message.');return;
+  }
+  if(target==='whatsapp'){
+   var wa='whatsapp://send?text='+encoded;fallback='https://wa.me/?text='+encoded;
+   if(appTab){appTab.location.href=wa;setTimeout(function(){if(!document.hidden&&!appTab.closed)appTab.location.href=fallback},1400)}
+   else{window.location.href=wa;setTimeout(function(){if(!document.hidden)window.location.href=fallback},1400)}
+   bnt('Opening WhatsApp. Your photostrip is saved—attach it in the chat.');return;
+  }
+  /* Instagram does not expose a browser API for attaching a local image directly to a post/story. Launch its app, with a web fallback; the image is already saved for upload. */
+  var ig='instagram://app';fallback='https://www.instagram.com/';
+  if(appTab){appTab.location.href=ig;setTimeout(function(){if(!document.hidden&&!appTab.closed)appTab.location.href=fallback},1400)}
+  else{window.location.href=ig;setTimeout(function(){if(!document.hidden)window.location.href=fallback},1400)}
+  bnt('Opening Instagram. Choose Story or Post and upload the saved photostrip.');
+ });
+}
+$$('[data-bshare]').forEach(function(b){b.onclick=function(){bshareTo(b.dataset.bshare)}});
+$$('[data-sticker]').forEach(function(b){b.onclick=function(){badd(b.dataset.sticker)}});$('#baddText').onclick=function(){var t=$('#bwrite').value.trim();if(!t)return bnt('Type a short note first.');badd('text',t);$('#bwrite').value=''};$('#bclearDecor').onclick=function(){BO.decor=[];bslots();sfx('pop')};
+new MutationObserver(function(){var o=$("#mBooth").classList.contains("open");if(o){sfx("booth");bsetpose();bslots();$("#bPose").style.display="none";$("#bShoot").disabled=false;bnt(bfull()?"Your strip is ready!":"Turn on your camera to take 3 photos.");bstart()}else{bstopcam();BO.busy=0;$("#bcount").className=""}}).observe($("#mBooth"),{attributes:true,attributeFilter:["class"]});
 /* ===== Tennis Court ===== */
 SFX.thwack=function(){noise(.08,1700,.8,.6);tone(210,.09,"triangle",.6)};SFX.bounce=function(){tone(150,.08,"sine",.35)};
 var TS={};["stand","ready","toss","back","win","swing"].forEach(function(k){var i=new Image();i.src="images/tennis/"+k+".png";TS[k]=i});
 var COURT=new Image();COURT.src="images/tennis/court.png";var TP={"F": [0.704, 0.1721], "N": [0.3443, 0.6988], "P": [0.2878, 0.8175]};
-var TT={ph:"lock",best:0,streak:0,t:0,dur:1.5,dur2:1.1,sw:0,cool:0,serve:0,run:0,last:0,fb:"",fbt:0};
+var TT={ph:"lock",best:0,streak:0,t:0,dur:1.65,dur2:1.05,sw:0,cool:0,serve:0,run:0,last:0,fb:"",fbt:0,aim:0,ballAim:0,playerX:.5,ballStartX:.5,ballTargetX:.5,ballEndX:.5};
 function tsay(t){var e=$("#ttalk");e.textContent=t;anim(e,"pop")}
 function thud(){$("#tsc").textContent="Rally: "+TT.streak;$("#tbs").textContent="Best: "+TT.best}
 function rectOf(s){var b=$(s).getBoundingClientRect();return {x:b.left+b.width/2,y:b.top+b.height/2,w:b.width,h:b.height}}
-function topen(){TT.ph="lock";TT.streak=0;$("#tstage").style.display="none";var l=$("#tlock");l.style.display="flex";l.innerHTML='<img src="'+SH+poseFor(G.outfit,"wardrobe").file+'" alt="">';var g=$("#tgo");g.style.display="inline-block";g.disabled=false;g.textContent="Change into tennis gear";tsay("Welcome to the tennis court, birthday girl! First, let's get you into your tennis gear.");thud()}
-function tstart(){TT.ph="serve";TT.serve=.9;TT.streak=0;TT.dur=1.5;TT.t=0;TT.sw=0;TT.fb="";$("#tlock").style.display="none";$("#tstage").style.display="block";$("#tgo").style.display="none";tsay("Tap, click or press any key when the ball reaches you!");thud();if(!TT.run){TT.run=1;TT.last=performance.now();requestAnimationFrame(tloop)}}
+function topen(){TT.ph="lock";TT.streak=0;TT.playerX=.5;$("#tstage").style.display="none";var l=$("#tlock");l.style.display="flex";l.innerHTML='<img src="'+SH+poseFor(G.outfit,"wardrobe").file+'" alt="">';var g=$("#tgo");g.style.display="inline-block";g.disabled=false;g.textContent="Change into tennis gear";tsay("Welcome to the tennis court, birthday girl! First, let's get you into your tennis gear.");thud()}
+function tstart(){TT.ph="serve";TT.serve=.8;TT.streak=0;TT.aim=0;TT.playerX=.5;TT.ballStartX=.18+Math.random()*.64;TT.ballTargetX=Math.max(.15,Math.min(.85,TT.playerX+(-.22+Math.random()*.44)));TT.ballEndX=.5;TT.dur=1.65;TT.t=0;TT.sw=0;TT.fb="";$("#tlock").style.display="none";$("#tstage").style.display="block";$("#tcontrols").style.display="flex";$("#tgo").style.display="none";tsay("Move your character left or right, then tap Hit! when the ball reaches you.");thud();if(!TT.run){TT.run=1;TT.last=performance.now();requestAnimationFrame(tloop)}}
 $("#tgo").onclick=function(){if(TT.ph==="lock"){TT.ph="changed";sfx("spark");sparkles(16,rectOf("#tlock"));$("#tlock").innerHTML='<img class="pop" src="images/tennis/stand.png" alt="">';tsay("Tennis outfit unlocked! Ready to rally?");this.textContent="Start rally"}else if(TT.ph==="changed"||TT.ph==="over")tstart()};
-function tswing(){if(TT.ph==="lock"||TT.ph==="changed"||TT.ph==="over"||TT.cool>0)return;TT.sw=.28;TT.cool=.3;if(TT.ph!=="in"){TT.fb="Wait for it...";TT.fbt=.6;return}
- var t=TT.t/TT.dur;if(t>=.72&&t<=1.07){sfx("thwack");var p=Math.abs(t-.9)<.07;TT.streak++;if(TT.streak>TT.best)TT.best=TT.streak;TT.fb=p?"Perfect!":"Nice!";TT.fbt=.7;if(p)sfx("spark");TT.ph="out";TT.t=0;TT.dur2=TT.dur*.8;thud();
-  if(TT.streak===10){tsay("Tennis ace! 10 in a row. Keep going!");burst(30,1)}else tsay(TT.streak+" in a row! Keep it up.")}
- else{sfx("pop");TT.fb="Too early!";TT.fbt=.6}}
+function tswing(){if(TT.ph==="lock"||TT.ph==="changed"||TT.ph==="over"||TT.cool>0)return;TT.sw=.28;TT.cool=.24;if(TT.ph!=="in"){TT.fb="Wait for the ball!";TT.fbt=.55;return}
+ var t=TT.t/TT.dur;if(t>=.72&&t<=1.04&&Math.abs(TT.playerX-TT.ballTargetX)<.22){sfx("thwack");var p=Math.abs(t-.9)<.075;TT.streak++;if(TT.streak>TT.best)TT.best=TT.streak;TT.fb=p?"Perfect!":"Nice!";TT.fbt=.7;if(p)sfx("spark");TT.ph="out";TT.ballAim=TT.aim;TT.t=0;TT.dur2=TT.dur*.78;TT.ballEndX=Math.max(.12,Math.min(.88,TT.playerX+TT.ballAim*.36));thud();if(TT.streak===10){tsay("Tennis ace! 10 in a row. Keep going!");burst(30,1)}else tsay(TT.streak+" in a row! Keep it up.")}
+ else{sfx("pop");TT.fb=(t>=.72&&t<=1.04)?"Move closer to the ball!":"Too early!";TT.fbt=.6}}
 function tmiss(){TT.ph="over";sfx("pop");TT.fb="Oops!";TT.fbt=1;tsay("Rally of "+TT.streak+"! Best: "+TT.best+". Ready for another?");var g=$("#tgo");g.style.display="inline-block";g.textContent="Rally again";thud()}
 function tupd(dt){TT.cool=Math.max(0,TT.cool-dt);TT.sw=Math.max(0,TT.sw-dt);TT.fbt=Math.max(0,TT.fbt-dt);
  if(TT.ph==="serve"){TT.serve-=dt;if(TT.serve<=0){TT.ph="in";TT.t=0}}
- else if(TT.ph==="in"){TT.t+=dt;if(TT.t/TT.dur>1.12)tmiss()}
- else if(TT.ph==="out"){TT.t+=dt;if(TT.t>=TT.dur2){TT.ph="in";TT.t=0;TT.dur=Math.max(.62,TT.dur*.94);sfx("bounce")}}}
-function tdraw(){var c=$("#tcv").getContext("2d"),W=840,H=600;c.clearRect(0,0,W,H);c.fillStyle="#fbf3e3";c.fillRect(0,0,W,H);
- var cw=COURT.naturalWidth||1,ch=COURT.naturalHeight||1,s=Math.min(W/cw,H/ch),ox=(W-cw*s)/2,oy=(H-ch*s)/2;if(COURT.naturalWidth)c.drawImage(COURT,ox,oy,cw*s,ch*s);
- var pt=function(p){return [ox+p[0]*cw*s,oy+p[1]*ch*s]},F=pt(TP.F),N=pt(TP.N),P=pt(TP.P),arc=ch*s*.2;
+ else if(TT.ph==="in"){TT.t+=dt;if(TT.t/TT.dur>1.08)tmiss()}
+ else if(TT.ph==="out"){TT.t+=dt;if(TT.t>=TT.dur2){TT.ph="in";TT.t=0;TT.ballStartX=Math.max(.1,Math.min(.9,TT.ballEndX));TT.ballTargetX=Math.max(.15,Math.min(.85,TT.playerX+(-.22+Math.random()*.44)));TT.ballEndX=Math.max(.1,Math.min(.9,.2+Math.random()*.6));TT.dur=Math.max(.62,TT.dur*.94);sfx("bounce")}}}
+function tdraw(){var c=$("#tcv").getContext("2d"),W=840,H=600;c.clearRect(0,0,W,H);c.fillStyle="#f6f1e6";c.fillRect(0,0,W,H);
+ /* flat, front-facing court: no isometric tilt */
+ c.fillStyle="#91b38b";c.fillRect(100,75,640,465);c.fillStyle="#cf8c79";c.fillRect(165,115,510,365);c.strokeStyle="#fff7e8";c.lineWidth=8;c.strokeRect(165,115,510,365);c.beginPath();c.moveTo(420,115);c.lineTo(420,480); c.stroke();c.beginPath();c.moveTo(165,297);c.lineTo(675,297);c.stroke();c.beginPath();c.moveTo(165,210);c.lineTo(675,210);c.moveTo(165,384);c.lineTo(675,384);c.stroke();c.lineWidth=5;c.strokeRect(220,210,400,174);c.beginPath();c.moveTo(420,210);c.lineTo(420,384);c.stroke();
+ /* net across the center */c.fillStyle="#6e8b75";c.fillRect(145,292,550,12);c.strokeStyle="#476453";c.lineWidth=2;c.strokeRect(145,292,550,12);c.fillStyle="#fff8e9";for(var nx=150;nx<690;nx+=18){c.beginPath();c.moveTo(nx,294);c.lineTo(nx,302);c.stroke()}c.fillStyle="#9b5a6a";c.font="24px Patrick Hand";c.textAlign="center";c.fillText("MOVE TO THE BALL",420,48);
  var u=null;if(TT.ph==="in")u=TT.t/TT.dur;else if(TT.ph==="out")u=1-TT.t/TT.dur2;
- var key="ready";if(TT.sw>0)key="swing";else if(TT.ph==="in"&&u>.5)key="back";else if(TT.streak>=10&&TT.ph==="out")key="win";
- var im=TS[key],k=(ch*s*.3)/235;
- if(u!==null){var q=Math.min(u,1.3),bx=F[0]+(N[0]-F[0])*q,by=F[1]+(N[1]-F[1])*q,hh=Math.sin(Math.PI*Math.min(Math.max(u,0),1))*arc,r=(5+9*Math.min(q,1.1))*(s*1.2);
-  c.fillStyle="rgba(60,40,30,.2)";c.beginPath();c.ellipse(bx,by+3,r*1.1,r*.45,0,0,7);c.fill();c.fillStyle="#e8e24a";c.beginPath();c.arc(bx,by-hh,r,0,7);c.fill();c.strokeStyle="#fffbe0";c.lineWidth=Math.max(1,r*.25);c.beginPath();c.arc(bx,by-hh,r*.62,.6,2.3);c.stroke()}
- if(im&&im.naturalWidth){var w=im.naturalWidth*k,h=im.naturalHeight*k;c.fillStyle="rgba(60,40,30,.18)";c.beginPath();c.ellipse(P[0],P[1]+2,w*.3,8,0,0,7);c.fill();c.drawImage(im,P[0]-w/2,P[1]-h,w,h)}
- if(TT.fbt>0){c.globalAlpha=Math.min(1,TT.fbt*2);c.fillStyle="#9b3d56";c.font="54px 'Patrick Hand',cursive";c.textAlign="center";c.fillText(TT.fb,W/2,90-(1-TT.fbt)*20);c.globalAlpha=1}}
+ if(u!==null){var q=Math.min(u,1),inX=TT.ballStartX*W,outX=TT.ballEndX*W,bx=TT.ph==="in"?inX+(TT.ballTargetX*W-inX)*q:TT.playerX*W+(outX-TT.playerX*W)*q,by=TT.ph==="in"?160+250*q:410-245*q,hh=Math.sin(Math.PI*Math.min(Math.max(q,0),1))*54,r=12;
+ c.fillStyle="rgba(60,40,30,.18)";c.beginPath();c.ellipse(bx,by+4,r*1.1,r*.45,0,0,Math.PI*2);c.fill();c.fillStyle="#e8e24a";c.beginPath();c.arc(bx,by-hh,r,0,Math.PI*2);c.fill();c.strokeStyle="#fffbe0";c.lineWidth=2;c.beginPath();c.arc(bx,by-hh,r*.62,.6,2.3);c.stroke()}
+ var px=120+TT.playerX*600,im=TS[TT.sw>0?"swing":TT.ph==="in"&&u>.6?"back":"ready"],w=92,h=112;if(im&&im.naturalWidth)c.drawImage(im,px-w/2,460-h,w,h);else{c.fillStyle="#8d5366";c.fillRect(px-20,470,40,70)}
+ c.fillStyle="#8d5366";c.font="30px Patrick Hand";c.textAlign="center";c.fillText("← move →",px,570);
+ if(TT.fbt>0){c.globalAlpha=Math.min(1,TT.fbt*2);c.fillStyle="#9b3d56";c.font="48px Patrick Hand,cursive";c.textAlign="center";c.fillText(TT.fb,W/2,90-(1-TT.fbt)*20);c.globalAlpha=1}}
 function tloop(ts){if(!$("#mTennis").classList.contains("open")){TT.run=0;return}var dt=Math.min(.05,Math.max(0,(ts-TT.last)/1000));TT.last=ts;tupd(dt);tdraw();requestAnimationFrame(tloop)}
-$("#tcv").addEventListener("pointerdown",function(e){e.preventDefault();tswing()});
-addEventListener("keydown",function(e){if($("#mTennis").classList.contains("open")&&!e.ctrlKey&&!e.metaKey&&e.key!=="Tab"&&e.key!=="Escape"){if(TT.ph==="serve"||TT.ph==="in"||TT.ph==="out"){e.preventDefault();tswing()}}});
+function tmove(dir){TT.playerX=Math.max(.12,Math.min(.88,TT.playerX+dir*.035));TT.aim=dir*.65;TT.fb=dir<0?"Moving left!":"Moving right!";TT.fbt=.3;sfx("pop")}
+function holdMove(btn,dir){var timer=null;function start(e){e.preventDefault();tmove(dir);timer=setInterval(function(){TT.playerX=Math.max(.12,Math.min(.88,TT.playerX+dir*.018));TT.aim=dir*.65},70)}function stop(){if(timer){clearInterval(timer);timer=null}}btn.addEventListener('pointerdown',start);btn.addEventListener('pointerup',stop);btn.addEventListener('pointerleave',stop);btn.addEventListener('pointercancel',stop)}
+$("#tcv").addEventListener("pointerdown",function(e){e.preventDefault();tswing()});$("#tcv").addEventListener("pointermove",function(e){if(e.buttons===1&&e.pointerType!=="mouse"){var r=this.getBoundingClientRect();TT.playerX=Math.max(.12,Math.min(.88,(e.clientX-r.left)/r.width))}});$("#tswingBtn").onclick=tswing;holdMove($("#tleft"),-1);holdMove($("#tright"),1);
+addEventListener("keydown",function(e){if($("#mTennis").classList.contains("open")&&!e.ctrlKey&&!e.metaKey&&e.key!=="Tab"&&e.key!=="Escape"){if(e.key==="ArrowLeft")TT.playerX=Math.max(.12,TT.playerX-.04);if(e.key==="ArrowRight")TT.playerX=Math.min(.88,TT.playerX+.04);if(e.key===" "||e.key==="Enter"){e.preventDefault();tswing()}}});
 new MutationObserver(function(){if($("#mTennis").classList.contains("open"))topen();else{TT.run=0;TT.ph="lock"}}).observe($("#mTennis"),{attributes:true,attributeFilter:["class"]});
 /* ===== Voice memo gramophone ===== */
 var VO=$("#voice");function gset(on){$("#gnotes").classList.toggle("playing",on);bDuck=on?1:0;applyB()}
 $("#gram").onclick=function(){if(VO.paused){if(VO.ended)VO.currentTime=0;VO.play().then(function(){gset(1);$("#gsay").textContent="Playing your voice memo..."},function(){$("#gsay").textContent="Tap again to play"})}else{VO.pause();gset(0);$("#gsay").textContent="Paused. Tap to continue."}};
 VO.addEventListener("ended",function(){gset(0);$("#gsay").textContent="Tap to hear it again"});
-/* ===== Share the whole day ===== */
+/* ===== Birthday card sharing: reliable share-sheet + download fallback ===== */
+function saveCanvasShare(cv,filename,title,caption,msgEl){
+ return new Promise(function(resolve,reject){
+  try{cv.toBlob(function(blob){
+   if(!blob){reject(new Error("Could not create the image."));return}
+   var file=new File([blob],filename,{type:"image/png"});
+   var canFileShare=!!(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}));
+   if(canFileShare){navigator.share({files:[file],title:title,text:caption}).then(function(){msgEl.textContent="Share sheet opened. Choose your app to send the card.";resolve()},function(err){
+     if(err&&err.name==="AbortError"){msgEl.textContent="Sharing cancelled.";resolve();return}
+     downloadBlob(blob,filename);msgEl.textContent="Image saved. Open your preferred app and attach it from Photos or Downloads.";resolve();
+    });
+   }else{downloadBlob(blob,filename);msgEl.textContent="Image saved. Open your preferred app and attach it from Photos or Downloads.";resolve()}
+  },"image/png");}catch(e){reject(e)}
+ });
+}
+function downloadBlob(blob,filename){var u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},30000)}
+function runCardShare(build,filename,title,caption){var m=$("#msg");m.textContent="Preparing your birthday card…";Promise.resolve().then(build).then(function(cv){return saveCanvasShare(cv,filename,title,caption,m)}).catch(function(err){console.error("Birthday card sharing failed",err);m.textContent="The card could not be created. Please try again."})}
 function cardAll(){var cv=document.createElement("canvas");cv.width=1080;cv.height=1920;var c=cv.getContext("2d"),F="'Patrick Hand','Comic Sans MS',cursive";c.fillStyle="#fffdf6";c.fillRect(0,0,1080,1920);c.strokeStyle="#6b4a45";c.lineWidth=8;c.strokeRect(36,36,1008,1848);c.textAlign="center";c.fillStyle="#6b4a45";
  c.font="96px "+F;c.fillText("Shannon's Birthday",540,160);c.font="64px "+F;c.fillText("Adventure",540,235);
- var p=poseFor(G.outfit,"picnic"),jobs=[img(SH+p.file),bstrip(),order&&order.file?img("images/m/"+order.file+".png").catch(function(){return null}):Promise.resolve(null)];
+ var p=poseFor(G.outfit,"picnic"),jobs=[img(SH+p.file),bstrip().catch(function(){return null}),order&&order.file?img("images/m/"+order.file+".png").catch(function(){return null}):Promise.resolve(null)];
  return Promise.all(jobs).then(function(a){var im=a[0],st=a[1],pa=a[2],hasS=!!st,H=1000,W=im.width*H/im.height,cx=hasS?300:540;if(W>520){W=520;H=im.height*W/im.width}
   c.save();if(p.face==="l"){c.translate(2*cx,0);c.scale(-1,1)}c.drawImage(im,cx-W/2,300+(1000-H),W,H);c.restore();
   if(hasS){var sh=1000,sw=st.width*sh/st.height;c.save();c.translate(780,300);c.rotate(.03);c.drawImage(st,-sw/2,0,sw,sh);c.restore()}
@@ -347,27 +745,29 @@ function cardAll(){var cv=document.createElement("canvas");cv.width=1080;cv.heig
   var w=$("#wish").value.trim();if(w){c.fillStyle="#9b3d56";y=wrap(c,"My wish: "+w,110,y,860,56)}
   if(pa){var ph=170,pw=Math.min(300,pa.width*ph/pa.height);c.drawImage(pa,900-pw/2,1360,pw,ph)}
   c.textAlign="center";c.fillStyle="#6b4a45";c.font="46px "+F;c.fillText("with love, Fonda",540,1840);return cv})}
-$("#shA").onclick=function(){var m=$("#msg");m.textContent="Making your whole-day card...";cardAll().then(function(cv){cv.toBlob(function(b){if(!b){m.textContent="Please open this game from its web link to save images.";return}var f=new File([b],"shannon-birthday-adventure.png",{type:"image/png"}),cap="Shannon's birthday adventure! Made with love by Fonda";
-  try{navigator.clipboard&&navigator.clipboard.writeText(cap)}catch(e){}
-  if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],text:cap,title:"Shannon's Birthday Adventure"}).then(function(){m.textContent="Pick Instagram, then Story or Post."},function(){m.textContent="Share cancelled."});
-  else{var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="shannon-birthday-adventure.png";a.click();m.textContent="Saved! On your phone: Instagram, new story, pick this image. (Caption copied.)"}},"image/png")},function(){m.textContent="Couldn't build the card. Try again."})};
+$("#shA").onclick=function(){runCardShare(cardAll,"shannon-birthday-adventure.png","Shannon's Birthday Adventure","Shannon's birthday adventure! Made with love by Fonda.")};
 
 /* ===== Shannon's Birthday Matcha Lab ===== */
 var MSTEP=["Matcha","Drink","Pastry","Prepare","Order"],mstep=-1,M={sc:0,sifted:0,poured:0,whisk:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0},mt=[],said={},order=null;
-var SWEET=["No sugar","A little sweet","Perfectly sweet","Extra sweet"],MILK=[["Oat milk","#e8d6b2"],["Fresh milk","#fbfaf2"],["Almond milk","#efe3cc"],["Coconut milk","#fffbea"]],STY=["Iced matcha latte","Hot matcha latte","Strawberry matcha"],PAS=[["Croissant","pastry-croissant"],["Cinnamon swirl bun","pastry-cinnamon-swirl"],["Almond brioche","pastry-almond-brioche"],["Sesame round bun","pastry-sesame-round-bun"],["Star bread","pastry-star-bread"],["Smiley toast","pastry-toast-bread"],["Herb roll","pastry-herb-roll"],["Ciabatta","pastry-ciabatta"],["Dark baguette","pastry-baguette-dark"],["Baguette in newsprint","pastry-baguette-newsprint"],["Seeded bun in a bag","pastry-seeded-bun-bag"],["Chocolate scored loaf","pastry-scored-loaf"],["Strawberry cake","pastry-strawberry-cake"],["Joyeux Noël cake","pastry-joyeux-noel-cake"],["Knit hat cream cake","pastry-knit-hat-cake"],["Yule log","pastry-yule-log"],["Holly kugelhopf","pastry-kugelhopf"]];
-function mi(n,c){return '<img'+(c?' class="'+c+'"':'')+' src="images/m/'+n+'.png" alt="">'}
-function say(t){var e=$("#mtalk");e.textContent=t;anim(e,"pop")}
-function clearT(){mt.forEach(clearTimeout);mt=[]}
-function mnav(){var ok=[M.whisk>=100,M.sweet>=0&&M.milk>=0&&M.style>=0,M.pastry>=0,M.prepared,1][mstep]||0;
- $("#mprog").innerHTML=MSTEP.map(function(s,i){return '<span class="'+(i===mstep?"on":i<mstep?"dn":"")+'">'+(i+1)+". "+s+'</span>'}).join("");
- $("#mback").style.display=mstep<0||mstep===4?"none":"inline-block";var n=$("#mnext");n.style.display=mstep===4?"none":"inline-block";n.disabled=!ok&&mstep>=0;n.style.opacity=n.disabled?.45:1;
- n.textContent=mstep<0?"Ready, matcha girl!":mstep===3?"See my order":"Next"}
+var SWEET=["No sugar","A little sweet","Perfectly sweet","Extra sweet"],MILK=[["Oat milk","#e8d6b2"],["Fresh milk","#fbfaf2"],["Almond milk","#efe3cc"],["Coconut milk","#fffbea"]],STY=["Iced matcha latte","Hot matcha latte","Strawberry matcha"],PAS=[["Croissant","cutouts/bread-croissant"],["Almond brioche","cutouts/bread-almond-brioche"],["Sesame bun","cutouts/bread-sesame-round-bun"],["Baguette","cutouts/bread-scored-baguette"],["Star bread","cutouts/bread-star-bread"],["Smiley toast","cutouts/bread-toast-bread"],["Herb roll","cutouts/bread-herb-roll"],["Cinnamon swirl","cutouts/bread-cinnamon-swirl"],["Seeded bun","cutouts/bread-seeded-bun"],["Sliced loaf","cutouts/bread-sliced-loaf"],["Crosshatch loaf","cutouts/bread-crosshatch-loaf"],["Newsprint baguette","cutouts/bread-newsprint-baguette"],["Strawberry cake","cutouts/cake-strawberry-cake"],["Panettone","cutouts/cake-panettone"],["Knit hat cake","cutouts/cake-knit-hat-cake"],["Yule log","cutouts/cake-yule-log"],["Joyeux Noël cake","cutouts/cake-joyeux-cake"]];
+/* Matcha lab UI helpers: these were missing from the previous build, so entering the shop threw a ReferenceError before anything could render. */
+function say(message){var el=$("#mtalk");if(el){el.textContent=message;anim(el,"pop")}}
+function clearT(){mt.forEach(function(timer){clearTimeout(timer)});mt=[]}
+function mnav(){
+ var labels=["Matcha","Drink","Pastry","Prepare","Order"],step=Math.max(0,mstep),ready=mstep<0||mstep===4||(mstep===0?M.whisk>=100:mstep===1?M.sweet>=0&&M.milk>=0&&M.style>=0:mstep===2?M.pastry>=0:mstep===3?!!M.prepared:false);
+ var prog=$("#mprog"),back=$("#mback"),next=$("#mnext");
+ if(prog)prog.textContent=mstep<0?"Your birthday matcha adventure":(labels[step]+" · "+(step+1)+" of 5");
+ if(back)back.disabled=mstep<=-1;
+ if(next){next.textContent=mstep<0?"Let's make matcha! →":mstep>=4?"All done!":"Next →";next.disabled=!ready||mstep>=4;next.style.display=mstep>=4?"none":"inline-block"}
+}
+
+function mi(n,c){var kind=/whisk/.test(n)?'whisk':/tin|sieve/.test(n)?'sieve':/kettle/.test(n)?'kettle':/bowl/.test(n)?'bowl':/glass|drink|ice/.test(n)?'cup':/plate/.test(n)?'plate':/spark|star/.test(n)?'spark':'bread';var art={whisk:'<path d="M49 72 L54 94" stroke="#9a6b45" stroke-width="8" stroke-linecap="round"/><path d="M50 70 C20 48 28 13 48 16 C67 18 73 48 50 70Z M50 70 C38 42 43 12 53 10 C67 8 65 42 50 70Z M50 70 C74 48 79 22 66 17 C53 12 45 43 50 70Z" fill="#e9f0df" stroke="#66856a" stroke-width="4" stroke-linejoin="round"/><path d="M49 69 Q53 45 55 18" fill="none" stroke="#fff" stroke-width="2" opacity=".8"/>',sieve:'<path d="M17 36 Q50 51 83 36 L75 68 Q50 82 25 68Z" fill="#f6e5c8" stroke="#9a7653" stroke-width="4"/><path d="M23 42 L77 42 M28 51 L72 51 M32 60 L68 60 M33 41 L38 68 M45 44 L47 73 M57 44 L56 73 M69 41 L64 68" stroke="#b88e66" stroke-width="2.5" stroke-linecap="round"/><path d="M14 31 Q50 45 86 31" fill="none" stroke="#66856a" stroke-width="5" stroke-linecap="round"/>',kettle:'<path d="M28 39 Q28 26 43 26 H63 Q77 26 77 42 V70 Q75 82 52 82 Q29 82 28 70Z" fill="#e4eee0" stroke="#66856a" stroke-width="4"/><path d="M28 43 Q12 31 12 47 Q14 61 30 57 M76 42 Q91 32 87 22 Q80 16 70 31" fill="none" stroke="#66856a" stroke-width="5" stroke-linecap="round"/><path d="M43 24 Q42 12 54 12 Q66 12 65 25" fill="none" stroke="#9a7653" stroke-width="4"/><path d="M39 52 Q52 60 66 52" stroke="#fff" stroke-width="3" fill="none"/>',bowl:'<path d="M13 43 Q18 81 50 83 Q82 81 87 43Z" fill="#e4eee0" stroke="#66856a" stroke-width="4"/><path d="M10 42 Q50 53 90 42" fill="none" stroke="#9a7653" stroke-width="5" stroke-linecap="round"/>',cup:'<path d="M25 27 H69 L64 78 Q48 86 32 78Z" fill="#e4eee0" stroke="#66856a" stroke-width="4"/><path d="M69 38 Q90 32 85 53 Q81 63 67 58" fill="none" stroke="#66856a" stroke-width="4"/>',plate:'<ellipse cx="50" cy="53" rx="39" ry="23" fill="#fff" stroke="#9a7653" stroke-width="4"/><ellipse cx="50" cy="53" rx="29" ry="14" fill="none" stroke="#d5b995" stroke-width="3"/>',bread:'<path d="M13 60 Q10 31 32 23 Q60 12 78 35 Q88 52 78 70 Q45 86 13 60Z" fill="#e9b76f" stroke="#a87543" stroke-width="4"/><path d="M28 39 L36 33 M46 32 L53 28 M59 35 L65 30 M35 53 L42 47 M55 54 L62 49" stroke="#fff0cf" stroke-width="4" stroke-linecap="round"/>',spark:'<path d="M50 10 L58 42 L90 50 L58 58 L50 90 L42 58 L10 50 L42 42Z" fill="#f4d17d" stroke="#c18d4b" stroke-width="3"/>'};return '<svg class="mi-svg '+(c||'')+'" viewBox="0 0 100 100" role="img" aria-label="'+esc(n.replace(/-/g,' '))+'"><g stroke-linecap="round" stroke-linejoin="round">'+art[kind]+'</g></svg>'}
 function mgo(n){clearT();mstep=n;mnav();var s=$("#mstage");
  if(n<0){say("Welcome to Shannon's Matcha & Bread! Since it's your birthday, you get to make your very own birthday special. Ready, matcha girl?");s.innerHTML='<div class="lab">'+mi("tin")+mi("whisk")+mi("pastry-croissant")+'</div>'}
  else if(n===0)st0();else if(n===1)st1();else if(n===2)st2();else if(n===3)st3();else st4()}
 function st0(){var s=$("#mstage");say(M.whisk>=100?"Smooth as silk. Matcha master!":"Pick how many scoops of matcha powder you want.");
  s.innerHTML='<div class="lab"><div class="tinw">'+mi("tin")+'<div class="row" id="scoops"></div></div><div class="bowlw"><div class="pow" id="pow"></div><div class="liq" id="liq"><div class="foam" id="foam"></div></div>'+mi("bowl-top","bowl")+'</div><div class="tools"><button class="tool" id="tS">'+mi("sieve")+'<span>Sift</span></button><button class="tool" id="tK">'+mi("kettle")+'<span>Pour</span></button><div class="tool" id="tW">'+mi("whisk")+'<span>Whisk</span></div></div></div><div id="wbar"><i id="wfill"></i></div>';
- [1,2,3].forEach(function(n){var b=document.createElement("button");b.textContent=n+(n>1?" scoops":" scoop");if(M.sc===n)b.className="on";b.onclick=function(){M.sc=n;M.sifted=M.poured=M.whisk=0;said={};st0();say(n+" scoop"+(n>1?"s":"")+" it is. Now tap the sieve to sift the powder.");mnav()};$("#scoops").appendChild(b)});
+ [1,2,3].forEach(function(n){var b=document.createElement("button");b.innerHTML='<svg class="scoopIcon" viewBox="0 0 40 40" aria-hidden="true"><path d="M7 8 Q13 3 20 8 Q28 14 23 22 Q18 29 10 23 Q3 17 7 8Z" fill="#b8cc8d" stroke="#6b865c" stroke-width="2.5"/><path d="M21 22 L34 35" stroke="#a87543" stroke-width="4" stroke-linecap="round"/><path d="M9 12 Q15 7 20 13" stroke="#eaf1d7" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>'+n+(n>1?" scoops":" scoop")+'</span>';if(M.sc===n)b.className="on";b.onclick=function(){M.sc=n;M.sifted=M.poured=M.whisk=0;said={};st0();say(n+" scoop"+(n>1?"s":"")+" it is. Now tap the sieve to sift the powder.");mnav()};$("#scoops").appendChild(b)});
  $("#tS").onclick=function(){if(!M.sc)return say("First pick your scoops of matcha.");M.sifted=1;paint();anim($("#tS"),"wig");sfx("pop");say("Soft, fluffy powder. Now tap the kettle for warm water.")};
  $("#tK").onclick=function(){if(!M.sifted)return say("Sift the powder into the bowl first.");if(M.poured)return;M.poured=1;anim($("#tK"),"tilt");sfx("spark");paint();say("Ooh, look at that matcha! Now whisk it: tap or drag the whisk.")};
  var wd=0;function whisk(a){if(!M.poured)return say("Pour the warm water first.");if(M.whisk>=100)return;M.whisk=Math.min(100,M.whisk+a);anim($("#tW"),"wig");paint();sfx("step");
@@ -385,10 +785,10 @@ function st1(){var s=$("#mstage");say("Now make it yours: pick sweetness, milk a
  var o=$("#opts");[["Sweetness",SWEET,"sweet"],["Milk",MILK.map(function(x){return x[0]}),"milk"],["Drink style",STY,"style"]].forEach(function(g){var h=document.createElement("div");h.innerHTML="<b>"+g[0]+"</b>";o.appendChild(h);var r=document.createElement("div");r.className="row";
   g[1].forEach(function(t,i){var b=document.createElement("button");b.textContent=t;if(M[g[2]]===i)b.className="on";b.onclick=function(){M[g[2]]=i;M.prepared=0;[].forEach.call(r.children,function(x){x.classList.remove("on")});b.classList.add("on");upd1();sfx("pop");say(g[2]==="milk"?t+" swirls into the matcha.":g[2]==="style"?t+", great choice.":t+".");mnav()};r.appendChild(b)});o.appendChild(r)});upd1()}
 function upd1(){setDrink($(".gl"),curDrink());$("#pips").innerHTML=[0,1,2].map(function(i){return '<b class="'+(M.sweet>i?"f":"")+'"></b>'}).join("")}
-function st2(){var s=$("#mstage");say(M.pastry<0?"Pick a pastry from the bakery counter.":PAS[M.pastry][0]+", yum.");s.innerHTML='<div><div class="shelf" id="shelf"></div><div class="plt" id="plt">'+mi("plate","pl")+'</div></div>';
- PAS.forEach(function(p,i){var b=document.createElement("button");b.className="pcard"+(M.pastry===i?" sel":"");b.innerHTML=mi(p[1])+p[0];b.onclick=function(){M.pastry=i;M.prepared=0;sfx("pop");say(p[0]+" slides onto your plate.");plate();[].forEach.call($("#shelf").children,function(x,j){x.classList.toggle("sel",j===i)});mnav()};$("#shelf").appendChild(b)});plate()}
-function plate(){var p=$("#plt");if(!p)return;[].forEach.call(p.querySelectorAll(".pa"),function(x){x.remove()});if(M.pastry>=0)p.insertAdjacentHTML("beforeend",mi(PAS[M.pastry][1],"pa"))}
-function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'<div class="plt" id="plt2" style="opacity:0">'+mi("plate","pl")+mi(PAS[M.pastry][1],"pa")+'</div></div>';var g=$(".gl"),o=curDrink();
+function st2(){var s=$("#mstage");say(M.pastry<0?"Pick a pastry from the bakery counter.":PAS[M.pastry][0]+", yum.");s.innerHTML='<div class="pastry-stage"><div class="shelf" id="shelf"></div><div class="plt" id="plt">'+mi("plate","pl")+'</div></div>';
+ PAS.forEach(function(p,i){var b=document.createElement("button");b.className="pcard"+(M.pastry===i?" sel":"");b.innerHTML='<img class="pastry-thumb" src="images/m/'+p[1]+'.png" alt="">'+p[0];b.onclick=function(){M.pastry=i;M.prepared=0;sfx("pop");say(p[0]+" slides onto your plate.");plate();[].forEach.call($("#shelf").children,function(x,j){x.classList.toggle("sel",j===i)});mnav()};$("#shelf").appendChild(b)});plate()}
+function plate(){var p=$("#plt");if(!p)return;[].forEach.call(p.querySelectorAll(".pa"),function(x){x.remove()});if(M.pastry>=0)p.insertAdjacentHTML("beforeend",'<img class="pa" src="images/m/'+PAS[M.pastry][1]+'.png" alt="Selected pastry">')}
+function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'<div class="plt" id="plt2" style="opacity:0">'+mi("plate","pl")+'<img class="pa" src="images/m/'+PAS[M.pastry][1]+'.png" alt="">'+'</div></div>';var g=$(".gl"),o=curDrink();
  if(M.prepared){setDrink(g,o);$("#plt2").style.opacity=1;say("Your order is ready on the counter.");return}
  setDrink(g,{mt:0});function T(ms,f){mt.push(setTimeout(f,ms))}
  say("Pouring the matcha into the glass...");T(300,function(){setDrink(g,{st:o.st,milk:"",sw:o.sw,hot:o.hot,mt:78});sfx("spark")});
@@ -399,7 +799,7 @@ function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'
 function omsg(){var a=["Bold and unbothered, just like you.","Your birthday drink is as sweet as you are.","Your birthday drink is as sweet as you are.","Extra sweet, because you deserve every bit of it."][M.sweet];var b=M.style===2?" Pink, dreamy and a little bit extra.":M.style===1?" Warm, cozy and just right.":" Cool, calm and main-character ready.";return a+b+" Here's to another year of main-character moments!"}
 function st4(){var s=$("#mstage");M.done=1;order={style:STY[M.style],sweet:SWEET[M.sweet],milk:MILK[M.milk][0],pastry:PAS[M.pastry][0],file:PAS[M.pastry][1]};try{localStorage.setItem("shannonOrder",JSON.stringify(order))}catch(e){}
  $("#orderBtn").style.display="block";say("Order up!");
- s.innerHTML='<div class="ocard sketch"><h3>Shannon\u2019s Birthday Special</h3><div class="row" style="align-items:flex-end">'+drinkHTML()+'<div class="plt" style="width:150px;height:76px">'+mi("plate","pl")+mi(PAS[M.pastry][1],"pa")+'</div></div><p><b>Matcha style:</b> '+order.style+'</p><p><b>Sweetness:</b> '+order.sweet+'</p><p><b>Milk:</b> '+order.milk+'</p><p><b>Pastry:</b> '+order.pastry+'</p><p>'+omsg()+'</p><div class="row"><button id="yum">Yummm! Let\u2019s Continue &#10140;</button><button id="remake">Make a new one</button></div></div>';
+ s.innerHTML='<div class="ocard sketch"><h3>Shannon\u2019s Birthday Special</h3><div class="row" style="align-items:flex-end">'+drinkHTML()+'<div class="plt" style="width:150px;height:76px">'+mi("plate","pl")+'<img class="pa" src="images/m/'+PAS[M.pastry][1]+'.png" alt="">'+'</div></div><p><b>Matcha style:</b> '+order.style+'</p><p><b>Sweetness:</b> '+order.sweet+'</p><p><b>Milk:</b> '+order.milk+'</p><p><b>Pastry:</b> '+order.pastry+'</p><p>'+omsg()+'</p><div class="row"><button id="yum">Yummm! Let\u2019s Continue &#10140;</button><button id="remake">Make a new one</button></div></div>';
  setDrink($(".gl"),curDrink());$("#yum").onclick=function(){burst(24,1);sfx("spark");closeM()};$("#remake").onclick=function(){M={sc:0,sifted:0,poured:0,whisk:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0};said={};mgo(-1)}}
 $("#mnext").onclick=function(){if(!this.disabled)mgo(mstep+1)};$("#mback").onclick=function(){mgo(mstep-1)};$("#orderBtn").onclick=function(){$("#mMatcha").classList.add("open")};
 new MutationObserver(function(){if($("#mMatcha").classList.contains("open"))mgo(M.done?4:(mstep<0?-1:mstep));else clearT()}).observe($("#mMatcha"),{attributes:true,attributeFilter:["class"]});
@@ -413,11 +813,16 @@ $("#mFonda").addEventListener("transitionend",function(){});new MutationObserver
 /* ===== S4: rooftop finale ===== */
 var LET="Shannon T.K,<br><br>It\u2019s crazy to think our friendship started from chatting on IG just because you knew my sister.<br><br>Thank you for always picking me up and driving me home - Passenger princess appreciates it.<br><br>Happy Birthday! I hope everything you\u2019ve ever wished for comes true this year - you truly deserve all the happiness in the world.<br><br>Love always,<br>Fonda <span style='display:inline-block;width:16px;height:16px;background:#d9a520;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)'></span>";
 var LTXT=["Shannon T.K,","","It\u2019s crazy to think our friendship started from chatting on IG just because you knew my sister.","","Thank you for always picking me up and driving me home - Passenger princess appreciates it.","","Happy Birthday! I hope everything you\u2019ve ever wished for comes true this year - you truly deserve all the happiness in the world.","","Love always,","Fonda"];
-function rooftop(){show("#scene4");mood="off";clearInterval(musicT);startBirthday();ambience();$("#letter").innerHTML=LET;
+function rooftop(){
+ show("#scene4");mood="off";clearInterval(musicT);startBirthday();ambience();
+ /* Reset the finale so re-entering the rooftop always shows the opening cake moment. */
+ $("#cakeW").classList.remove("ready","show");$("#bar").style.display="none";$("#open").style.display="none";$("#scrollW").style.display="none";$("#gram").style.display="none";
+ $$("#scene4 .fp").forEach(function(el){el.remove()});
  buildNight();
-
- var P=[[8,86],[18,80],[28,86],[38,80],[46,86],[52,80]];P.forEach(function(p,i){var f=document.createElement("div");f.className="fp";f.style.cssText="left:"+p[0]+"%;top:"+p[1]+"%;transform:rotate("+(i%2?12:-12)+"deg)";$("#scene4").appendChild(f);setTimeout(function(){f.classList.add("on");sfx("step")},700+i*650)});
- setTimeout(cakeTime,700+P.length*650+300)}
+ var P=[[8,86],[18,80],[28,86],[38,80],[46,86],[52,80]];
+ P.forEach(function(p,i){var f=document.createElement("div");f.className="fp";f.style.cssText="left:"+p[0]+"%;top:"+p[1]+"%;transform:rotate("+(i%2?12:-12)+"deg)";$("#scene4").appendChild(f);setTimeout(function(){f.classList.add("on");sfx("step")},700+i*650)});
+ setTimeout(cakeTime,900);
+}
 /* ===== Birthday music =====
    To use your own recording, put an MP3 named  happy-birthday-cozy.mp3  in the SAME folder as this index.html.
    If the file is missing, the game quietly falls back to a built-in soft piano and music-box version of the melody. */
@@ -439,39 +844,41 @@ SFX.puff=function(){noise(.35,1800,.6,.3,600)};
 function ambience(){var L=$("#lights"),i,d;
  for(i=0;i<26;i++){d=document.createElement("div");d.className="fz";d.style.left=Math.random()*100+"%";d.style.animationDuration=9+Math.random()*9+"s";d.style.animationDelay=-Math.random()*12+"s";$("#scene4").appendChild(d)}}
 var NL=[[30.16, 57.75, 35.33], [21.33, 18.49, 26.63], [51.9, 29.56, 24.73], [14.13, 42.25, 24.73], [69.02, 13.98, 21.47], [75.54, 41.1, 15.49], [44.29, 10.54, 15.49], [12.09, 16.35, 10.33]];
-function buildNight(){var a=$("#nightArt");if(a.children.length)return;var sc=$("#scene4");
- if(innerWidth/innerHeight>.75){[[3,12,6],[8,34,8],[14,60,5],[22,22,7],[78,18,7],[86,40,5],[92,14,6],[95,62,8],[27,50,4],[72,56,4]].forEach(function(b,k){var d=document.createElement("div");d.className="pl";d.style.cssText="position:absolute;left:"+b[0]+"%;top:"+b[1]+"%;width:"+b[2]*1.1+"vh;max-width:90px;opacity:.9;animation-duration:"+(7+k%3)+"s;animation-delay:"+(-k*1.1)+"s";var m=document.createElement("img");m.alt="";m.src="images/env/lanterns/lantern-heart-"+(k%7+2)+".png";m.style.animationDelay=(-k*.7)+"s";d.appendChild(m);sc.insertBefore(d,sc.children[1])});
+function buildNight(){var a=$("#nightArt");if(a.children.length)return;var sc=$("#scene4"),sky=$("#skyDoodle"),lanterns=$("#lanternSky");sky.innerHTML='<svg viewBox="0 0 1000 1000" preserveAspectRatio="none" width="100%" height="100%"><defs><filter id="skyDry"><feTurbulence baseFrequency=".045" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter></defs><g fill="none" stroke="#d9c6e9" stroke-width="2.4" stroke-linecap="round" opacity=".7" filter="url(#skyDry)"><path d="M70 170 Q100 135 132 175 T198 160 M780 190 Q825 150 860 185 T920 155 M250 390 Q310 360 350 395"/><path d="M120 270 L134 290 L155 295 L134 302 L122 322 L116 302 L96 294 L116 289Z M830 350 L843 370 L864 376 L844 383 L833 401 L826 382 L807 375 L826 370Z"/><path d="M420 100 Q480 25 535 105 M440 120 Q490 78 522 130"/></g><g fill="#e7d6ff" opacity=".65"><circle cx="120" cy="265" r="3"/><circle cx="830" cy="350" r="3"/><circle cx="490" cy="98" r="3"/></g></svg>';
+ if(innerWidth/innerHeight>.75){
   for(var q=0;q<46;q++){var t=document.createElement("div");t.className="star";var lf=Math.random()<.5?Math.random()*26:74+Math.random()*26;t.style.cssText="left:"+lf+"%;top:"+Math.random()*70+"%;background:#f3c96b;width:2px;height:2px;animation-delay:"+Math.random()*2+"s";sc.insertBefore(t,sc.children[1])}}
+ var skyPos=[[9,24,5],[18,43,6],[27,16,4],[39,38,5],[52,20,5],[63,43,4],[74,16,6],[86,33,5],[94,18,4],[13,64,4],[32,61,4],[71,63,5]];skyPos.forEach(function(p,i){var d=document.createElement('div');d.className='pl';d.style.cssText='left:'+p[0]+'%;top:'+p[1]+'%;width:'+p[2]+'%;max-width:70px;animation-duration:'+(6+i%4)+'s;animation-delay:'+(-i*.7)+'s';var m=document.createElement('img');m.alt='';m.src='images/env/lanterns/lantern-heart-'+(i%8+1)+'.png';m.style.animationDelay=(-i*.5)+'s';d.appendChild(m);lanterns.appendChild(d)});
  NL.forEach(function(b,k){var d=document.createElement("div");d.className="pl";d.style.cssText="left:"+b[0]+"%;top:"+b[1]+"%;width:"+b[2]+"%;animation-duration:"+(6+(k*1.7)%4)+"s;animation-delay:"+(-k*1.3)+"s";var m=document.createElement("img");m.alt="";m.src="images/env/lanterns/lantern-heart-"+(k+1)+".png";m.style.animationDuration=(4.5+(k*.9)%3)+"s";m.style.animationDelay=(-k*.8)+"s";d.appendChild(m);a.appendChild(d)})}
 (function(){["images/m/cake-sparkler.png","images/env/night-bg.jpg"].forEach(function(u){new Image().src=u})})();
-function cakeTime(){showChar($("#rc"),G.outfit,"picnic");requestAnimationFrame(function(){$("#rc").classList.add("show")});
- var w=$("#cakeW"),left=3,shown=0;
+function cakeTime(){
+ showChar($("#rc"),G.outfit,"pic");requestAnimationFrame(function(){$("#rc").classList.add("show")});
+ var w=$("#cakeW"),left=4,shown=0;w.classList.remove("ready","show");$("#open").style.display="none";$("#bar").style.display="none";
  function reveal(){if(shown)return;shown=1;w.classList.add("ready");requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add("show")})})}
- var im=new Image();im.onload=im.onerror=reveal;im.src="images/m/cake-sparkler.png";if(im.decode)im.decode().then(reveal,reveal);
- $$(".cd").forEach(function(c){c.onclick=function(){if(c.classList.contains("out"))return;c.classList.add("out");
-  if(c.classList.contains("spk")){$("#cakeSprite").classList.add("out");$(".cglow").classList.add("off")}
-  var sm=document.createElement("span");sm.className="smoke";c.appendChild(sm);sfx("puff");left--;
-  $("#cakeSay").textContent=left?"Keep going, "+left+" to go.":"Happy Birthday, Shannon!";
-  if(!left){burst(36,1);sfx("spark");setTimeout(function(){w.classList.remove("show");setTimeout(function(){w.classList.remove("ready");$("#open").style.display="block";anim($("#open"),"pop")},900)},1800)}}})}
-
+ var im=new Image();im.onload=im.onerror=reveal;im.src="images/m/birthday-cake-upload.png";if(im.decode)im.decode().then(reveal,reveal);
+ $$(".cd").forEach(function(c){c.onclick=function(){if(c.classList.contains("out"))return;c.classList.add("out");var sm=document.createElement("span");sm.className="smoke";c.appendChild(sm);sfx("puff");left--;
+  $("#cakeSay").textContent=left?"Tap each candle to blow it out — "+left+" left.":"All candles out! Now write a wish and send it up with a lantern.";
+  if(!left){burst(28,1);sfx("spark");setTimeout(function(){w.classList.remove("show");setTimeout(function(){w.classList.remove("ready");$("#bar").style.display="flex";$("#bar .row:nth-child(2)").style.display="none";$("#open").style.display="none";anim($("#bar"),"pop")},850)},1400)}
+ }})}
 var LC=["pink","mint","butter"],rel=0;
 function ambient(x,d){var l=document.createElement("img");l.className="amb";l.src=V2+"lantern-"+LC[Math.random()*3|0]+".png";l.alt="";l.style.cssText="left:"+x+"%;width:"+(38+Math.random()*26)+"px;animation-duration:"+d+"s;animation-delay:"+(-Math.random()*d)+"s";$("#scene4").appendChild(l)}
-$("#open").onclick=function(){this.style.display="none";$("#scrollW").style.display="flex";sfx("unroll");$("#paper").classList.add("go");var r=$(".letterCard").getBoundingClientRect();
- var t=setInterval(function(){var b=$(".letterCard").getBoundingClientRect();sparkles(2,{x:b.left+b.width/2,y:b.bottom,w:b.width,h:30})},300);
- setTimeout(function(){clearInterval(t);sfx("spark");sparkles(18);$("#bar").style.display="flex";$("#gram").style.display="block";anim($("#gram"),"pop")},3700)};
-$("#lan").onclick=function(){var w=$("#wish").value.trim(),f=document.createElement("div");f.className="fly";var sw=document.createElement("div");sw.className="sway";var im=document.createElement("img");rel++;im.src="images/env/lanterns/lantern-heart-1.png";im.alt="";var sp=document.createElement("span");sp.textContent=w||"a quiet wish";sw.appendChild(im);sw.appendChild(sp);f.appendChild(sw);$("#scene4").appendChild(f);
- sfx("spark");sparkles(12,{x:innerWidth/2,y:innerHeight-150,w:160,h:120});$("#msg").textContent="Watch your wish float up into the night...";setTimeout(function(){f.remove();$("#msg").textContent="Your wish has reached the stars."},11500)};
-/* ===== Share (free: native share sheet on phones, PNG download elsewhere) ===== */
-function img(src){return new Promise(function(r,j){var i=new Image();i.onload=function(){r(i)};i.onerror=j;i.src=src})}
+$("#open").onclick=function(){this.style.display="none";$("#scrollW").style.display="flex";$("#bar").style.display="flex";$("#bar .row:first-child").style.display="none";$("#bar .row:nth-child(2)").style.display="flex";sfx("unroll");sparkles(16);setTimeout(function(){sfx("spark");$("#gram").style.display="block";anim($("#gram"),"pop")},1700)};
+$("#lan").onclick=function(){
+ if(this.disabled)return;var w=$("#wish").value.trim();if(!w){$("#msg").textContent="Write your wish first, then release it.";$("#wish").focus();return}
+ this.disabled=true;$("#wish").disabled=true;$("#bar .row:first-child").style.display="none";
+ var f=document.createElement("div");f.className="fly";var sw=document.createElement("div");sw.className="sway";
+ var im=document.createElement("img");im.src="images/env/lanterns/lantern-heart-1.png";im.alt="";
+ var sp=document.createElement("span");sp.className="wish-ink";sp.textContent=w;sw.appendChild(im);sw.appendChild(sp);f.appendChild(sw);$("#scene4").appendChild(f);
+ sfx("spark");sparkles(18,{x:innerWidth/2,y:innerHeight-150,w:180,h:140});$("#msg").textContent="Your wish is written on the lantern. Watch it drift into the sky…";
+ f.addEventListener("animationend",function(){f.remove();$("#msg").textContent="Your wish is on its way among the stars.";$("#open").style.display="block";anim($("#open"),"pop")},{once:true});
+};
+/* ===== Character and wishes cards ===== */
+function img(src){return new Promise(function(r,j){var i=new Image();i.onload=function(){r(i)};i.onerror=function(){j(new Error("Image failed to load: "+src))};i.src=src})}
 function wrap(c,t,x,y,w,lh){var ws=t.split(" "),l="";ws.forEach(function(wd){var tt=l+wd+" ";if(c.measureText(tt).width>w&&l){c.fillText(l,x,y);y+=lh;l=wd+" "}else l=tt});c.fillText(l,x,y);return y+lh}
 function card(kind){var cv=document.createElement("canvas");cv.width=1080;cv.height=1350;var c=cv.getContext("2d");c.fillStyle="#fffdf6";c.fillRect(0,0,1080,1350);c.strokeStyle="#6b4a45";c.lineWidth=8;c.strokeRect(36,36,1008,1278);c.textAlign="center";c.fillStyle="#6b4a45";c.font="86px 'Patrick Hand','Comic Sans MS',cursive";
- if(kind==="c"){c.fillText("Happy Birthday Shannon!",540,150);var p=poseFor(G.outfit,"picnic");return img(SH+p.file).then(function(im){var H=1020,W=im.width*H/im.height;if(W>900){W=900;H=im.height*W/im.width}c.save();if(p.face==="l"){c.translate(1080,0);c.scale(-1,1)}c.drawImage(im,540-W/2,230+(1020-H),W,H);c.restore();c.font="40px 'Patrick Hand',cursive";c.fillText("with love, Fonda",540,1290);c.font="24px 'Patrick Hand',cursive";c.fillText("Illustration by XTing",540,1330);return cv})}
+ if(kind==="c"){c.fillText("Happy Birthday Shannon!",540,150);var p=poseFor(G.outfit,"picnic");return img(SH+p.file).then(function(im){var H=1020,W=im.width*H/im.height;if(W>900){W=900;H=im.height*W/im.width}c.save();if(p.face==="l"){c.translate(1080,0);c.scale(-1,1)}c.drawImage(im,540-W/2,230+(1020-H),W,H);c.restore();c.font="40px 'Patrick Hand',cursive";c.fillText("with love, Fonda",540,1290);return cv})}
  c.fillText("Birthday Wishes",540,150);c.font="42px 'Patrick Hand','Comic Sans MS',cursive";c.textAlign="left";var y=250;LTXT.forEach(function(t){y=t?wrap(c,t,110,y,860,58):y+30});
  var w=$("#wish").value.trim();c.fillStyle="#9b3d56";if(order){y=wrap(c,"Birthday order: "+order.style+" and "+order.pastry.toLowerCase(),110,y+20,860,58)}if(w){y=wrap(c,"Shannon's wish: "+w,110,y+20,860,58)}
  var room=1280-(y+30);if(order&&order.file&&room>=90){return img("images/m/"+order.file+".png").then(function(im){var h=Math.min(230,room),sc=Math.min(h/im.height,420/im.width);c.drawImage(im,540-im.width*sc/2,y+30+(h-im.height*sc),im.width*sc,im.height*sc);return cv},function(){return cv})}return Promise.resolve(cv)}
-function share(kind){$("#msg").textContent="Making your image...";card(kind).then(function(cv){cv.toBlob(function(b){if(!b){$("#msg").textContent="Please open this game from its web link to save images.";return}
- var f=new File([b],"shannon-birthday.png",{type:"image/png"});
- if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:"Happy Birthday Shannon"}).then(function(){$("#msg").textContent="Pick Instagram in the share sheet."},function(){$("#msg").textContent="Share cancelled."});
- else{var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="shannon-birthday.png";a.click();$("#msg").textContent="Saved! Open Instagram and post it from your gallery."}},"image/png")},function(){$("#msg").textContent="Please open this game from its web link to save images."})}
-$("#shC").onclick=function(){share("c")};$("#shW").onclick=function(){share("w")};
+$("#shC").onclick=function(){runCardShare(function(){return card("c")},"shannon-character.png","Shannon's Birthday Character","Shannon's birthday character! Made with love by Fonda.")};
+$("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-birthday-wishes.png","Shannon's Birthday Wishes","A birthday wishes card for Shannon, made with love by Fonda.")};
 })();</script></body></html>
