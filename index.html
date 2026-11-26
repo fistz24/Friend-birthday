@@ -567,6 +567,8 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 }
 </style>
 
+
+
 </head><body>
 <button id="snd">Sound: on</button><div id="appCopyright">© 2026 Fonda I. Santoso. All rights reserved.</div>
 <div id="scene1" class="scene active">
@@ -1238,20 +1240,20 @@ function cardAll(){var cv=document.createElement("canvas");cv.width=1080;cv.heig
 $("#shA").onclick=function(){runCardShare(cardAll,"shannon-birthday-adventure.png","Shannon's Birthday Adventure","Shannon's birthday adventure! Made with love by Fonda.")};
 
 /* ===== Shannon's Birthday Matcha Lab ===== */
-var MSTEP=["Matcha","Drink","Pastry","Prepare","Order"],mstep=-1,M={sc:0,sifted:0,siftTravel:0,water:0,poured:0,whisk:0,whiskTravel:0,ice:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0},mt=[],said={},order=null;
-var SWEET=["No sugar","A little sweet","Perfectly sweet","Extra sweet"],MILK=[["Oat milk","#e8d6b2"],["Fresh milk","#fbfaf2"],["Almond milk","#efe3cc"],["Coconut milk","#fffbea"]],STY=["Iced matcha latte","Hot matcha latte","Strawberry matcha"],PAS=[["Croissant","cutouts/bread-croissant"],["Almond brioche","cutouts/bread-almond-brioche"],["Sesame bun","cutouts/bread-sesame-round-bun"],["Baguette","cutouts/bread-scored-baguette"],["Star bread","cutouts/bread-star-bread"],["Smiley toast","cutouts/bread-toast-bread"],["Herb roll","cutouts/bread-herb-roll"],["Cinnamon swirl","cutouts/bread-cinnamon-swirl"],["Seeded bun","cutouts/bread-seeded-bun"],["Sliced loaf","cutouts/bread-sliced-loaf"],["Crosshatch loaf","cutouts/bread-crosshatch-loaf"],["Newsprint baguette","cutouts/bread-newsprint-baguette"],["Strawberry cake","cutouts/cake-strawberry-cake"],["Panettone","cutouts/cake-panettone"],["Knit hat cake","cutouts/cake-knit-hat-cake"],["Yule log","cutouts/cake-yule-log"],["Joyeux Noël cake","cutouts/cake-joyeux-cake"]];
+var MSTEP=["Matcha","Drink","Pastry","Prepare","Order"],mstep=-1,M={sc:0,sifted:0,siftTravel:0,water:0,poured:0,whisk:0,whiskTravel:0,ice:0,sweet:-1,milk:-1,style:-1,pastry:-1,pastries:[],prepared:0,done:0},mt=[],said={},order=null;
+var SWEET=["No sugar","A little sweet","Perfectly sweet","Extra sweet"],MILK=[["Oat milk","#e8d6b2"],["Fresh milk","#fbfaf2"],["Almond milk","#efe3cc"],["Coconut milk","#fffbea"]],STY=["Iced matcha latte","Hot matcha latte","Strawberry matcha"],PAS=[["Croissant","cutouts/topview-croissant"],["Almond brioche","cutouts/topview-almond-brioche"],["Sesame bun","cutouts/topview-sesame-round-bun"],["Baguette","cutouts/topview-scored-baguette"],["Star bread","cutouts/topview-star-bread"],["Smiley toast","cutouts/topview-toast-bread"],["Herb roll","cutouts/topview-herb-roll"],["Cinnamon swirl","cutouts/topview-cinnamon-swirl"],["Seeded bun","cutouts/topview-seeded-bun"],["Sliced loaf","cutouts/topview-sliced-loaf"],["Crosshatch loaf","cutouts/topview-crosshatch-loaf"],["Newsprint baguette","cutouts/topview-newsprint-baguette"],["Strawberry cake","cutouts/topview-strawberry-cake"],["Panettone","cutouts/topview-panettone"],["Knit hat cake","cutouts/topview-knit-hat-cake"],["Yule log","cutouts/topview-yule-log"],["Joyeux Noël cake","cutouts/topview-joyeux-cake"]];
 /* Matcha lab UI helpers: these were missing from the previous build, so entering the shop threw a ReferenceError before anything could render. */
 function say(message){var el=$("#mtalk");if(el){el.textContent=message;anim(el,"pop")}}
 function clearT(){mt.forEach(function(timer){clearTimeout(timer)});mt=[]}
 function mnav(){
- var labels=["Matcha","Drink","Pastry","Prepare","Order"],step=Math.max(0,mstep),ready=mstep<0||mstep===4||(mstep===0?M.whisk>=100:mstep===1?M.sweet>=0&&M.milk>=0&&M.style>=0:mstep===2?M.pastry>=0:mstep===3?!!M.prepared:false);
+ var labels=["Matcha","Drink","Pastry","Prepare","Order"],icons=["🍵","🥛","🥐","✨","💝"],step=Math.max(0,mstep),done=[M.whisk>=100,M.sweet>=0&&M.milk>=0&&M.style>=0,M.pastry>=0,!!M.prepared,!!M.done],ready=mstep<0||mstep===4||(mstep===0?M.whisk>=100:mstep===1?M.sweet>=0&&M.milk>=0&&M.style>=0:mstep===2?M.pastry>=0:mstep===3?!!M.prepared:false);
  var prog=$("#mprog"),back=$("#mback"),next=$("#mnext");
- if(prog)prog.textContent=mstep<0?"Your birthday matcha adventure":(labels[step]+" · "+(step+1)+" of 5");
- if(back)back.disabled=mstep<=-1;
- if(next){next.textContent=mstep<0?"Let's make matcha! →":mstep>=4?"All done!":"Next →";next.disabled=!ready||mstep>=4;next.style.display=mstep>=4?"none":"inline-block"}
+ if(prog){prog.innerHTML=labels.map(function(label,i){var active=(mstep<0&&i===0)||i===step,cls=(active?"on ":"")+(done[i]?"dn":"");return '<span class="mstep '+cls+'" aria-label="'+label+(done[i]?", completed":"")+(active?", current":"")+'" title="'+label+'"><i>'+icons[i]+'</i><b>'+label+'</b>'+(done[i]?'<em>✓</em>':'')+'</span>'}).join("");prog.setAttribute("aria-label","Matcha game progress");}
+ if(back){back.innerHTML='<span aria-hidden="true">←</span> Back';back.disabled=mstep<=-1;back.setAttribute("aria-label","Go back to previous step")}
+ if(next){next.innerHTML=mstep<0?"Let's make matcha! <span aria-hidden='true'>🍵 →</span>":mstep>=4?'All done! <span aria-hidden="true">💝</span>':'Next <span aria-hidden="true">→</span>';next.disabled=!ready||mstep>=4;next.style.display=mstep>=4?"none":"inline-block"}
 }
 
-function mi(n,c){if(/^tin$/.test(n))return '<img class="matcha-art '+(c||'')+'" src="images/m/matcha-tin.png" alt="Shannon matcha powder tin">';if(/^kettle$/.test(n))return '<img class="matcha-art '+(c||'')+'" src="images/m/kettle-only.png" alt="Pink water kettle">';if(/whisk/.test(n))return '<img class="matcha-art '+(c||'')+'" src="images/m/matcha-whisk.png" alt="Bamboo matcha whisk">';if(/bowl/.test(n))return '<img class="matcha-art '+(c||'')+'" src="images/m/matcha-cup.png" alt="Pink matcha cup">';if(/plate/.test(n))return '<img class="pl plate-art" src="images/m/plate-custom.png" alt="Pink oval pastry plate">';var kind=/^tin$/.test(n)?'tin':/sieve/.test(n)?'sieve':/kettle/.test(n)?'kettle':/glass|drink|ice/.test(n)?'cup':/plate/.test(n)?'plate':/spark|star/.test(n)?'spark':'bread';var art={
+function mi(n,c){if(/^tin$/.test(n))return '<img class="matcha-art '+(c||'')+'" src="images/m/matcha-tin.png" alt="Shannon matcha powder tin">';if(/^kettle$/.test(n))return '<img class="matcha-art '+(c||'')+'" src="images/m/kettle-only.png" alt="Pink water kettle">';if(/whisk/.test(n))return '<img class="matcha-art '+(c||'')+'" src="images/m/matcha-whisk.png" alt="Bamboo matcha whisk">';if(/bowl/.test(n))return '<img class="matcha-art '+(c||'')+'" src="images/m/matcha-cup.png" alt="Pink matcha cup">';if(/plate/.test(n))return '<img class="pl plate-art" src="images/m/plate-custom.png" alt="Pink oval pastry plate">';if(/^tray$/.test(n))return '<svg class="pl tray-art" viewBox="0 0 500 190" role="img" aria-label="Watercolor bakery tray"><path d="M42 24 Q18 28 20 54 L30 143 Q34 169 67 172 L433 172 Q466 168 470 142 L480 53 Q480 27 456 24Z" fill="#c99b77" opacity=".22"/><path d="M45 16 Q24 21 27 48 L38 138 Q42 160 72 161 L428 161 Q458 158 462 137 L473 48 Q475 22 452 16Z" fill="#f1d8bd" stroke="#a87958" stroke-width="8"/><path d="M61 31 Q44 35 46 54 L56 126 Q60 144 82 145 L417 145 Q439 143 442 125 L452 54 Q454 35 437 31Z" fill="#fffaf0" stroke="#e4bd9c" stroke-width="4"/><path d="M68 149 Q250 165 430 149" fill="none" stroke="#d8ad88" stroke-width="3" stroke-linecap="round"/><g fill="#f2c7aa"><circle cx="82" cy="25" r="3"/><circle cx="418" cy="25" r="3"/><circle cx="68" cy="153" r="3"/><circle cx="433" cy="153" r="3"/></g></svg>';var kind=/^tin$/.test(n)?'tin':/sieve/.test(n)?'sieve':/kettle/.test(n)?'kettle':/glass|drink|ice/.test(n)?'cup':/plate/.test(n)?'plate':/spark|star/.test(n)?'spark':'bread';var art={
  tin:'<path d="M22 24 Q50 18 78 24 L78 73 Q50 86 22 73Z" fill="#a7cf79" stroke="#39352f" stroke-width="3"/><path d="M22 24 Q50 31 78 24 M22 73 Q50 81 78 73" fill="none" stroke="#79975c" stroke-width="3"/><circle cx="50" cy="48" r="21" fill="#f18a9a"/><text x="50" y="45" text-anchor="middle" font-size="11" font-family="Patrick Hand, cursive" fill="#39352f">MATCHA</text><path d="M32 61 Q50 54 68 61" fill="none" stroke="#e8f2d4" stroke-width="2"/>',
  whisk:'<rect x="43" y="7" width="14" height="43" rx="7" fill="#8d83b7" stroke="#39352f" stroke-width="2.5"/><path d="M37 46 Q50 52 63 46 L62 54 Q50 59 38 54Z" fill="#d7c7ec"/><path d="M40 54 C30 65 32 81 44 91 M46 54 C41 69 41 82 49 92 M50 54 C50 70 52 84 53 92 M54 54 C59 70 60 84 57 92 M60 54 C70 66 68 81 60 91" fill="none" stroke="#39352f" stroke-width="2.8" stroke-linecap="round"/>',
  sieve:'<path d="M12 34 Q50 45 88 34 L77 70 Q50 85 23 70Z" fill="#fff6dc" stroke="#39352f" stroke-width="3"/><path d="M20 42 Q50 51 80 42 M23 51 Q50 59 77 51 M27 60 Q50 68 73 60 M31 40 L36 71 M43 42 L46 75 M56 42 L56 75 M68 40 L64 71" stroke="#39352f" stroke-width="1.7"/><path d="M9 30 Q50 43 91 30" fill="none" stroke="#f07b92" stroke-width="5" stroke-linecap="round"/>',
@@ -1266,25 +1268,25 @@ function mgo(n){clearT();mstep=n;mnav();var s=$("#mstage");
  else if(n===0)st0();else if(n===1)st1();else if(n===2)st2();else if(n===3)st3();else st4()}
 function st0(){
  var s=$("#mstage");
- say("Let's make the matcha together! Drag the little scoop from the tin into your cup one to three times.");
+ say("Let's make the matcha together! Tap or drag a scoop into the bowl (up to three), then sift, pour, and whisk with your finger.");
  s.innerHTML='<div class="brew-game">'+
   '<div class="ingredient-area"><div class="brew-label">MATCHA TIN</div>'+mi("tin")+'<div class="tin-note">A little scoop of green tea</div><div id="scoopDrag" class="scoop-drag" role="button" tabindex="0" aria-label="Scoop matcha powder and drag it into the cup"><svg viewBox="0 0 64 42" aria-hidden="true"><path d="M6 9 Q16 1 26 9 Q33 17 25 25 Q16 33 7 24 Q0 17 6 9Z" fill="#a7c977" stroke="#6d8454" stroke-width="2.5"/><path d="M23 24 L55 39" stroke="#bd8b56" stroke-width="6" stroke-linecap="round"/><path d="M8 11 Q16 6 23 13" fill="none" stroke="#e8f0cf" stroke-width="2.4" stroke-linecap="round"/></svg><span>Take a scoop</span></div><div id="scoopCount" class="brew-count">0 / 3 scoops</div></div>'+
-  '<div class="bowlw" id="bowlw"><div class="bowl-surface" id="bowlSurface"><div class="pow" id="pow"></div><div class="liq" id="liq"></div><div class="foam" id="foam"><i></i><i></i><i></i><i></i><i></i></div><img id="sieveCursor" class="gesture-cursor" src="images/m/sieve.png" alt="" draggable="false"></div><img id="whiskCursor" class="gesture-cursor whisk-cursor" src="images/m/matcha-whisk.png" alt="" draggable="false"><img class="matcha-cup-art" src="images/m/matcha-cup.png" alt="Pink ceramic matcha cup"><div class="bowl-caption">YOUR MATCHA CUP</div></div>'+
-  '<div class="brew-tools"><div class="brew-label">NEXT STEPS</div><button class="tool" id="tS" type="button">'+mi("sieve")+'<span>Swipe to sift</span></button><button class="tool" id="tK" type="button">'+mi("kettle")+'<span>Drag & pour water</span></button><button class="tool" id="tW" type="button">'+mi("whisk")+'<span>Whisk in circles</span></button></div>'+
-  '<div class="brew-instruction" id="brewInstruction">Add 1–3 scoops to begin.</div><div class="brew-progress"><span id="brewCount">Powder: 0/3 · Sifting: 0%</span><span id="waterCount">Water: 0%</span></div><div id="wbar"><i id="wfill"></i></div></div>';
+  '<div class="bowlw" id="bowlw"><div class="bowl-surface" id="bowlSurface"><div class="pow" id="pow"></div><div class="liq" id="liq"></div><div class="foam" id="foam"><i></i><i></i><i></i><i></i><i></i><img class="foam-art" src="images/m/matcha-foam-watercolor.png" alt="Watercolor matcha foam swirl"></div><img id="sieveCursor" class="gesture-cursor" src="images/m/sieve.png" alt="" draggable="false"></div><img id="whiskCursor" class="gesture-cursor whisk-cursor" src="images/m/matcha-whisk.png" alt="" draggable="false"><img class="matcha-cup-art" src="images/m/matcha-cup.png" alt="Pink ceramic matcha cup"><div class="bowl-caption">MATCHA BOWL · SWIRL HERE</div></div>'+
+  '<div class="brew-tools"><div class="brew-label">NEXT STEPS</div><button class="tool" id="tS" type="button">'+mi("sieve")+'<span>Swipe to sift</span></button><button class="tool" id="tK" type="button">'+mi("kettle")+'<span>Drag & pour water</span></button><button class="tool" id="tW" type="button">'+mi("whisk")+'<span>Whisk in circles ↻</span></button></div>'+
+  '<div class="brew-instruction" id="brewInstruction">Step 1 · Tap or drag the scoop into the bowl.</div><div class="brew-progress"><span id="brewCount">Powder: 0/3 · Sifting: 0%</span><span id="waterCount">Water: 0%</span></div><div id="wbar"><i id="wfill"></i></div></div>';
  var scoop=$("#scoopDrag"),surface=$("#bowlSurface"),bowl=$("#bowlw"),sieveCursor=$("#sieveCursor"),whiskCursor=$("#whiskCursor");
  function addScoop(){if(M.sc>=3){say("That's plenty of matcha. Now swipe across the cup to sift it.");return}M.sc++;paint();sfx("pop");say(M.sc===1?"Lovely! One scoop in. Add another or start sifting.":M.sc===3?"Three scoops! Perfectly rich. Swipe back and forth over the cup to sift the powder.":"Two scoops. Add one more or begin sifting.");}
  var scoopStart=null,scoopMoved=false,scoopGhost=null;
  scoop.onpointerdown=function(e){if(M.sc>=3)return;e.preventDefault();scoopStart={x:e.clientX,y:e.clientY};scoopMoved=false;scoopGhost=document.createElement("div");scoopGhost.className="drag-scoop";scoopGhost.innerHTML=scoop.querySelector("svg").outerHTML;document.body.appendChild(scoopGhost);scoopGhost.style.left=e.clientX+"px";scoopGhost.style.top=e.clientY+"px";function move(ev){if(!scoopStart)return;if(Math.hypot(ev.clientX-scoopStart.x,ev.clientY-scoopStart.y)>6)scoopMoved=true;scoopGhost.style.left=ev.clientX+"px";scoopGhost.style.top=ev.clientY+"px"}function up(ev){window.removeEventListener("pointermove",move);window.removeEventListener("pointerup",up);window.removeEventListener("pointercancel",up);var target=document.elementFromPoint(ev.clientX,ev.clientY);if(target&&target.closest("#bowlw")){addScoop()}else if(!scoopMoved){addScoop()}if(scoopGhost)scoopGhost.remove();scoopGhost=null;scoopStart=null}window.addEventListener("pointermove",move);window.addEventListener("pointerup",up);window.addEventListener("pointercancel",up)};
  scoop.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();addScoop()}};
- $("#tS").onclick=function(){if(!M.sc)say("Take a scoop of matcha from the tin first.");else if(M.sifted)say("Your matcha powder is nice and fine. Now drag the kettle over the cup and hold to pour.");else say("Swipe back and forth across the green surface inside your cup. Keep going until the powder is fine.")};
+ $("#tS").onclick=function(){if(!M.sc)say("Take a scoop of matcha from the tin first.");else if(M.sifted)say("Your matcha powder is nice and fine. Now drag the kettle over the cup and hold to pour.");else say("Sweep left and right across the bowl surface to sift the powder.")};
  // Sifting: two broad back-and-forth sweeps across the cup surface.
  var siftPointer=null,lastSiftX=0;
  surface.onpointerdown=function(e){if(!M.sc)return;if(!M.sifted){e.preventDefault();siftPointer=e.pointerId;lastSiftX=e.clientX;sieveCursor.style.display="block";surface.setPointerCapture(e.pointerId);bowl.classList.add("sifting");sieveCursor.style.left=(e.clientX-surface.getBoundingClientRect().left)+"px";sieveCursor.style.top=(e.clientY-surface.getBoundingClientRect().top)+"px";return}
   if(!M.poured)return;
-  e.preventDefault();surface.setPointerCapture(e.pointerId);bowl.classList.add("whisking");var rect=surface.getBoundingClientRect(),bowlRect=bowl.getBoundingClientRect();var cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;var lastAngle=Math.atan2(e.clientY-cy,e.clientX-cx),lastWhiskX=e.clientX,lastWhiskY=e.clientY;whiskCursor.style.display="block";whiskCursor.style.left=(e.clientX-bowlRect.left)+"px";whiskCursor.style.top=(e.clientY-bowlRect.top)+"px";whiskCursor.style.transform="translate(-50%,-94%) rotate(0deg)";
-  function moveWhisk(ev){if(ev.pointerId!==e.pointerId)return;var a=Math.atan2(ev.clientY-cy,ev.clientX-cx),delta=Math.abs(a-lastAngle);if(delta>Math.PI)delta=2*Math.PI-delta;M.whiskTravel+=delta;lastAngle=a;var dx=ev.clientX-lastWhiskX,dy=ev.clientY-lastWhiskY,tilt=Math.max(-22,Math.min(22,Math.atan2(dy,dx)*180/Math.PI*.12));lastWhiskX=ev.clientX;lastWhiskY=ev.clientY;whiskCursor.style.left=(ev.clientX-bowlRect.left)+"px";whiskCursor.style.top=(ev.clientY-bowlRect.top)+"px";whiskCursor.style.transform="translate(-50%,-94%) rotate("+tilt+"deg)";M.whisk=Math.min(100,Math.round(M.whiskTravel/(Math.PI*4)*100));paint();if(M.whisk>=100)finishWhisk()}
-  function endWhisk(ev){if(ev.pointerId!==e.pointerId)return;surface.removeEventListener("pointermove",moveWhisk);surface.removeEventListener("pointerup",endWhisk);surface.removeEventListener("pointercancel",endWhisk);bowl.classList.remove("whisking");whiskCursor.style.display="none"}
+  e.preventDefault();surface.setPointerCapture(e.pointerId);bowl.classList.add("whisking");var rect=surface.getBoundingClientRect(),bowlRect=bowl.getBoundingClientRect();var cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;var lastAngle=Math.atan2(e.clientY-cy,e.clientX-cx),lastWhiskX=e.clientX,lastWhiskY=e.clientY,whiskMoved=false;whiskCursor.style.display="block";whiskCursor.style.left=(e.clientX-bowlRect.left)+"px";whiskCursor.style.top=(e.clientY-bowlRect.top)+"px";whiskCursor.style.transform="translate(-50%,-94%) rotate(0deg)";
+  function moveWhisk(ev){if(ev.pointerId!==e.pointerId)return;if(Math.hypot(ev.clientX-lastWhiskX,ev.clientY-lastWhiskY)>5)whiskMoved=true;var a=Math.atan2(ev.clientY-cy,ev.clientX-cx),delta=Math.abs(a-lastAngle);if(delta>Math.PI)delta=2*Math.PI-delta;M.whiskTravel+=delta;lastAngle=a;var dx=ev.clientX-lastWhiskX,dy=ev.clientY-lastWhiskY,tilt=Math.max(-22,Math.min(22,Math.atan2(dy,dx)*180/Math.PI*.12));lastWhiskX=ev.clientX;lastWhiskY=ev.clientY;whiskCursor.style.left=(ev.clientX-bowlRect.left)+"px";whiskCursor.style.top=(ev.clientY-bowlRect.top)+"px";whiskCursor.style.transform="translate(-50%,-94%) rotate("+tilt+"deg)";M.whisk=Math.min(100,Math.round(M.whiskTravel/(Math.PI*4)*100));paint();if(M.whisk>=100)finishWhisk()}
+  function endWhisk(ev){if(ev.pointerId!==e.pointerId)return;surface.removeEventListener("pointermove",moveWhisk);surface.removeEventListener("pointerup",endWhisk);surface.removeEventListener("pointercancel",endWhisk);if(ev.type==="pointerup"&&!whiskMoved&&M.whisk<100){M.whiskTravel+=Math.PI*.32;M.whisk=Math.min(100,Math.round(M.whiskTravel/(Math.PI*4)*100));paint();sfx("pop");say("A little whisk tap! Keep swirling or tap a few more times.");if(M.whisk>=100)finishWhisk()}bowl.classList.remove("whisking");whiskCursor.style.display="none"}
   surface.addEventListener("pointermove",moveWhisk);surface.addEventListener("pointerup",endWhisk);surface.addEventListener("pointercancel",endWhisk);
  };
  surface.onpointermove=function(e){if(siftPointer!==e.pointerId||M.sifted)return;var rect=surface.getBoundingClientRect(),dx=Math.abs(e.clientX-lastSiftX);lastSiftX=e.clientX;if(dx>2)M.siftTravel+=dx/rect.width;sieveCursor.style.left=(e.clientX-rect.left)+"px";sieveCursor.style.top=(e.clientY-rect.top)+"px";paint();if(M.siftTravel>=1.65){M.sifted=1;siftPointer=null;bowl.classList.remove("sifting");sieveCursor.style.display="none";sfx("spark");say("Beautifully sifted! Now drag the kettle over your cup and hold it there to pour warm water.");paint()}};
@@ -1305,7 +1307,7 @@ function st0(){
 function paint(){var p=$("#pow"),liq=$("#liq"),foam=$("#foam");if(!p||!liq)return;
  p.style.opacity=M.sc?Math.min(.95,.3+.2*M.sc):0;p.classList.toggle("fine",!!M.sifted);p.style.transform="scale("+(M.sc?Math.min(1,.48+M.sc*.17):.3)+")";
  liq.style.opacity=M.water?Math.min(.88,.12+M.water*.0076):0;liq.style.transform="scale("+(M.water?(.32+M.water/150):0)+")";liq.style.background=M.poured?"radial-gradient(ellipse at 42% 38%,#a8c77d 0,#799d56 68%,#668746 100%)":"rgba(114,151,78,.85)";
- if(foam){foam.style.opacity=Math.max(0,Math.min(.96,(M.whisk-4)/48));foam.classList.toggle("active",M.whisk>8)}$("#wfill").style.width=M.whisk+"%";
+ if(foam){foam.style.opacity=Math.max(0,Math.min(.96,(M.whisk-4)/48));foam.classList.toggle("active",M.whisk>8);var foamArt=foam.querySelector(".foam-art");if(foamArt)foamArt.style.transform="scale("+(.35+Math.min(1,M.whisk/100)*.65)+") rotate(-8deg)"}$("#wfill").style.width=M.whisk+"%";
  var count=$("#scoopCount");if(count)count.textContent=M.sc+" / 3 scoops";var counter=$("#brewCount");if(counter)counter.textContent="Powder: "+M.sc+"/3 · Sifting: "+Math.min(100,Math.round(M.siftTravel/1.65*100))+"%";var wc=$("#waterCount");if(wc)wc.textContent="Water: "+Math.round(M.water)+"%";
  var hint=$("#brewInstruction");if(hint)hint.textContent=!M.sc?"Drag the scoop into the cup 1–3 times.":!M.sifted?"Swipe back and forth across the powder to sift it.":!M.poured?"Hold the kettle over the cup to pour; let go to stop.":M.whisk<100?"Whisk in smooth circles on the surface of the matcha.":"Your matcha is ready!";
  $("#tS").classList.toggle("lock",!M.sc||!!M.sifted);$("#tK").classList.toggle("lock",!M.sifted||!!M.poured);$("#tW").classList.toggle("lock",!M.poured||M.whisk>=100);
@@ -1338,16 +1340,16 @@ function st1(){
  s.innerHTML='<div class="drink-customizer"><div class="drink-preview">'+drinkHTML()+'<div class="drink-summary" id="drinkSummary">Choose your drink style</div><div class="pips" id="pips" aria-label="Sweetness level"></div></div><div class="opts" id="opts" aria-label="Drink choices"></div></div>';
  var o=$("#opts");
  var groups=[
-  {title:"Sweetness",key:"sweet",values:SWEET,short:["No sugar","A little","Perfectly sweet","Extra sweet"]},
-  {title:"Milk",key:"milk",values:MILK.map(function(x){return x[0]}),short:MILK.map(function(x){return x[0]})},
-  {title:"Drink temperature & style",key:"style",values:STY,short:["Iced","Hot","Strawberry"]}
+  {title:"Sweetness",key:"sweet",values:SWEET,short:["No sugar","A little","Perfectly sweet","Extra sweet"],icons:["○","🍯","🍯🍯","🍯✨"]},
+  {title:"Milk",key:"milk",values:MILK.map(function(x){return x[0]}),short:MILK.map(function(x){return x[0]}),icons:["🌾","🥛","🌰","🥥"]},
+  {title:"Drink temperature & style",key:"style",values:STY,short:["Iced","Hot","Strawberry"],icons:["🧊","♨️","🍓"]}
  ];
  groups.forEach(function(g){
   var group=document.createElement("section");group.className="choice-group";group.dataset.choice=g.key;
   var head=document.createElement("div");head.className="choice-heading";head.innerHTML='<b>'+g.title+'</b><small>Choose one</small>';group.appendChild(head);
   var row=document.createElement("div");row.className="choice-buttons";
   g.values.forEach(function(value,i){
-   var b=document.createElement("button");b.type="button";b.className="choice-btn";b.textContent=g.short[i];b.dataset.value=i;b.setAttribute("aria-label",value);b.setAttribute("aria-pressed",M[g.key]===i?"true":"false");
+   var b=document.createElement("button");b.type="button";b.className="choice-btn";b.innerHTML='<span class="choice-icon" aria-hidden="true">'+(g.icons[i]||'')+'</span><span class="choice-label">'+esc(g.short[i])+'</span>';b.dataset.value=i;b.setAttribute("aria-label",value);b.setAttribute("aria-pressed",M[g.key]===i?"true":"false");
    if(M[g.key]===i)b.classList.add("is-selected");
    b.onclick=function(){M[g.key]=i;if(g.key==="style")M.ice=0;M.prepared=0;upd1();sfx("pop");say(g.key==="milk"?value+" swirls into the matcha.":g.key==="style"?value+", great choice.":value+".");mnav()};
    row.appendChild(b);
@@ -1367,10 +1369,16 @@ function upd1(){
  $$("#opts .choice-group").forEach(function(group){var key=group.dataset.choice;group.querySelectorAll(".choice-btn").forEach(function(b){var selected=Number(b.dataset.value)===M[key];b.classList.toggle("is-selected",selected);b.setAttribute("aria-pressed",selected?"true":"false")})});
  var iceBtn=$("#iceAdd");if(iceBtn){iceBtn.classList.toggle("available",M.style===0||M.style===2);iceBtn.disabled=!(M.style===0||M.style===2);var count=$("#iceCount");if(count)count.textContent=M.ice+" / 3"}
 }
-function st2(){var s=$("#mstage");say(M.pastry<0?"Pick a pastry from the bakery counter.":PAS[M.pastry][0]+", yum.");s.innerHTML='<div class="pastry-stage"><div class="shelf" id="shelf"></div><div class="plt" id="plt">'+mi("plate","pl")+'</div></div>';
- PAS.forEach(function(p,i){var b=document.createElement("button");b.className="pcard"+(M.pastry===i?" sel":"");b.innerHTML='<img class="pastry-thumb" src="images/m/'+p[1]+'.png" alt="">'+p[0];b.onclick=function(){M.pastry=i;M.prepared=0;sfx("pop");say(p[0]+" slides onto your plate.");plate();[].forEach.call($("#shelf").children,function(x,j){x.classList.toggle("sel",j===i)});mnav()};$("#shelf").appendChild(b)});plate()}
-function plate(){var p=$("#plt");if(!p)return;[].forEach.call(p.querySelectorAll(".pa"),function(x){x.remove()});if(M.pastry>=0)p.insertAdjacentHTML("beforeend",'<img class="pa" src="images/m/'+PAS[M.pastry][1]+'.png" alt="Selected pastry">')}
-function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'<div class="plt" id="plt2" style="opacity:0">'+mi("plate","pl")+'<img class="pa" src="images/m/'+PAS[M.pastry][1]+'.png" alt="">'+'</div></div>';var g=$(".gl"),o=curDrink();
+function st2(){var s=$("#mstage"),chosen=M.pastries||[];say(chosen.length?chosen.map(function(i){return PAS[i][0]}).join(", ")+" on your tray! Pick a few more, or remove any by tapping again.":"Choose up to three treats for your birthday tray. Tap to add; tap again to remove.");s.innerHTML='<div class="pastry-stage"><div class="pastry-top"><div class="pastry-prompt"><span class="pastry-mark" aria-hidden="true">🥐</span><div><strong>Fill your birthday tray</strong><small>Tap to add · tap again to remove · up to 3 treats</small></div></div><div class="pastry-filters" role="group" aria-label="Filter pastries"><button type="button" class="pastry-filter active" data-filter="all">✨ All</button><button type="button" class="pastry-filter" data-filter="bread">🥐 Breads</button><button type="button" class="pastry-filter" data-filter="cake">🍰 Cakes</button></div></div><div class="shelf" id="shelf"></div><div class="pastry-selected" id="pastrySelected" aria-live="polite"></div><div class="plt tray-preview" id="plt">'+mi("tray","pl")+'</div></div>';
+ var shelf=$("#shelf"),filters=$$(".pastry-filter"),activeFilter="all";
+ function applyFilter(){PAS.forEach(function(p,i){var card=shelf.children[i],category=/cake|log|panettone/i.test(p[1])?"cake":"bread";card.hidden=activeFilter!=="all"&&activeFilter!==category;});filters.forEach(function(f){var on=f.dataset.filter===activeFilter;f.classList.toggle("active",on);f.setAttribute("aria-pressed",on?"true":"false")})}
+ filters.forEach(function(f){f.onclick=function(){activeFilter=f.dataset.filter;applyFilter();sfx("pop")}});
+ PAS.forEach(function(p,i){var b=document.createElement("button"),category=/cake|log|panettone/i.test(p[1])?"Cake":"Bread",on=(M.pastries||[]).indexOf(i)>=0;b.type="button";b.className="pcard"+(on?" sel":"");b.dataset.category=category.toLowerCase();b.setAttribute("aria-pressed",on?"true":"false");b.setAttribute("aria-label",p[0]+", "+category+(on?", selected":""));b.innerHTML='<span class="pastry-check" aria-hidden="true">'+(on?String((M.pastries||[]).indexOf(i)+1):'＋')+'</span><img class="pastry-thumb" src="images/m/'+p[1]+'.png" alt="'+esc(p[0])+'"><span class="pastry-name">'+esc(p[0])+'</span><span class="pastry-kind">'+category+'</span>';b.onclick=function(){var list=M.pastries||[],idx=list.indexOf(i);if(idx>=0)list.splice(idx,1);else if(list.length>=3){say("Your tray is full—three treats! Remove one to make room.");sfx("pop");return}else list.push(i);M.pastries=list;M.pastry=list.length?list[0]:-1;M.prepared=0;sfx("pop");say(list.length?list.map(function(j){return PAS[j][0]}).join(", ")+" on your tray. Keep choosing or tap a selected treat to remove it.":"Tray cleared! Pick your favorites again.");updateCards();mnav()};shelf.appendChild(b)});
+ function updateCards(){[].forEach.call(shelf.children,function(card,j){var idx=(M.pastries||[]).indexOf(j),on=idx>=0;card.classList.toggle("sel",on);card.setAttribute("aria-pressed",on?"true":"false");card.setAttribute("aria-label",PAS[j][0]+", "+card.dataset.category+(on?", selected position "+(idx+1):""));var check=card.querySelector(".pastry-check");if(check)check.textContent=on?String(idx+1):"＋"});var status=$("#pastrySelected");if(status)status.innerHTML=!(M.pastries||[]).length?'<span>🧺 Your tray is waiting for treats</span>':'<span>🧺 Tray: <strong>'+M.pastries.map(function(i){return esc(PAS[i][0])}).join(" · ")+'</strong> <small>('+M.pastries.length+'/3)</small></span>';plate()}
+ applyFilter();updateCards();plate()}
+function trayItemsHTML(){return '<div class="tray-items" aria-label="Pastries arranged on tray">'+(M.pastries||[]).map(function(i,j){return '<img class="tray-item tray-slot-'+j+'" src="images/m/'+PAS[i][1]+'.png" alt="'+esc(PAS[i][0])+'" title="'+esc(PAS[i][0])+'">'}).join("")+'</div>'}
+function plate(){var p=$("#plt");if(!p)return;[].forEach.call(p.querySelectorAll(".pa"),function(x){x.remove()});p.insertAdjacentHTML("beforeend",trayItemsHTML())}
+function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'<div class="plt tray-preview" id="plt2" style="opacity:0">'+mi("tray","pl")+trayItemsHTML()+'</div></div>';var g=$(".gl"),o=curDrink();
  if(M.prepared){setDrink(g,o);$("#plt2").style.opacity=1;say("Your order is ready on the counter.");return}
  setDrink(g,{mt:0});function T(ms,f){mt.push(setTimeout(f,ms))}
  say("Pouring the matcha into the glass...");T(300,function(){setDrink(g,{st:o.st,milk:"",sw:o.sw,hot:o.hot,mt:78});sfx("spark")});
@@ -1379,10 +1387,10 @@ function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'
  T(5200,function(){say("Here comes your pastry...");$("#plt2").style.opacity=1;$("#plt2").classList.add("slide");sfx("pop")});
  T(6600,function(){say("Your order is ready on the counter!");M.prepared=1;sfx("spark");burst(14,1);mnav()})}
 function omsg(){var a=["Bold and unbothered, just like you.","Your birthday drink is as sweet as you are.","Your birthday drink is as sweet as you are.","Extra sweet, because you deserve every bit of it."][M.sweet];var b=M.style===2?" Pink, dreamy and a little bit extra.":M.style===1?" Warm, cozy and just right.":" Cool, calm and main-character ready.";return a+b+" Here's to another year of main-character moments!"}
-function st4(){var s=$("#mstage");M.done=1;order={style:STY[M.style],sweet:SWEET[M.sweet],milk:MILK[M.milk][0],pastry:PAS[M.pastry][0],file:PAS[M.pastry][1]};try{localStorage.setItem("shannonOrder",JSON.stringify(order))}catch(e){}
+function st4(){var s=$("#mstage");M.done=1;order={style:STY[M.style],sweet:SWEET[M.sweet],milk:MILK[M.milk][0],pastries:(M.pastries||[]).map(function(i){return PAS[i][0]}),pastry:(M.pastries||[]).map(function(i){return PAS[i][0]}).join(", "),file:M.pastry>=0?PAS[M.pastry][1]:"",files:(M.pastries||[]).map(function(i){return PAS[i][1]})};try{localStorage.setItem("shannonOrder",JSON.stringify(order))}catch(e){}
  $("#orderBtn").style.display="block";say("Order up!");
- s.innerHTML='<div class="ocard sketch"><h3>Shannon\u2019s Birthday Special</h3><div class="row" style="align-items:flex-end">'+drinkHTML()+'<div class="plt" style="width:150px;height:76px">'+mi("plate","pl")+'<img class="pa" src="images/m/'+PAS[M.pastry][1]+'.png" alt="">'+'</div></div><p><b>Matcha style:</b> '+order.style+'</p><p><b>Sweetness:</b> '+order.sweet+'</p><p><b>Milk:</b> '+order.milk+'</p><p><b>Pastry:</b> '+order.pastry+'</p><p>'+omsg()+'</p><div class="row"><button id="yum">Yummm! Let\u2019s Continue &#10140;</button><button id="remake">Make a new one</button></div></div>';
- setDrink($(".gl"),curDrink());$("#yum").onclick=function(){burst(24,1);sfx("spark");closeM()};$("#remake").onclick=function(){M={sc:0,sifted:0,siftTravel:0,water:0,poured:0,whisk:0,whiskTravel:0,ice:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0};said={};mgo(-1)}}
+ s.innerHTML='<div class="ocard sketch"><h3>Shannon\u2019s Birthday Special</h3><div class="row" style="align-items:flex-end">'+drinkHTML()+'<div class="plt tray-preview" style="width:150px;height:76px">'+mi("tray","pl")+trayItemsHTML()+'</div></div><p><b>Matcha style:</b> '+order.style+'</p><p><b>Sweetness:</b> '+order.sweet+'</p><p><b>Milk:</b> '+order.milk+'</p><p><b>Tray:</b> '+order.pastry+'</p><p>'+omsg()+'</p><div class="row"><button id="yum">Yummm! Let\u2019s Continue &#10140;</button><button id="remake">Make a new one</button></div></div>';
+ setDrink($(".gl"),curDrink());$("#yum").onclick=function(){burst(24,1);sfx("spark");closeM()};$("#remake").onclick=function(){M={sc:0,sifted:0,siftTravel:0,water:0,poured:0,whisk:0,whiskTravel:0,ice:0,sweet:-1,milk:-1,style:-1,pastry:-1,pastries:[],prepared:0,done:0};said={};mgo(-1)}}
 $("#mnext").onclick=function(){if(!this.disabled)mgo(mstep+1)};$("#mback").onclick=function(){mgo(mstep-1)};$("#orderBtn").onclick=function(){$("#mMatcha").classList.add("open")};
 new MutationObserver(function(){if($("#mMatcha").classList.contains("open"))mgo(M.done?4:(mstep<0?-1:mstep));else clearT()}).observe($("#mMatcha"),{attributes:true,attributeFilter:["class"]});
 
@@ -1742,7 +1750,114 @@ $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-
 </style>
 
 
-</body></html>
+
+<style id="bakery-tray-non-overlap-layout">
+/* Arrange selected pastries like a bakery display: three in the back row, two in front.
+   Keep all items inside the tray's inner rim, with consistent spacing at every size. */
+#mMatcha #mstage .tray-preview{isolation:isolate}
+#mMatcha #mstage .tray-item{height:35%!important;max-width:18%!important;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(105,70,44,.20));}
+#mMatcha #mstage .tray-slot-0{left:27%!important;bottom:52%!important;height:35%!important;max-width:18%!important}
+#mMatcha #mstage .tray-slot-1{left:50%!important;bottom:52%!important;height:35%!important;max-width:18%!important}
+#mMatcha #mstage .tray-slot-2{left:73%!important;bottom:52%!important;height:35%!important;max-width:18%!important}
+#mMatcha #mstage .tray-slot-3{left:38%!important;bottom:20%!important;height:35%!important;max-width:18%!important}
+#mMatcha #mstage .tray-slot-4{left:62%!important;bottom:20%!important;height:35%!important;max-width:18%!important}
+@media(max-width:600px){
+ #mMatcha #mstage .tray-preview{width:min(320px,84vw)!important;height:112px!important}
+ #mMatcha #mstage .tray-item{height:34%!important;max-width:18%!important}
+ #mMatcha #mstage .tray-slot-0{left:27%!important;bottom:52%!important;height:34%!important;max-width:18%!important}
+ #mMatcha #mstage .tray-slot-1{left:50%!important;bottom:52%!important;height:34%!important;max-width:18%!important}
+ #mMatcha #mstage .tray-slot-2{left:73%!important;bottom:52%!important;height:34%!important;max-width:18%!important}
+ #mMatcha #mstage .tray-slot-3{left:38%!important;bottom:20%!important;height:34%!important;max-width:18%!important}
+ #mMatcha #mstage .tray-slot-4{left:62%!important;bottom:20%!important;height:34%!important;max-width:18%!important}
+}
+</style>
+
+
+
+<style id="bakery-tray-grid-layout-no-overlap">
+/* Pastries are children of a grid layer; they cannot overlap or share coordinates. */
+#mMatcha .tray-items{position:absolute!important;z-index:2!important;inset:13% 14% 15%!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;grid-template-rows:1fr 1fr!important;column-gap:1.5%!important;row-gap:5%!important;align-items:center!important;justify-items:center!important}
+#mMatcha .tray-items .tray-item{position:static!important;display:block!important;width:100%!important;height:100%!important;max-width:none!important;min-width:0!important;object-fit:contain!important;object-position:center!important;transform:none!important;animation:trayGridPop .24s ease-out both!important;filter:drop-shadow(0 2px 2px rgba(107,74,69,.15))!important}
+#mMatcha .tray-slot-0{grid-row:1!important;grid-column:1/3!important}
+#mMatcha .tray-slot-1{grid-row:1!important;grid-column:3/5!important}
+#mMatcha .tray-slot-2{grid-row:1!important;grid-column:5/7!important}
+#mMatcha .tray-slot-3{grid-row:2!important;grid-column:2/4!important}
+#mMatcha .tray-slot-4{grid-row:2!important;grid-column:4/6!important}
+@keyframes trayGridPop{from{opacity:0;transform:scale(.76)}to{opacity:1;transform:scale(1)}}
+#mMatcha #mstage .tray-preview{position:relative!important;width:min(460px,94vw)!important;height:244px!important;overflow:hidden!important;isolation:isolate!important}
+#mMatcha #mstage .tray-art{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;z-index:1!important}
+@media(max-width:600px){#mMatcha #mstage .tray-preview{width:min(390px,94vw)!important;height:206px!important}#mMatcha .tray-items{inset:14% 13% 15%!important;row-gap:3%!important}}
+</style>
+
+
+
+<style id="matcha-large-pastries-real-foam-mobile-final">
+/* Enlarged tray with a spacious bakery layout: 3 behind, 2 centered in front. */
+#mMatcha #mstage .tray-preview{width:min(560px,96vw)!important;height:270px!important;max-width:100%!important;position:relative!important;isolation:isolate!important;overflow:hidden!important}
+#mMatcha #mstage .tray-art{inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;z-index:1!important}
+#mMatcha #mstage .tray-items{position:absolute!important;z-index:2!important;inset:10% 9% 12%!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;grid-template-rows:1fr 1fr!important;column-gap:1.4%!important;row-gap:1%!important;align-items:center!important;justify-items:center!important}
+#mMatcha #mstage .tray-items .tray-item{position:static!important;display:block!important;width:96%!important;height:96%!important;max-width:none!important;min-width:0!important;object-fit:contain!important;object-position:center!important;transform:none!important;animation:trayTreatPopLarge .28s cubic-bezier(.2,.8,.2,1) both!important;filter:drop-shadow(0 3px 2px rgba(102,65,38,.22))!important;z-index:2!important}
+#mMatcha #mstage .tray-slot-0{grid-row:1!important;grid-column:1/3!important}
+#mMatcha #mstage .tray-slot-1{grid-row:1!important;grid-column:3/5!important}
+#mMatcha #mstage .tray-slot-2{grid-row:1!important;grid-column:5/7!important}
+#mMatcha #mstage .tray-slot-3{grid-row:2!important;grid-column:2/4!important}
+#mMatcha #mstage .tray-slot-4{grid-row:2!important;grid-column:4/6!important}
+@keyframes trayTreatPopLarge{from{opacity:0;transform:scale(.78)}to{opacity:1;transform:scale(1)}}
+@media(max-width:600px){
+ #mMatcha #mstage .tray-preview{width:94vw!important;height:205px!important;max-width:100%!important}
+ #mMatcha #mstage .tray-items{inset:11% 8% 13%!important;column-gap:1.2%!important;row-gap:1%!important}
+ #mMatcha #mstage .tray-items .tray-item{width:98%!important;height:98%!important}
+ #mMatcha #mstage .bowlw{width:min(210px,54vw)!important}
+ #mMatcha #mstage .bowl-surface{left:8%!important;width:84%!important;height:30%!important}
+ #mMatcha #mstage .brew-tools{gap:6px!important}
+ #mMatcha #mstage .brew-tools .tool{min-height:58px!important;padding:5px 4px!important;gap:5px!important;font-size:clamp(10px,3vw,12px)!important}
+ #mMatcha #mstage .brew-tools .tool .mi-svg,#mMatcha #mstage .brew-tools .tool .matcha-art{width:clamp(32px,9vw,40px)!important;height:clamp(32px,9vw,40px)!important}
+ #mMatcha #mstage #tW .matcha-art{width:clamp(34px,10vw,44px)!important;height:clamp(36px,11vw,48px)!important}
+ #mMatcha #mstage .whisk-cursor{width:clamp(78px,22vw,100px)!important;height:clamp(122px,34vw,152px)!important}
+ #mMatcha #mstage .scoop-drag{min-width:76px!important;max-width:34vw!important;padding:5px 7px!important}
+}
+/* Rich microfoam: layered crema-like bubbles, soft green froth and an animated swirl. */
+#mMatcha #mstage .foam{background-color:rgba(185,210,133,.94)!important;background-image:radial-gradient(circle at 14% 18%,rgba(250,254,226,.96) 0 1.4px,transparent 2.5px),radial-gradient(circle at 23% 66%,rgba(246,251,222,.94) 0 2px,transparent 3.3px),radial-gradient(circle at 35% 34%,rgba(246,251,222,.96) 0 1.2px,transparent 2.3px),radial-gradient(circle at 44% 78%,rgba(246,251,222,.88) 0 1.8px,transparent 3px),radial-gradient(circle at 58% 18%,rgba(250,254,226,.96) 0 2px,transparent 3.4px),radial-gradient(circle at 68% 64%,rgba(246,251,222,.92) 0 1.5px,transparent 2.8px),radial-gradient(circle at 84% 28%,rgba(246,251,222,.96) 0 1.6px,transparent 2.8px),radial-gradient(circle at 91% 74%,rgba(246,251,222,.92) 0 2px,transparent 3.2px),radial-gradient(ellipse at 50% 45%,rgba(226,241,189,.72),rgba(144,178,94,.2) 68%,rgba(104,145,65,.1))!important;background-size:100% 100%!important;transition:opacity .22s ease!important}
+#mMatcha #mstage .foam:before{inset:8% 10%!important;border:4px solid rgba(247,251,220,.65)!important;border-right-color:rgba(248,252,227,.15)!important;border-bottom-color:rgba(248,252,227,.28)!important;box-shadow:inset 0 0 10px rgba(250,254,228,.2),0 0 7px rgba(249,253,224,.18)!important;opacity:.92!important;transform:rotate(-18deg) scale(.88)!important}
+#mMatcha #mstage .foam:after{background-image:radial-gradient(circle at 18% 38%,rgba(252,255,235,.98) 0 2.2px,transparent 3.7px),radial-gradient(circle at 40% 22%,rgba(249,253,228,.96) 0 1.8px,transparent 3.1px),radial-gradient(circle at 58% 46%,rgba(250,254,231,.94) 0 2.4px,transparent 4px),radial-gradient(circle at 75% 29%,rgba(250,254,231,.96) 0 1.8px,transparent 3.2px),radial-gradient(circle at 31% 76%,rgba(250,254,231,.92) 0 2px,transparent 3.4px),radial-gradient(circle at 82% 72%,rgba(250,254,231,.94) 0 2.1px,transparent 3.6px)!important;opacity:.82!important;animation:matchaMicrofoamDrift 2.2s ease-in-out infinite alternate!important}
+#mMatcha #mstage .foam.active i{opacity:.9!important;width:clamp(3px,1vw,6px)!important;height:clamp(3px,1vw,6px)!important;animation:matchaBubbleLift 1.25s ease-in-out infinite alternate!important}
+#mMatcha #mstage .foam.active i:nth-child(2n){animation-delay:-.42s!important}#mMatcha #mstage .foam.active i:nth-child(3n){animation-delay:-.78s!important}
+#mMatcha #mstage .bowlw.whisking .foam:before{animation:matchaFoamSpin 1.05s linear infinite!important}
+#mMatcha #mstage .bowlw.whisking .foam:after{animation:matchaMicrofoamDrift .48s ease-in-out infinite alternate!important}
+@keyframes matchaMicrofoamDrift{to{transform:scale(.98) translate(1px,-1px);opacity:.72}}
+@keyframes matchaBubbleLift{to{transform:translateY(-4px) scale(1.3);opacity:.55}}
+@media(prefers-reduced-motion:reduce){#mMatcha #mstage .tray-items .tray-item,#mMatcha #mstage .foam:after,#mMatcha #mstage .foam.active i{animation:none!important}}
+</style>
+
+<style id="matcha-three-pastries-large-foam-mobile-final">
+/* Three bakery treats only: enlarged, separated, and fitted to the tray. */
+#mMatcha #mstage .tray-preview{width:min(560px,96vw)!important;height:260px!important;max-width:100%!important;position:relative!important;isolation:isolate!important;overflow:hidden!important}
+#mMatcha #mstage .tray-items{position:absolute!important;inset:10% 8% 12%!important;display:block!important}
+#mMatcha #mstage .tray-items .tray-item{position:absolute!important;top:auto!important;bottom:18%!important;width:27%!important;height:82%!important;max-width:none!important;object-fit:contain!important;object-position:center!important;transform:translateX(-50%)!important;animation:trayTreatPop .24s ease-out both!important;filter:drop-shadow(0 3px 3px rgba(107,74,69,.20))!important}
+#mMatcha #mstage .tray-slot-0{left:20%!important}
+#mMatcha #mstage .tray-slot-1{left:50%!important}
+#mMatcha #mstage .tray-slot-2{left:80%!important}
+#mMatcha #mstage .tray-slot-3,#mMatcha #mstage .tray-slot-4{display:none!important}
+/* The uploaded round top-view foam is squeezed into the bowl's foreshortened rim. */
+#mMatcha #mstage .foam{background:none!important;overflow:hidden!important}
+#mMatcha #mstage .foam:before,#mMatcha #mstage .foam:after{display:none!important;content:none!important}
+#mMatcha #mstage .foam-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;opacity:.97;transform:scale(.35) rotate(-8deg);transform-origin:center;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s;filter:drop-shadow(0 0 2px rgba(140,174,88,.18));pointer-events:none}
+#mMatcha #mstage .bowlw.whisking .foam-art{animation:matchaFoamSpin .9s linear infinite}
+@keyframes matchaFoamSpin{to{rotate:352deg}}
+@media(max-width:600px){
+ #mMatcha #mstage .tray-preview{width:min(94vw,430px)!important;height:clamp(165px,30vw,205px)!important}
+ #mMatcha #mstage .tray-items{inset:9% 6% 10%!important}
+ #mMatcha #mstage .tray-items .tray-item{width:29%!important;height:85%!important;bottom:15%!important}
+ #mMatcha #mstage .tray-slot-0{left:19%!important}
+ #mMatcha #mstage .tray-slot-1{left:50%!important}
+ #mMatcha #mstage .tray-slot-2{left:81%!important}
+}
+@media(max-width:380px){
+ #mMatcha #mstage .tray-preview{height:155px!important}
+ #mMatcha #mstage .tray-items .tray-item{width:29%!important;height:78%!important}
+}
+@media(prefers-reduced-motion:reduce){#mMatcha #mstage .bowlw.whisking .foam-art{animation:none!important;rotate:0deg!important}}
+</style></body></html>
 
 <style id="v4-visual-cleanup">
 #scene4 #skyDoodle{display:none!important}
@@ -2112,3 +2227,82 @@ $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-
 <script id="winter-wardrobe-snow">
 (function(){var sc=document.getElementById('scene2');if(!sc||sc.querySelector('.wardrobe-snow'))return;var layer=document.createElement('div');layer.className='wardrobe-snow';layer.setAttribute('aria-hidden','true');for(var k=0;k<7;k++){var st=document.createElement('i');st.className='wardrobe-star';st.textContent=(k%2?'✧':'✦');st.style.left=(10+Math.random()*80)+'%';st.style.top=(8+Math.random()*82)+'%';st.style.setProperty('--star-delay',(-Math.random()*5)+'s');layer.appendChild(st)}for(var n=0;n<44;n++){var f=document.createElement('i');f.className='wardrobe-snowflake';f.style.left=(Math.random()*100)+'%';f.style.setProperty('--w',(1+Math.random()*3.5)+'px');f.style.setProperty('--dur',(12+Math.random()*14)+'s');f.style.setProperty('--delay',(-Math.random()*20)+'s');f.style.setProperty('--drift',(-45+Math.random()*90)+'px');layer.appendChild(f)}sc.insertBefore(layer,sc.firstChild);})();
 </script>
+
+<style id="matcha-pastry-ux-polish">
+/* Clear, friendly icons and active progress states for Matcha Lab. */
+#mMatcha #mprog .mstep{display:inline-flex;align-items:center;gap:5px;position:relative;white-space:nowrap;border:1.5px solid #c9b9a8;border-radius:999px;background:#fffaf1;color:#8b7867;padding:4px 9px;transition:transform .18s,background .18s,border-color .18s;box-shadow:0 1px 0 #b7a08b33}
+#mMatcha #mprog .mstep i{font-style:normal;font-size:14px}#mMatcha #mprog .mstep b{font-weight:600}#mMatcha #mprog .mstep.on{background:#e5edcf;border-color:#87a768;color:#536f3d;box-shadow:0 0 0 2px #f8fff0}#mMatcha #mprog .mstep.dn{border-color:#c9b08a}#mMatcha #mprog .mstep em{font-style:normal;font-size:11px;color:#6d944b}
+#mMatcha #mstage .choice-btn{gap:5px}#mMatcha #mstage .choice-icon{font-size:clamp(14px,2vw,20px);line-height:1;flex:none}#mMatcha #mstage .choice-label{min-width:0}
+#mMatcha #mstage .pastry-top{width:100%;display:flex;flex-direction:column;gap:6px;align-items:center}#mMatcha #mstage .pastry-prompt{display:flex;align-items:center;gap:9px;color:#735a47;background:linear-gradient(90deg,#fff6e9,#fffdf7);border:1.5px solid #e7cdb6;border-radius:14px;padding:6px 12px;box-shadow:0 2px 0 #a9886730}#mMatcha #mstage .pastry-mark{font-size:24px}#mMatcha #mstage .pastry-prompt strong{display:block;font-size:clamp(14px,2vw,18px)}#mMatcha #mstage .pastry-prompt small{display:block;font-size:12px;opacity:.72}#mMatcha #mstage .pastry-filters{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}#mMatcha #mstage .pastry-filter{border:1.5px solid #d6bda6;background:#fffaf2;color:#735a47;border-radius:999px;padding:5px 11px;min-height:34px;font:inherit;font-size:13px;cursor:pointer;transition:background .16s,transform .16s}#mMatcha #mstage .pastry-filter.active{background:#e2edcf;border-color:#8eae6b;color:#4f6e36;box-shadow:0 0 0 2px #fff}#mMatcha #mstage .pastry-filter:focus-visible,#mMatcha #mstage .pcard:focus-visible{outline:3px solid #d18a9b;outline-offset:2px}
+#mMatcha #mstage #shelf .pcard{position:relative;gap:2px;border:1.5px solid #dfc5ae;border-radius:13px;background:#fffaf1;box-shadow:0 2px 0 #9c7c5c22;transition:transform .18s,box-shadow .18s,border-color .18s;background-color .18s;overflow:hidden}#mMatcha #mstage #shelf .pcard:hover{transform:translateY(-2px);box-shadow:0 4px 0 #9c7c5c22}#mMatcha #mstage #shelf .pcard.sel{background:#e9f0d8;border-color:#8eae6b;box-shadow:0 0 0 2px #fff,0 0 0 4px #9bb978;transform:translateY(-2px)}#mMatcha #mstage #shelf .pcard[hidden]{display:none!important}#mMatcha #mstage #shelf .pcard .pastry-thumb{filter:drop-shadow(0 2px 2px #7a5a3720)}#mMatcha #mstage #shelf .pastry-name{font-weight:600;line-height:1.05;text-align:center;max-width:100%;overflow-wrap:anywhere}#mMatcha #mstage #shelf .pastry-kind{font-size:10px;opacity:.62;text-transform:uppercase;letter-spacing:.06em}#mMatcha #mstage #shelf .pastry-check{position:absolute;top:3px;right:4px;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:#fffdf6;border:1px solid #d5c3ad;color:#8c7867;font-size:13px;z-index:3}#mMatcha #mstage #shelf .pcard.sel .pastry-check{background:#89a965;color:#fff;border-color:#6d8d4c}#mMatcha #mstage .pastry-selected{min-height:24px;display:flex;align-items:center;justify-content:center;color:#6c8650;font-size:13px;font-weight:600;text-align:center}
+@media(max-width:600px){#mMatcha #mprog .mstep{gap:3px;padding:2px 6px;font-size:10px}#mMatcha #mprog .mstep i{font-size:11px}#mMatcha #mstage .pastry-prompt{padding:3px 8px;gap:5px}#mMatcha #mstage .pastry-mark{font-size:18px}#mMatcha #mstage .pastry-prompt strong{font-size:13px}#mMatcha #mstage .pastry-prompt small{font-size:10px}#mMatcha #mstage .pastry-filter{font-size:11px;padding:3px 8px;min-height:29px}#mMatcha #mstage #shelf .pastry-kind{font-size:9px}#mMatcha #mstage .pastry-selected{min-height:18px;font-size:11px}}
+</style>
+
+<style id="matcha-tray-interaction-refine">
+/* Tray and pastry multi-pick presentation */
+#mMatcha #mstage .tray-preview{position:relative;isolation:isolate;overflow:visible!important}
+#mMatcha #mstage .tray-art{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 3px rgba(111,76,49,.12))}
+#mMatcha #mstage .tray-item{position:absolute;left:50%;bottom:32%;height:48%;width:auto;max-width:24%;object-fit:contain;transform:translateX(-50%);filter:drop-shadow(0 3px 3px rgba(107,74,69,.18));animation:trayTreatPop .24s ease-out both}
+#mMatcha #mstage .tray-slot-0{left:25%;bottom:34%;height:42%;max-width:20%}
+#mMatcha #mstage .tray-slot-1{left:43%;bottom:37%;height:49%;max-width:23%}
+#mMatcha #mstage .tray-slot-2{left:60%;bottom:34%;height:43%;max-width:20%}
+#mMatcha #mstage .tray-slot-3{left:75%;bottom:36%;height:46%;max-width:22%}
+#mMatcha #mstage .tray-slot-4{left:50%;bottom:21%;height:39%;max-width:20%}
+@keyframes trayTreatPop{from{opacity:0;transform:translateX(-50%) scale(.65) rotate(-5deg)}to{opacity:1;transform:translateX(-50%) scale(1) rotate(0)}}
+#mMatcha #mstage .pastry-prompt{border-color:#d7bd9b;background:linear-gradient(110deg,#fff7e8,#fffaf3)}
+#mMatcha #mstage #shelf .pcard.sel .pastry-check{font-weight:800;font-size:12px}
+/* Make the bowl, whisk, scoop and tool buttons visually balanced on both screen sizes. */
+#mMatcha #mstage .ingredient-area>.mi-svg{width:clamp(72px,10vw,108px)!important;height:clamp(72px,10vw,108px)!important}
+#mMatcha #mstage .bowlw{width:clamp(184px,25vw,300px)!important}
+#mMatcha #mstage .bowl-surface{left:9%!important;top:5%!important;width:82%!important;height:29%!important}
+#mMatcha #mstage .brew-tools .tool{min-height:66px;padding:6px 8px;gap:8px;font-size:clamp(12px,1.15vw,16px);border-radius:14px;transition:transform .16s,box-shadow .16s,opacity .16s}
+#mMatcha #mstage .brew-tools .tool:hover:not(.lock){transform:translateY(-2px);box-shadow:3px 5px 0 rgba(155,61,86,.16)}
+#mMatcha #mstage .brew-tools .tool .mi-svg,#mMatcha #mstage .brew-tools .tool .matcha-art{width:clamp(42px,5vw,64px)!important;height:clamp(42px,5vw,64px)!important}
+#mMatcha #mstage #tW .matcha-art{width:clamp(46px,5vw,66px)!important;height:clamp(52px,5.5vw,72px)!important}
+#mMatcha #mstage .whisk-cursor{width:clamp(88px,12vw,136px)!important;height:clamp(136px,18vw,200px)!important}
+#mMatcha #mstage .scoop-drag{min-width:96px;padding:7px 12px;border-radius:16px}
+#mMatcha #mstage .scoop-drag svg{width:58px;height:42px}
+@media(max-width:600px){
+ #mMatcha #mstage .tray-preview{width:min(320px,84vw)!important;height:112px!important}
+ #mMatcha #mstage .tray-item{height:43%;max-width:20%}
+ #mMatcha #mstage .tray-slot-0{left:25%;height:38%}#mMatcha #mstage .tray-slot-1{left:43%;height:44%}#mMatcha #mstage .tray-slot-2{left:60%;height:38%}#mMatcha #mstage .tray-slot-3{left:75%;height:40%}#mMatcha #mstage .tray-slot-4{left:50%;bottom:20%;height:34%}
+ #mMatcha #mstage .bowlw{width:min(184px,46vw)!important}
+ #mMatcha #mstage .bowl-surface{height:28%!important}
+ #mMatcha #mstage .ingredient-area>.mi-svg{width:68px;height:68px}
+ #mMatcha #mstage .brew-tools .tool{min-height:54px;padding:3px 4px;font-size:11px}
+ #mMatcha #mstage .brew-tools .tool .mi-svg,#mMatcha #mstage .brew-tools .tool .matcha-art{width:36px;height:36px}
+ #mMatcha #mstage #tW .matcha-art{width:40px;height:42px}
+ #mMatcha #mstage .scoop-drag svg{width:48px;height:34px}
+}
+</style>
+
+<style id="matcha-mixing-clarity">
+#mMatcha #mstage .bowl-surface:after{content:"";position:absolute;inset:8%;border:2px dashed rgba(244,250,220,.8);border-radius:50%;opacity:0;pointer-events:none;transition:opacity .2s}
+#mMatcha #mstage .bowlw.pouring .bowl-surface:after,#mMatcha #mstage .bowlw.whisking .bowl-surface:after{opacity:.65}
+#mMatcha #mstage .bowlw.whisking .bowl-surface:after{animation:whiskGuidePulse .8s ease-in-out infinite alternate}
+@keyframes whiskGuidePulse{to{transform:scale(.92);opacity:.25}}
+#mMatcha #mstage .brew-instruction{background:#f5f8e8;border:1px solid #d7e4b9;border-radius:12px;padding:6px 10px;color:#587541;box-shadow:0 2px 0 rgba(99,130,63,.08)}
+</style>
+
+<style id="matcha-unified-bakery-angle-and-tray-final">
+/* One consistent watercolor bakery-view set for cards and the tray. */
+#mMatcha #mstage #shelf .pastry-thumb{object-fit:contain!important;object-position:center center!important;transform:none!important;filter:drop-shadow(0 2px 2px rgba(90,60,40,.14))!important}
+#mMatcha #mstage .tray-preview{position:relative!important;width:min(360px,92vw)!important;height:142px!important;overflow:visible!important;isolation:isolate!important}
+#mMatcha #mstage .tray-art{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;z-index:1!important}
+#mMatcha #mstage .tray-item{position:absolute!important;width:auto!important;height:32%!important;max-width:18%!important;object-fit:contain!important;object-position:center center!important;transform:translateX(-50%)!important;filter:drop-shadow(0 2px 2px rgba(107,74,69,.16))!important;animation:trayTreatPop .24s ease-out both!important;z-index:2!important}
+/* Back row: three evenly spaced. Front row: two centered between them. */
+#mMatcha #mstage .tray-slot-0{left:29%!important;bottom:51%!important;height:32%!important;max-width:18%!important}
+#mMatcha #mstage .tray-slot-1{left:50%!important;bottom:51%!important;height:32%!important;max-width:18%!important}
+#mMatcha #mstage .tray-slot-2{left:71%!important;bottom:51%!important;height:32%!important;max-width:18%!important}
+#mMatcha #mstage .tray-slot-3{left:39%!important;bottom:17%!important;height:34%!important;max-width:20%!important}
+#mMatcha #mstage .tray-slot-4{left:61%!important;bottom:17%!important;height:34%!important;max-width:20%!important}
+@media(max-width:600px){
+ #mMatcha #mstage .tray-preview{width:min(330px,88vw)!important;height:132px!important}
+ #mMatcha #mstage .tray-item{max-width:18%!important}
+ #mMatcha #mstage .tray-slot-0{left:29%!important;bottom:51%!important;height:32%!important}
+ #mMatcha #mstage .tray-slot-1{left:50%!important;bottom:51%!important;height:32%!important}
+ #mMatcha #mstage .tray-slot-2{left:71%!important;bottom:51%!important;height:32%!important}
+ #mMatcha #mstage .tray-slot-3{left:39%!important;bottom:17%!important;height:34%!important;max-width:20%!important}
+ #mMatcha #mstage .tray-slot-4{left:61%!important;bottom:17%!important;height:34%!important;max-width:20%!important}
+}
+</style>
