@@ -638,6 +638,16 @@ img,canvas,video{max-width:100%}
 @media(prefers-reduced-motion:reduce){#scene1 #houseWrap{animation:none!important}}
 </style>
 
+
+<style id="mobile-landing-requested-adjustments">
+/* Mobile portrait only: enlarge cottage by 50%, spread the side strings outward. */
+@media(max-width:700px) and (orientation:portrait){
+ #scene1 #houseWrap{width:min(98.7vw,52.5dvh)!important;height:min(87dvh,1020px)!important;max-height:65.1dvh!important}
+ #scene1 #memoryLeftArtwork{transform:translate(-5%,-25%) scale(.85)!important}
+ #scene1 #memoryRightArtwork{transform:translate(13%,-25%)!important}
+}
+</style>
+
 </head><body>
 <button id="snd">Sound: on</button><div id="appCopyright">© 2026 Fonda I. Santoso. All rights reserved.</div>
 <div id="scene1" class="scene active">
