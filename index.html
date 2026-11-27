@@ -1978,6 +1978,54 @@ $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-
 }
 </style>
 
+
+<style id="mobile-landing-layout-final-adjustments">
+/* Mobile portrait only: enlarge the cottage and move the keepsake artwork down. */
+@media (max-width:700px) and (orientation:portrait) {
+  #scene1 #houseWrap>img {
+    height:112% !important;
+    width:auto !important;
+    max-width:none !important;
+    left:50% !important;
+    top:0 !important;
+    transform:translateX(-50%) !important;
+    object-fit:contain !important;
+    object-position:center top !important;
+  }
+  /* Keep the door hit area aligned with the enlarged cottage artwork. */
+  #scene1 #door {
+    left:50% !important;
+    top:57.7% !important;
+    width:clamp(100px,18vw,150px) !important;
+    height:26.3% !important;
+    transform:translateX(-50%) !important;
+  }
+  #scene1 #knockFx {
+    left:calc(50% + 42px) !important;
+    top:57.2% !important;
+  }
+
+  /* Removing the previous -25% vertical offset moves both photo strings down
+     by 25% of their own artwork height, without changing desktop placement. */
+  #scene1 #memoryLeftArtwork,
+  #scene1 #memoryRightArtwork {
+    top:5dvh !important;
+    width:min(48vw,290px) !important;
+  }
+  /* Keep a clear center gap so the two ribbon ends cannot cross or overlap. */
+  #scene1 #memoryLeftArtwork {
+    left:-7vw !important;
+    right:auto !important;
+    transform:none !important;
+  }
+  #scene1 #memoryRightArtwork {
+    right:-7vw !important;
+    left:auto !important;
+    transform:none !important;
+  }
+}
+</style>
+
 </body></html>
 
 <style id="v4-visual-cleanup">
