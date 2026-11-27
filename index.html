@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Shannon's Birthday Adventure</title>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 <style>
@@ -309,256 +309,6 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 }
 
 .ice-add{border:2px solid #718a59;border-radius:18px;background:#f5f0cf;color:#425c3a;padding:7px 12px;font:inherit;display:inline-flex;align-items:center;gap:8px;margin:5px auto;cursor:pointer;box-shadow:2px 3px 0 rgba(90,110,70,.15)}.ice-add small{background:#dce9c7;border-radius:12px;padding:2px 7px;font-size:12px}.ice-add:disabled{opacity:.4;filter:grayscale(.6)}.ice-add.available{animation:icePop .5s ease}.ice-cube{font-size:21px;color:#76a8b5}@keyframes icePop{from{transform:scale(.96)}to{transform:scale(1)}}#tW{touch-action:none;cursor:grab}#tW:active{cursor:grabbing}
-
-/* ===== Final responsive pass: centered landing art + mobile layout safety ===== */
-html {
-  min-height: 100%;
-  min-height: 100dvh;
-}
-body {
-  min-height: 100%;
-  min-height: 100dvh;
-  width: 100%;
-  overscroll-behavior: none;
-}
-img, canvas, video, svg {
-  max-width: 100%;
-}
-button, [role="button"], input, textarea, select {
-  touch-action: manipulation;
-}
-button {
-  min-height: 42px;
-}
-
-/* Landing: make the artwork itself (not its full-width wrapper) the centered item. */
-#scene1.active {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding:
-    max(12px, env(safe-area-inset-top))
-    max(12px, env(safe-area-inset-right))
-    max(18px, env(safe-area-inset-bottom))
-    max(12px, env(safe-area-inset-left));
-  gap: clamp(10px, 2.2vh, 18px);
-  overflow: hidden;
-}
-#bubble {
-  width: min(540px, 92vw);
-  max-width: 100%;
-  flex: 0 0 auto;
-  justify-content: center;
-  margin-inline: auto;
-}
-#houseWrap {
-  width: fit-content;
-  height: min(58vh, 520px);
-  height: min(58dvh, 520px);
-  max-width: 94vw;
-  flex: 0 1 auto;
-  margin-inline: auto;
-  left: auto;
-  right: auto;
-}
-#houseWrap > img {
-  width: auto;
-  height: 100%;
-  max-width: 94vw;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  margin-inline: auto;
-}
-#door, #knockFx {
-  /* Keep their existing percentages anchored to the actual house image. */
-  box-sizing: border-box;
-}
-
-/* Character selection: allow the preview and wardrobe to stack without clipping. */
-#scene2.active {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding:
-    max(12px, env(safe-area-inset-top))
-    12px
-    max(16px, env(safe-area-inset-bottom));
-  gap: 12px;
-  align-content: center;
-}
-#scene2 .stage {
-  height: min(34dvh, 300px);
-  width: calc(min(34dvh, 300px) * 500 / 900);
-  max-width: 42vw;
-}
-#wardrobe {
-  width: min(500px, 100%);
-  max-height: 58dvh;
-  overflow: auto;
-  overscroll-behavior: contain;
-}
-#items {
-  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
-  max-height: min(34dvh, 260px);
-  overscroll-behavior: contain;
-}
-.thumb {
-  min-height: 76px;
-}
-
-/* Game scene: keep the world larger than the viewport, but keep controls on-screen. */
-#scene3 {
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  touch-action: none;
-}
-#world {
-  height: 100%;
-  max-width: none;
-}
-#hint {
-  max-width: min(60vw, 280px);
-  font-size: clamp(13px, 3.5vw, 16px);
-  padding: 5px 9px;
-}
-#hud {
-  left: max(8px, env(safe-area-inset-left));
-  right: max(8px, env(safe-area-inset-right));
-  padding-inline: 0;
-  gap: 12px;
-}
-#hud button {
-  min-width: 58px;
-  min-height: 48px;
-  padding: 7px 18px;
-  font-size: clamp(22px, 6vw, 30px);
-}
-#interact {
-  max-width: calc(100vw - 24px);
-  white-space: normal;
-  text-align: center;
-}
-
-/* Modal cards and interactive panels should fit short screens and scroll internally. */
-.modal {
-  padding:
-    max(8px, env(safe-area-inset-top))
-    max(8px, env(safe-area-inset-right))
-    max(8px, env(safe-area-inset-bottom))
-    max(8px, env(safe-area-inset-left));
-}
-.card {
-  width: min(600px, 100%);
-  max-width: 100%;
-  max-height: calc(100dvh - 16px);
-  overflow: auto;
-  overscroll-behavior: contain;
-}
-.row {
-  max-width: 100%;
-}
-.row button {
-  max-width: 100%;
-  white-space: normal;
-}
-input, textarea, select {
-  max-width: 100%;
-  font-size: 16px;
-}
-
-/* Final scene: respect safe areas and keep the cake/letter controls within the viewport. */
-#scene4 {
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-}
-#lanternBackdrop {
-  object-fit: contain;
-  object-position: center center;
-}
-#bar {
-  left: max(6px, env(safe-area-inset-left));
-  right: max(6px, env(safe-area-inset-right));
-  bottom: env(safe-area-inset-bottom);
-  max-width: calc(100vw - 12px);
-  box-sizing: border-box;
-}
-#open {
-  max-width: calc(100vw - 24px);
-  white-space: normal;
-  text-align: center;
-}
-
-/* Narrow phones */
-@media (max-width: 600px) {
-  #scene1.active {
-    justify-content: center;
-    gap: clamp(8px, 1.7dvh, 14px);
-  }
-  #bubble {
-    min-height: 0;
-    padding: 10px 15px;
-    font-size: clamp(16px, 4.4vw, 20px);
-  }
-  #houseWrap {
-    height: min(53dvh, 440px);
-    max-width: 94vw;
-  }
-  #houseWrap > img {
-    max-width: 94vw;
-  }
-  #scene2.active {
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: nowrap;
-    overflow: auto;
-  }
-  #scene2 .stage {
-    height: min(27dvh, 210px);
-    width: calc(min(27dvh, 210px) * 500 / 900);
-    max-width: 55vw;
-  }
-  #wardrobe {
-    max-height: 64dvh;
-    padding: 10px;
-  }
-  #items {
-    max-height: 31dvh;
-  }
-  #scene3 #hud {
-    bottom: calc(12px + env(safe-area-inset-bottom));
-  }
-  #scene3 #hud button {
-    min-width: 58px;
-    padding-inline: 16px;
-  }
-  .modal {
-    align-items: center;
-  }
-  .card {
-    max-height: calc(100dvh - 16px);
-  }
-}
-
-/* Very short screens: preserve both the landing message and the full house. */
-@media (max-height: 650px) {
-  #scene1.active {
-    gap: 6px;
-    padding-block: max(6px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-bottom));
-  }
-  #bubble {
-    padding-block: 7px;
-    min-height: 0;
-  }
-  #houseWrap {
-    height: min(50dvh, 360px);
-  }
-}
-
 </style><style id="landing-cottage-responsive">
 /* Landing page: responsive full-scene cottage illustration */
 #scene1.active{
@@ -886,6 +636,30 @@ img,canvas,video{max-width:100%}
  #items{max-height:45dvh!important}
 }
 @media(prefers-reduced-motion:reduce){#scene1 #houseWrap{animation:none!important}}
+</style>
+
+
+<style id="mobile-v4-viewport-anchor-fix">
+/* v4: pin the landing artwork to the actual viewport, bypassing flex-scene coordinate quirks */
+@media (max-width:700px) and (orientation:portrait){
+ #scene1.active{display:block!important;position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;overflow:hidden!important;padding:0!important}
+ #scene1 #houseWrap{position:fixed!important;left:50vw!important;top:57dvh!important;right:auto!important;bottom:auto!important;width:min(88vw,46dvh)!important;height:min(56dvh,560px)!important;inset:auto!important;transform:translate(-50%,-50%)!important;animation:none!important;overflow:visible!important;filter:none!important}
+ #scene1 #houseWrap>img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:contain!important;object-position:center!important;transform:none!important}
+ #scene1 #door{position:absolute!important;left:50%!important;top:66%!important;width:clamp(62px,18vw,100px)!important;height:20%!important;transform:translateX(-50%)!important}
+ #scene1 #knockFx{left:calc(50% + 34px)!important;top:65%!important;width:clamp(48px,13vw,78px)!important;height:12%!important}
+ #scene1 #bubble{position:fixed!important;top:calc(env(safe-area-inset-top,0px) + 12px)!important;left:50vw!important;transform:translateX(-50%)!important;width:calc(100vw - 24px)!important;max-width:560px!important}
+}
+/* Keep the pink matcha vessel small enough to see its contents and surrounding tools. */
+@media(max-width:600px){
+ #mMatcha #mstage .bowlw{width:clamp(118px,34vw,142px)!important;max-width:142px!important;aspect-ratio:1.13!important;overflow:visible!important}
+ #mMatcha #mstage .matcha-cup-art{position:absolute!important;left:50%!important;top:50%!important;width:78%!important;height:78%!important;max-width:78%!important;max-height:78%!important;object-fit:contain!important;transform:translate(-50%,-50%)!important}
+ #mMatcha #mstage .whisk-cursor{width:58px!important;height:94px!important;max-width:none!important;object-fit:contain!important;transform:translate(-50%,-90%)!important}
+ #mMatcha #mstage .bowl-caption{font-size:9px!important;white-space:nowrap!important}
+}
+@media(max-width:390px){
+ #mMatcha #mstage .bowlw{width:116px!important}
+ #mMatcha #mstage .whisk-cursor{width:52px!important;height:86px!important}
+}
 </style>
 
 </head><body>
