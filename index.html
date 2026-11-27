@@ -3239,3 +3239,12 @@ $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-
   #scene1 #mobileMemoryArtwork{display:block!important}
 }
 </style>
+
+<style id="mobile-polaroid-lower-15-percent">
+/* Mobile only: lower the replacement Polaroid artwork by 15%, desktop unchanged. */
+@media(max-width:700px){
+  #scene1 #mobileMemoryArtwork{
+    transform:translate(-50%,15%)!important;
+  }
+}
+</style>
