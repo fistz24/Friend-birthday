@@ -2447,3 +2447,17 @@ $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-
   #scene2 .thumb.out small{display:none!important}
 }
 </style>
+
+<style id="mobile-house-reference-layout-v5">
+/* Follow the working reference: center the artwork image itself, not its oversized wrapper. */
+@media(max-width:700px) and (orientation:portrait){
+ #scene1.active{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;display:block!important;overflow:hidden!important;padding:0!important;transform:none!important}
+ #scene1 #houseWrap{position:absolute!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;inset:auto!important;transform:translate(-50%,-50%)!important;width:min(100vw,73.6dvh)!important;height:min(100dvh,135.87vw)!important;aspect-ratio:736/1000!important;overflow:visible!important;margin:0!important;animation:none!important}
+ #scene1 #houseWrap>img{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;max-width:100%!important;transform:none!important;object-fit:contain!important;object-position:center!important}
+ #scene1 #door{left:46.2%!important;top:51.5%!important;width:8.2%!important;height:23.5%!important;transform:none!important}
+ #scene1 #knockFx{left:53%!important;top:51%!important;width:13%!important;height:14%!important}
+ #scene1 #bubble{position:fixed!important;left:50%!important;top:calc(env(safe-area-inset-top,0px) + 12px)!important;transform:translateX(-50%)!important;width:calc(100vw - 24px)!important;max-width:560px!important;z-index:10!important}
+}
+/* Equalize the two winter thumbnail assets: remove their baked cream backgrounds and trim excess canvas. */
+@media(max-width:700px){#scene2 .thumb.out{padding:10px!important;min-height:0!important}#scene2 .thumb.out img{width:100%!important;height:100%!important;max-height:none!important;max-width:none!important;object-fit:contain!important;object-position:center!important}}
+</style>
