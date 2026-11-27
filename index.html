@@ -565,6 +565,94 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
 }
 </style>
 
+
+<style id="user-requested-winter-house-and-matcha-final">
+/* Landing scene: clean watercolor gradient and a contain-scaled house; snow is separate animation. */
+#scene1.active{background:radial-gradient(ellipse at 48% 44%,#f8e6df 0%,#f4d9d1 54%,#f3cfc6 100%)!important;overflow:hidden!important}
+#scene1:before,#scene1:after{display:none!important}
+#scene1 #s1SkyLife,#scene1 #scene1Clouds{display:none!important}
+#scene1 #houseWrap{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:auto!important;height:min(72svh,1100px)!important;aspect-ratio:2/3!important;max-height:none!important;animation:none!important;filter:none!important;overflow:visible!important;z-index:2!important}
+#scene1 #houseWrap>img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;display:block!important}
+#scene1 #houseWrap:after{display:none!important}
+#scene1 #door{left:43.8%!important;top:70.4%!important;width:15.2%!important;height:19.2%!important;transform:none!important;border-radius:0!important}
+#scene1 #knockFx{left:56%!important;top:70%!important;width:20%!important;height:15%!important}
+#scene1 #bubble{left:50%!important;top:max(16px,env(safe-area-inset-top))!important;width:min(530px,calc(100vw - 28px))!important;min-height:0!important;transform:translateX(-50%)!important;background:rgba(255,250,247,.8)!important;clip-path:none!important;border-radius:20px!important;padding:10px 16px!important;border:1px solid #e3b7ad!important;box-shadow:0 5px 15px #9e74671a!important;font-size:clamp(16px,4vw,22px)!important;z-index:5!important}
+#scene1 #bubble:before,#scene1 #bubble:after{display:none!important}
+#scene1 .winter-snow{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+#scene1 .snowflake{position:absolute;top:-12vh;color:#fff;opacity:.7;text-shadow:0 0 6px #fff9;animation:snowFall var(--fall) linear var(--delay) infinite;left:var(--left);font-size:var(--size);filter:drop-shadow(0 1px 1px #c9aaa5)}
+@keyframes snowFall{0%{transform:translate3d(0,-12vh,0) rotate(0deg);opacity:0}8%{opacity:var(--op)}50%{transform:translate3d(var(--drift),50vh,0) rotate(130deg)}100%{transform:translate3d(calc(var(--drift)*-.55),115vh,0) rotate(320deg);opacity:0}}
+@media(max-aspect-ratio:3/4){#scene1 #houseWrap{width:auto!important;height:min(76svh,138vw)!important;aspect-ratio:2/3!important;top:52%!important}#scene1 #door{left:43.8%!important;top:70.4%!important;width:15.2%!important;height:19.2%!important}#scene1 #knockFx{left:56%!important;top:70%!important;width:20%!important}#scene1 #bubble{top:max(12px,env(safe-area-inset-top))!important}}
+@media(prefers-reduced-motion:reduce){#scene1 .snowflake{animation:none!important;display:none!important}}
+/* Matcha mobile: move bowl lower in its stage and make the finger-following whisk smaller. */
+@media(max-width:600px){#mstage .bowlw{transform:translateY(9px)!important}#mstage .whisk-cursor{width:58px!important;height:92px!important;transform:translate(-50%,-91%)!important}}
+/* Multi-pastry plate: separate thumbnails with deliberate horizontal spacing. */
+#mMatcha #mstage .pastry-stage{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:space-between!important;gap:10px!important}
+#mMatcha #mstage #shelf{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;align-content:start!important;gap:5px!important}
+#mMatcha #mstage #shelf .pcard{position:relative!important;flex:0 0 74px!important;width:74px!important;min-width:74px!important}
+#mMatcha #mstage #plt,#mMatcha #mstage #plt2,#mMatcha .order-plate{position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:0!important;overflow:visible!important}
+#mMatcha #mstage #plt .pa-multi,#mMatcha #mstage #plt2 .pa-multi,#mMatcha .order-plate .pa-multi{position:relative!important;left:auto!important;top:auto!important;bottom:auto!important;transform:none!important;height:48%!important;width:22%!important;max-width:22%!important;object-fit:contain!important;z-index:3!important;margin:0 -1.2%!important}
+#mMatcha #mstage #plt .pa-multi:nth-of-type(2),#mMatcha #mstage #plt2 .pa-multi:nth-of-type(2),#mMatcha .order-plate .pa-multi:nth-of-type(2){transform:translateY(-4px)!important}
+#mMatcha #mstage #plt .pa-multi:nth-of-type(3),#mMatcha #mstage #plt2 .pa-multi:nth-of-type(3),#mMatcha .order-plate .pa-multi:nth-of-type(3){transform:translateY(2px)!important}
+#mMatcha .order-plate{width:160px!important;height:92px!important;flex:none!important}
+@media(max-width:600px){#mMatcha #mstage #plt{width:min(290px,82vw)!important;height:118px!important}#mMatcha #mstage #plt .pa-multi,#mMatcha #mstage #plt2 .pa-multi{height:46%!important;width:24%!important;max-width:24%!important;margin:0 -1.4%!important}#mMatcha .order-plate{width:150px!important;height:86px!important}}
+</style>
+<script id="gentle-snow-init">document.addEventListener('DOMContentLoaded',function(){var scene=document.getElementById('scene1');if(!scene||scene.querySelector('.winter-snow'))return;var layer=document.createElement('div');layer.className='winter-snow';layer.setAttribute('aria-hidden','true');for(var i=0;i<44;i++){var f=document.createElement('span');f.className='snowflake';f.textContent=i%5===0?'❄':i%3===0?'✧':'✦';f.style.setProperty('--left',Math.random()*100+'%');f.style.setProperty('--fall',(10+Math.random()*17)+'s');f.style.setProperty('--delay',(-Math.random()*24)+'s');f.style.setProperty('--drift',(Math.random()*110-55)+'px');f.style.setProperty('--size',(5+Math.random()*12)+'px');f.style.setProperty('--op',(0.24+Math.random()*.5));layer.appendChild(f)}scene.appendChild(layer)});</script>
+
+
+<style id="landing-house-size-gradient-mobile-final">
+/* Final landing art treatment: artwork + backdrop read as one watercolor wash. */
+#scene1.active{
+  background:linear-gradient(180deg,#f6dcd4 0%,#f7e5db 34%,#f2e8dc 62%,#e7eee2 100%) !important;
+  overflow:hidden!important; isolation:isolate;
+}
+#scene1:before,#scene1:after{display:none!important;content:none!important}
+#scene1 #s1SkyLife,#scene1 #scene1Clouds{display:none!important}
+#scene1 #houseWrap{
+  position:absolute!important; inset:0!important; left:0!important; top:0!important;
+  width:100%!important; height:100%!important; max-height:none!important;
+  transform:none!important; aspect-ratio:auto!important;
+  display:flex!important; align-items:flex-end!important; justify-content:center!important;
+  z-index:2!important; overflow:hidden!important; animation:none!important; filter:none!important;
+}
+#scene1 #houseWrap>img{
+  height:108svh!important; width:auto!important; max-width:min(100vw,70svh)!important;
+  object-fit:contain!important; object-position:center bottom!important;
+  display:block!important; position:relative!important; left:auto!important; top:auto!important;
+  transform:none!important; margin:0 auto!important;
+}
+#scene1 #houseWrap:after{display:none!important;content:none!important}
+#scene1 #door{left:43.3%!important;top:78.3%!important;width:14.5%!important;height:11.4%!important;transform:none!important;border-radius:0!important;z-index:4!important}
+#scene1 #knockFx{left:57.5%!important;top:77.8%!important;width:17%!important;height:12%!important;z-index:5!important}
+#scene1 #bubble{top:max(12px,env(safe-area-inset-top))!important;left:50%!important;transform:translateX(-50%)!important;width:min(530px,calc(100vw - 28px))!important;z-index:6!important}
+#scene1 .winter-snow{position:absolute!important;inset:0!important;z-index:3!important;pointer-events:none!important;overflow:hidden!important}
+#scene1 .snowflake{
+  position:absolute!important;top:-12vh!important;left:var(--left)!important;
+  color:rgba(255,255,255,.92)!important;opacity:0!important;
+  text-shadow:0 0 5px rgba(255,255,255,.8),0 1px 3px rgba(188,170,168,.24)!important;
+  animation:snowDriftElegantly var(--fall) linear var(--delay) infinite!important;
+  font-size:var(--size)!important;filter:blur(.12px) drop-shadow(0 1px 1px rgba(191,171,169,.18))!important;
+  will-change:transform,opacity;
+}
+@keyframes snowDriftElegantly{
+  0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}
+  9%{opacity:var(--op)}
+  48%{transform:translate3d(var(--drift),48vh,0) rotate(160deg);opacity:var(--op)}
+  100%{transform:translate3d(calc(var(--drift)*-.72),112vh,0) rotate(340deg);opacity:0}
+}
+@media(max-width:600px){
+  #scene1 #houseWrap>img{height:108svh!important;max-width:100vw!important;width:auto!important;object-fit:contain!important;object-position:center bottom!important}
+  #scene1 #door{left:43.3%!important;top:78.3%!important;width:14.5%!important;height:11.4%!important}
+  #scene1 #knockFx{left:57.5%!important;top:77.8%!important;width:17%!important;height:12%!important}
+  #scene1 #bubble{width:calc(100vw - 24px)!important;max-width:540px!important;font-size:clamp(16px,4.6vw,20px)!important;padding:10px 13px!important}
+}
+@media(max-width:390px){#scene1 #houseWrap>img{height:110svh!important}#scene1 #bubble{font-size:clamp(15px,4.5vw,18px)!important}}
+@media(max-height:520px) and (orientation:landscape){
+  #scene1 #houseWrap>img{height:110svh!important;max-width:58vw!important}
+  #scene1 #bubble{width:min(48vw,520px)!important;top:6px!important;padding:7px 12px!important;font-size:clamp(14px,3vw,19px)!important}
+}
+@media(prefers-reduced-motion:reduce){#scene1 .snowflake{animation:none!important;display:none!important}}
+</style>
+
 </head><body>
 <button id="snd">Sound: on</button><div id="appCopyright">© 2026 Fonda I. Santoso. All rights reserved.</div>
 <div id="scene1" class="scene active">
@@ -579,7 +667,7 @@ button.on{background:var(--mint)}h2{margin:.2em 0}
   </svg>
 </div>
 <div id="bubble" class="sketch">Tap the door to knock.</div>
-<div id="houseWrap"><img src="images/landing-cottage.png" alt="A yellow cottage in a flower garden"><div id="scene1Clouds" aria-hidden="true"><img class="s1-cloud s1-cloud-a" src="images/env/cloud-04.png" alt=""><img class="s1-cloud s1-cloud-b" src="images/env/cloud-08.png" alt=""><img class="s1-cloud s1-cloud-c" src="images/env/cloud-05.png" alt=""></div><div id="door" aria-label="Knock on the door" role="button" tabindex="0"></div><div id="knockFx" aria-hidden="true"><svg viewBox="0 0 100 80"><path d="M8 28 L22 20 M4 48 L20 46 M22 7 L29 19 M72 8 L68 22 M91 29 L78 34 M89 54 L75 50"/><path d="M38 24 Q49 12 61 24 M34 43 Q48 32 63 43"/></svg></div></div></div>
+<div id="houseWrap"><img src="images/landing-winter-house.png" alt="A mint watercolor winter house with a wreath and snowy roof"><div id="scene1Clouds" aria-hidden="true"><img class="s1-cloud s1-cloud-a" src="images/env/cloud-04.png" alt=""><img class="s1-cloud s1-cloud-b" src="images/env/cloud-08.png" alt=""><img class="s1-cloud s1-cloud-c" src="images/env/cloud-05.png" alt=""></div><div id="door" aria-label="Knock on the door" role="button" tabindex="0"></div><div id="knockFx" aria-hidden="true"><svg viewBox="0 0 100 80"><path d="M8 28 L22 20 M4 48 L20 46 M22 7 L29 19 M72 8 L68 22 M91 29 L78 34 M89 54 L75 50"/><path d="M38 24 Q49 12 61 24 M34 43 Q48 32 63 43"/></svg></div></div></div>
 <div id="scene2" class="scene"><div class="stage" id="prev"></div>
 <div id="wardrobe" class="sketch"><h2>Choose Your Character</h2><div id="tabs"></div><div id="items"></div><div class="credit">Pick who walks with you from house to house.</div><div class="row"><button id="go">Let's Go! &#10140;</button></div></div></div>
 <div id="scene3" class="scene"><button id="orderBtn" class="sketch" style="display:none">My birthday order</button><div id="hint" class="sketch">Walk with arrow keys or buttons</div>
@@ -1233,13 +1321,13 @@ function cardAll(){var cv=document.createElement("canvas");cv.width=1080;cv.heig
 $("#shA").onclick=function(){runCardShare(cardAll,"shannon-birthday-adventure.png","Shannon's Birthday Adventure","Shannon's birthday adventure! Made with love by Fonda.")};
 
 /* ===== Shannon's Birthday Matcha Lab ===== */
-var MSTEP=["Matcha","Drink","Pastry","Prepare","Order"],mstep=-1,M={sc:0,sifted:0,siftTravel:0,water:0,poured:0,whisk:0,whiskTravel:0,ice:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0},mt=[],said={},order=null;
+var MSTEP=["Matcha","Drink","Pastry","Prepare","Order"],mstep=-1,M={sc:0,sifted:0,siftTravel:0,water:0,poured:0,whisk:0,whiskTravel:0,ice:0,sweet:-1,milk:-1,style:-1,pastry:[],prepared:0,done:0},mt=[],said={},order=null;
 var SWEET=["No sugar","A little sweet","Perfectly sweet","Extra sweet"],MILK=[["Oat milk","#e8d6b2"],["Fresh milk","#fbfaf2"],["Almond milk","#efe3cc"],["Coconut milk","#fffbea"]],STY=["Iced matcha latte","Hot matcha latte","Strawberry matcha"],PAS=[["Croissant","cutouts/bread-croissant"],["Almond brioche","cutouts/bread-almond-brioche"],["Sesame bun","cutouts/bread-sesame-round-bun"],["Baguette","cutouts/bread-scored-baguette"],["Star bread","cutouts/bread-star-bread"],["Smiley toast","cutouts/bread-toast-bread"],["Herb roll","cutouts/bread-herb-roll"],["Cinnamon swirl","cutouts/bread-cinnamon-swirl"],["Seeded bun","cutouts/bread-seeded-bun"],["Sliced loaf","cutouts/bread-sliced-loaf"],["Crosshatch loaf","cutouts/bread-crosshatch-loaf"],["Newsprint baguette","cutouts/bread-newsprint-baguette"],["Strawberry cake","cutouts/cake-strawberry-cake"],["Panettone","cutouts/cake-panettone"],["Knit hat cake","cutouts/cake-knit-hat-cake"],["Yule log","cutouts/cake-yule-log"],["Joyeux Noël cake","cutouts/cake-joyeux-cake"]];
 /* Matcha lab UI helpers: these were missing from the previous build, so entering the shop threw a ReferenceError before anything could render. */
 function say(message){var el=$("#mtalk");if(el){el.textContent=message;anim(el,"pop")}}
 function clearT(){mt.forEach(function(timer){clearTimeout(timer)});mt=[]}
 function mnav(){
- var labels=["Matcha","Drink","Pastry","Prepare","Order"],step=Math.max(0,mstep),ready=mstep<0||mstep===4||(mstep===0?M.whisk>=100:mstep===1?M.sweet>=0&&M.milk>=0&&M.style>=0:mstep===2?M.pastry>=0:mstep===3?!!M.prepared:false);
+ var labels=["Matcha","Drink","Pastry","Prepare","Order"],step=Math.max(0,mstep),ready=mstep<0||mstep===4||(mstep===0?M.whisk>=100:mstep===1?M.sweet>=0&&M.milk>=0&&M.style>=0:mstep===2?M.pastry.length>0:mstep===3?!!M.prepared:false);
  var prog=$("#mprog"),back=$("#mback"),next=$("#mnext");
  if(prog)prog.textContent=mstep<0?"Your birthday matcha adventure":(labels[step]+" · "+(step+1)+" of 5");
  if(back)back.disabled=mstep<=-1;
@@ -1362,10 +1450,11 @@ function upd1(){
  $$("#opts .choice-group").forEach(function(group){var key=group.dataset.choice;group.querySelectorAll(".choice-btn").forEach(function(b){var selected=Number(b.dataset.value)===M[key];b.classList.toggle("is-selected",selected);b.setAttribute("aria-pressed",selected?"true":"false")})});
  var iceBtn=$("#iceAdd");if(iceBtn){iceBtn.classList.toggle("available",M.style===0||M.style===2);iceBtn.disabled=!(M.style===0||M.style===2);var count=$("#iceCount");if(count)count.textContent=M.ice+" / 3"}
 }
-function st2(){var s=$("#mstage");say(M.pastry<0?"Pick a pastry from the bakery counter.":PAS[M.pastry][0]+", yum.");s.innerHTML='<div class="pastry-stage"><div class="shelf" id="shelf"></div><div class="plt" id="plt">'+mi("plate","pl")+'</div></div>';
- PAS.forEach(function(p,i){var b=document.createElement("button");b.className="pcard"+(M.pastry===i?" sel":"");b.innerHTML='<img class="pastry-thumb" src="images/m/'+p[1]+'.png" alt="">'+p[0];b.onclick=function(){M.pastry=i;M.prepared=0;sfx("pop");say(p[0]+" slides onto your plate.");plate();[].forEach.call($("#shelf").children,function(x,j){x.classList.toggle("sel",j===i)});mnav()};$("#shelf").appendChild(b)});plate()}
-function plate(){var p=$("#plt");if(!p)return;[].forEach.call(p.querySelectorAll(".pa"),function(x){x.remove()});if(M.pastry>=0)p.insertAdjacentHTML("beforeend",'<img class="pa" src="images/m/'+PAS[M.pastry][1]+'.png" alt="Selected pastry">')}
-function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'<div class="plt" id="plt2" style="opacity:0">'+mi("plate","pl")+'<img class="pa" src="images/m/'+PAS[M.pastry][1]+'.png" alt="">'+'</div></div>';var g=$(".gl"),o=curDrink();
+function st2(){var s=$("#mstage");say(M.pastry.length?M.pastry.map(function(i){return PAS[i][0]}).join(" + ")+" on your plate!":"Pick up to 3 breads or pastries.");s.innerHTML='<div class="pastry-stage"><div class="shelf" id="shelf"></div><div class="plt" id="plt">'+mi("plate","pl")+'</div></div>';
+ PAS.forEach(function(p,i){var b=document.createElement("button");b.className="pcard"+(M.pastry.indexOf(i)>=0?" sel":"");b.innerHTML='<img class="pastry-thumb" src="images/m/'+p[1]+'.png" alt="">'+p[0];b.setAttribute("aria-pressed",M.pastry.indexOf(i)>=0?"true":"false");b.onclick=function(){var at=M.pastry.indexOf(i);if(at>=0){M.pastry.splice(at,1)}else{if(M.pastry.length>=3){say("Your plate can hold up to 3 treats. Remove one first!");sfx("no");return}M.pastry.push(i)}M.prepared=0;sfx("pop");say(M.pastry.length?M.pastry.map(function(k){return PAS[k][0]}).join(" + ")+" on your plate!":"Pick up to 3 breads or pastries.");plate();b.classList.toggle("sel",M.pastry.indexOf(i)>=0);b.setAttribute("aria-pressed",M.pastry.indexOf(i)>=0?"true":"false");mnav()};$("#shelf").appendChild(b)});plate()}
+function plate(){var p=$("#plt");if(!p)return;[].forEach.call(p.querySelectorAll(".pa"),function(x){x.remove()});M.pastry.forEach(function(i,j){var img=document.createElement("img");img.className="pa pa-multi";img.src="images/m/"+PAS[i][1]+".png";img.alt=PAS[i][0];img.dataset.index=j;p.appendChild(img)})}
+function pastryMarkup(target){return M.pastry.map(function(i,j){return '<img class="pa pa-multi" data-index="'+j+'" src="images/m/'+PAS[i][1]+'.png" alt="'+PAS[i][0]+'">'}).join("")}
+function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'<div class="plt" id="plt2" style="opacity:0">'+mi("plate","pl")+pastryMarkup("plt2")+'</div></div>';var g=$(".gl"),o=curDrink();
  if(M.prepared){setDrink(g,o);$("#plt2").style.opacity=1;say("Your order is ready on the counter.");return}
  setDrink(g,{mt:0});function T(ms,f){mt.push(setTimeout(f,ms))}
  say("Pouring the matcha into the glass...");T(300,function(){setDrink(g,{st:o.st,milk:"",sw:o.sw,hot:o.hot,mt:78});sfx("spark")});
@@ -1374,10 +1463,10 @@ function st3(){var s=$("#mstage");s.innerHTML='<div class="prep">'+drinkHTML()+'
  T(5200,function(){say("Here comes your pastry...");$("#plt2").style.opacity=1;$("#plt2").classList.add("slide");sfx("pop")});
  T(6600,function(){say("Your order is ready on the counter!");M.prepared=1;sfx("spark");burst(14,1);mnav()})}
 function omsg(){var a=["Bold and unbothered, just like you.","Your birthday drink is as sweet as you are.","Your birthday drink is as sweet as you are.","Extra sweet, because you deserve every bit of it."][M.sweet];var b=M.style===2?" Pink, dreamy and a little bit extra.":M.style===1?" Warm, cozy and just right.":" Cool, calm and main-character ready.";return a+b+" Here's to another year of main-character moments!"}
-function st4(){var s=$("#mstage");M.done=1;order={style:STY[M.style],sweet:SWEET[M.sweet],milk:MILK[M.milk][0],pastry:PAS[M.pastry][0],file:PAS[M.pastry][1]};try{localStorage.setItem("shannonOrder",JSON.stringify(order))}catch(e){}
+function st4(){var s=$("#mstage");M.done=1;order={style:STY[M.style],sweet:SWEET[M.sweet],milk:MILK[M.milk][0],pastry:M.pastry.map(function(i){return PAS[i][0]}),file:M.pastry.length?PAS[M.pastry[0]][1]:null,files:M.pastry.map(function(i){return PAS[i][1]})};try{localStorage.setItem("shannonOrder",JSON.stringify(order))}catch(e){}
  $("#orderBtn").style.display="block";say("Order up!");
- s.innerHTML='<div class="ocard sketch"><h3>Shannon\u2019s Birthday Special</h3><div class="row" style="align-items:flex-end">'+drinkHTML()+'<div class="plt" style="width:150px;height:76px">'+mi("plate","pl")+'<img class="pa" src="images/m/'+PAS[M.pastry][1]+'.png" alt="">'+'</div></div><p><b>Matcha style:</b> '+order.style+'</p><p><b>Sweetness:</b> '+order.sweet+'</p><p><b>Milk:</b> '+order.milk+'</p><p><b>Pastry:</b> '+order.pastry+'</p><p>'+omsg()+'</p><div class="row"><button id="yum">Yummm! Let\u2019s Continue &#10140;</button><button id="remake">Make a new one</button></div></div>';
- setDrink($(".gl"),curDrink());$("#yum").onclick=function(){burst(24,1);sfx("spark");closeM()};$("#remake").onclick=function(){M={sc:0,sifted:0,siftTravel:0,water:0,poured:0,whisk:0,whiskTravel:0,ice:0,sweet:-1,milk:-1,style:-1,pastry:-1,prepared:0,done:0};said={};mgo(-1)}}
+ s.innerHTML='<div class="ocard sketch"><h3>Shannon\u2019s Birthday Special</h3><div class="row" style="align-items:flex-end">'+drinkHTML()+'<div class="plt order-plate">'+mi("plate","pl")+pastryMarkup("order")+'</div></div><p><b>Matcha style:</b> '+order.style+'</p><p><b>Sweetness:</b> '+order.sweet+'</p><p><b>Milk:</b> '+order.milk+'</p><p><b>Pastries:</b> '+order.pastry.join(", ")+'</p><p>'+omsg()+'</p><div class="row"><button id="yum">Yummm! Let\u2019s Continue &#10140;</button><button id="remake">Make a new one</button></div></div>';
+ setDrink($(".gl"),curDrink());$("#yum").onclick=function(){burst(24,1);sfx("spark");closeM()};$("#remake").onclick=function(){M={sc:0,sifted:0,siftTravel:0,water:0,poured:0,whisk:0,whiskTravel:0,ice:0,sweet:-1,milk:-1,style:-1,pastry:[],prepared:0,done:0};said={};mgo(-1)}}
 $("#mnext").onclick=function(){if(!this.disabled)mgo(mstep+1)};$("#mback").onclick=function(){mgo(mstep-1)};$("#orderBtn").onclick=function(){$("#mMatcha").classList.add("open")};
 new MutationObserver(function(){if($("#mMatcha").classList.contains("open"))mgo(M.done?4:(mstep<0?-1:mstep));else clearT()}).observe($("#mMatcha"),{attributes:true,attributeFilter:["class"]});
 
@@ -1468,7 +1557,7 @@ function wrap(c,t,x,y,w,lh){var ws=t.split(" "),l="";ws.forEach(function(wd){var
 function card(kind){var cv=document.createElement("canvas");cv.width=1080;cv.height=1350;var c=cv.getContext("2d");c.fillStyle="#fffdf6";c.fillRect(0,0,1080,1350);c.strokeStyle="#6b4a45";c.lineWidth=8;c.strokeRect(36,36,1008,1278);c.textAlign="center";c.fillStyle="#6b4a45";c.font="86px 'Patrick Hand','Comic Sans MS',cursive";
  if(kind==="c"){c.fillText("Happy Birthday Shannon!",540,150);var p=poseFor(G.outfit,"picnic");return img(SH+p.file).then(function(im){var H=1020,W=im.width*H/im.height;if(W>900){W=900;H=im.height*W/im.width}c.save();if(p.face==="l"){c.translate(1080,0);c.scale(-1,1)}c.drawImage(im,540-W/2,230+(1020-H),W,H);c.restore();c.font="40px 'Patrick Hand',cursive";c.fillText("with love, Fonda",540,1290);return cv})}
  c.fillText("Birthday Wishes",540,150);c.font="42px 'Patrick Hand','Comic Sans MS',cursive";c.textAlign="left";var y=250;LTXT.forEach(function(t){y=t?wrap(c,t,110,y,860,58):y+30});
- var w=$("#wish").value.trim();c.fillStyle="#9b3d56";if(order){y=wrap(c,"Birthday order: "+order.style+" and "+order.pastry.toLowerCase(),110,y+20,860,58)}if(w){y=wrap(c,"Shannon's wish: "+w,110,y+20,860,58)}
+ var w=$("#wish").value.trim();c.fillStyle="#9b3d56";if(order){y=wrap(c,"Birthday order: "+order.style+" and "+order.pastry.join(" + ").toLowerCase(),110,y+20,860,58)}if(w){y=wrap(c,"Shannon's wish: "+w,110,y+20,860,58)}
  var room=1280-(y+30);if(order&&order.file&&room>=90){return img("images/m/"+order.file+".png").then(function(im){var h=Math.min(230,room),sc=Math.min(h/im.height,420/im.width);c.drawImage(im,540-im.width*sc/2,y+30+(h-im.height*sc),im.width*sc,im.height*sc);return cv},function(){return cv})}return Promise.resolve(cv)}
 $("#shC").onclick=function(){runCardShare(function(){return card("c")},"shannon-character.png","Shannon's Birthday Character","Shannon's birthday character! Made with love by Fonda.")};
 $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-birthday-wishes.png","Shannon's Birthday Wishes","A birthday wishes card for Shannon, made with love by Fonda.")};
