@@ -2177,21 +2177,51 @@ $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-
 </style>
 <style id="mobile-cottage-centering-fix">
 /* Mobile: show the full cottage, center it vertically, and nudge the artwork right. */
-@media (max-width:600px){
-  #scene1 #houseWrap>img{
-    object-fit:contain!important;
-    object-position:center center!important;
-    width:100vw!important;height:auto!important;
-    max-width:none!important;max-height:none!important;
-    top:50%!important;left:50%!important;right:auto!important;bottom:auto!important;
-    transform:translate(-20%, -50%)!important;
+/* Mobile cottage positioning */
+@media (max-width: 600px) {
+  #scene1 #houseWrap > img {
+    object-fit: contain !important;
+    object-position: center center !important;
+    width: 100vw !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    /* MOVE HOUSE HORIZONTALLY */
+    transform: translate(-35%, -50%) !important;
   }
-  #scene1 #door{left:43.5%!important;top:calc(50% + 15vw)!important;width:11.2%!important;height:17.2%!important}
-  #scene1 #knockFx{left:50%!important;top:calc(50% + 14vw)!important;width:14%!important;height:14%!important}
+
+  #scene1 #door {
+    left: 43.5% !important;
+    top: calc(50% + 15vw) !important;
+    width: 11.2% !important;
+    height: 17.2% !important;
+  }
+
+  #scene1 #knockFx {
+    left: 50% !important;
+    top: calc(50% + 14vw) !important;
+    width: 14% !important;
+    height: 14% !important;
+  }
 }
-@media(max-width:390px){
-  #scene1 #houseWrap>img{transform:translate(-44%, -50%)!important}
-  #scene1 #door{left:44.5%!important}
-  #scene1 #knockFx{left:51%!important}
+
+/* Small phones */
+@media (max-width: 390px) {
+  #scene1 #houseWrap > img {
+    transform: translate(-35%, -50%) !important;
+  }
+
+  #scene1 #door {
+    left: 44.5% !important;
+  }
+
+  #scene1 #knockFx {
+    left: 51% !important;
+  }
 }
 </style>
