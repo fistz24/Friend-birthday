@@ -3231,3 +3231,11 @@ $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-
   #scene1 #memoryRightArtwork{right:-4vw!important;left:auto!important}
 }
 </style>
+<style id="mobile-final-hide-old-polaroid-strings">
+/* Mobile only: keep the new single artwork, remove the legacy left/right PNGs. Desktop untouched. */
+@media (max-width:700px){
+  #scene1 #memoryLeftArtwork,
+  #scene1 #memoryRightArtwork{display:none!important}
+  #scene1 #mobileMemoryArtwork{display:block!important}
+}
+</style>
