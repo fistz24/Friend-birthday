@@ -642,9 +642,9 @@ img,canvas,video{max-width:100%}
 <style id="mobile-landing-requested-adjustments">
 /* Mobile portrait only: enlarge cottage by 50%, spread the side strings outward. */
 @media(max-width:700px) and (orientation:portrait){
- #scene1 #houseWrap{width:min(120vw)!important;height:min(100dvh)!important;max-height:85dvh!important}
- #scene1 #memoryLeftArtwork{transform:translate(-20%,-25%) scale(.85)!important}
- #scene1 #memoryRightArtwork{transform:translate(20%,-25%)!important}
+ #scene1 #houseWrap{width:min(98.7vw,52.5dvh)!important;height:min(87dvh,1020px)!important;max-height:65.1dvh!important}
+ #scene1 #memoryLeftArtwork{transform:translate(-5%,-25%) scale(.85)!important}
+ #scene1 #memoryRightArtwork{transform:translate(13%,-25%)!important}
 }
 </style>
 
@@ -3156,5 +3156,62 @@ $("#shW").onclick=function(){runCardShare(function(){return card("w")},"shannon-
 @media(max-width:700px) {
   #scene1 #memoryLeftArtwork { transform:translate(20%, -25%) scale(0.85) !important; }
   #scene1 #memoryRightArtwork { transform:translate(3%, -25%) !important; }
+}
+</style>
+
+<style id="mobile-landing-fix-2026-11-27">
+/* Mobile-only landing refinements: larger cottage, correctly aligned tap-to-knock door,
+   and larger Polaroid artwork positioned lower. Desktop styles are intentionally untouched. */
+@media (max-width:700px) and (orientation:portrait){
+  #scene1 #houseWrap{
+    width:min(110vw,60dvh)!important;
+    max-height:76dvh!important;
+    aspect-ratio:736/1000!important;
+    height:auto!important;
+    left:50%!important;
+    right:auto!important;
+    bottom:0!important;
+    top:auto!important;
+    transform:translateX(-50%)!important;
+    transform-origin:bottom center!important;
+    overflow:visible!important;
+  }
+  #scene1 #houseWrap>img{
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    transform:none!important;
+    object-fit:contain!important;
+    object-position:center bottom!important;
+    pointer-events:none!important;
+  }
+  /* The blue door sits left of center in the cottage artwork. Keep the hit target
+     over the door itself (the old centered hit area was landing on a window/wall). */
+  #scene1 #door{
+    left:27%!important;
+    top:65%!important;
+    width:20%!important;
+    height:23%!important;
+    transform:none!important;
+    z-index:12!important;
+    pointer-events:auto!important;
+    background:transparent!important;
+  }
+  #scene1 #knockFx{
+    left:30%!important;
+    top:63%!important;
+    width:16%!important;
+    height:16%!important;
+    z-index:13!important;
+  }
+  /* Bigger and lower photo-string artwork: remove the inherited upward transform. */
+  #scene1 #memoryLeftArtwork,
+  #scene1 #memoryRightArtwork{
+    top:11dvh!important;
+    width:min(66vw,340px)!important;
+    transform:none!important;
+  }
+  #scene1 #memoryLeftArtwork{left:-4vw!important;right:auto!important}
+  #scene1 #memoryRightArtwork{right:-4vw!important;left:auto!important}
 }
 </style>
